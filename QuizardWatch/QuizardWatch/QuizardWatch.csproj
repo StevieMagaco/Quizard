@@ -57,9 +57,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataStruct.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
@@ -67,6 +69,9 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\layout\CardSets.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Icon.png" />
