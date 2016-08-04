@@ -56,6 +56,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\layout\CreateAnAccountDialogFragment.cs" />
+    <Compile Include="Resources\layout\DeckActivity.cs" />
+    <Compile Include="Resources\layout\DeckCardDialogFragment.cs" />
+    <Compile Include="Resources\layout\DeckCardTabFragment.cs" />
+    <Compile Include="Resources\layout\DeckQuizDialogFragment.cs" />
+    <Compile Include="Resources\layout\DeckQuizTabFragment.cs" />
     <Compile Include="Resources\layout\LoginActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +70,21 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\CreateAnAccountDialogLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\DeckLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\DeckCardTab.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\DeckCardDialogBox.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\DeckQuizTab.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\DeckQuizDialogBox.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -87,6 +107,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ButtonStyle.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\cardIconSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\quizIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

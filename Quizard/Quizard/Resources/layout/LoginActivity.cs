@@ -15,7 +15,7 @@ using Android.Widget;
 
 namespace Quizard
 {
-    [Activity(Label = "Quizard", MainLauncher = true /* MainLauncher does NOT need to be changed unless another layout or diaglog fragment needs to be tested*/, Icon = "@drawable/icon")]
+    [Activity(Label = "Quizard" /* MainLauncher does NOT need to be changed unless another layout or diaglog fragment needs to be tested*/, Icon = "@drawable/icon")]
     public class LoginActivity : Activity
     {
         private LinearLayout loginView;
