@@ -19,3 +19,46 @@ C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\Quizard
 C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.csprojResolveAssemblyReference.cache
 C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.dll.mdb
 C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.dll
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.pdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.QuizardWatch.apk
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.QuizardWatch-Signed.apk
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\Xamarin.Android.Support.v4.dll
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\Xamarin.Android.Support.v7.RecyclerView.dll
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\Xamarin.Android.Wearable.dll
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.csprojResolveAssemblyReference.cache
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.dll
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.pdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\bin\QuizardWatch.QuizardWatch.apk
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\res\layout\cardsets.xml
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\res\drawable\icon.png
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\res\layout\main.xml
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\res\layout\rectanglemain.xml
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\res\layout\roundmain.xml
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\res\values\strings.xml
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\R.cs.flag
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\uploadflags.txt
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\Java.Interop.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\Mono.Android.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\mscorlib.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\System.ComponentModel.Composition.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\System.Core.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\System.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\System.Net.Http.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\System.Runtime.Serialization.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\System.ServiceModel.Internals.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\System.Xml.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\Java.Interop.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\Mono.Android.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\mscorlib.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\QuizardWatch.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\System.ComponentModel.Composition.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\System.Core.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\System.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\System.Net.Http.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\System.Runtime.Serialization.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\System.Xml.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.dll.mdb
+C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.dll.mdb
