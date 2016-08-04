@@ -2,6 +2,10 @@ QuizardWatch.MainActivity, QuizardWatch;md58199ef9d273f847f3625dda317da8c34.Main
 QuizardWatch.MainActivity, QuizardWatch, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md58199ef9d273f847f3625dda317da8c34.MainActivity
 QuizardWatch.MainActivity;md58199ef9d273f847f3625dda317da8c34.MainActivity
 quizardwatch.MainActivity;md58199ef9d273f847f3625dda317da8c34.MainActivity
+QuizardWatch.SetPage, QuizardWatch;md58199ef9d273f847f3625dda317da8c34.SetPage
+QuizardWatch.SetPage, QuizardWatch, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md58199ef9d273f847f3625dda317da8c34.SetPage
+QuizardWatch.SetPage;md58199ef9d273f847f3625dda317da8c34.SetPage
+quizardwatch.SetPage;md58199ef9d273f847f3625dda317da8c34.SetPage
 Android.Support.V4.View.ViewPager/IOnPageChangeListenerImplementor, Xamarin.Android.Support.v4;mono.android.support.v4.view.ViewPager_OnPageChangeListenerImplementor
 Android.Support.V4.View.ViewPager+IOnPageChangeListenerImplementor, Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.v4.view.ViewPager_OnPageChangeListenerImplementor
 Android.Support.V4.View.ViewPager.IOnPageChangeListenerImplementor;mono.android.support.v4.view.ViewPager_OnPageChangeListenerImplementor

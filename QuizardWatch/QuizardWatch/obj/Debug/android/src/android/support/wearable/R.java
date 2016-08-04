@@ -537,6 +537,7 @@ containing a value of this type.
         public static int open_on_phone_animation=0x7f02000a;
     }
     public static final class id {
+        public static int QuizList=0x7f0c0015;
         public static int alertTitle=0x7f0c0013;
         public static int all=0x7f0c0001;
         public static int animatedWrapperContainer=0x7f0c0012;
@@ -547,8 +548,8 @@ containing a value of this type.
         public static int center_vertical=0x7f0c0009;
         public static int clip_horizontal=0x7f0c000a;
         public static int clip_vertical=0x7f0c000b;
-        public static int dismiss_overlay_button=0x7f0c0016;
-        public static int dismiss_overlay_explain=0x7f0c0015;
+        public static int dismiss_overlay_button=0x7f0c0017;
+        public static int dismiss_overlay_explain=0x7f0c0016;
         public static int end=0x7f0c000c;
         public static int fill=0x7f0c000d;
         public static int fill_horizontal=0x7f0c000e;
@@ -556,15 +557,15 @@ containing a value of this type.
         public static int fit=0x7f0c0007;
         public static int item_touch_helper_previous_elevation=0x7f0c0000;
         public static int left=0x7f0c0003;
-        public static int message=0x7f0c0017;
-        public static int myButton=0x7f0c0019;
+        public static int message=0x7f0c0018;
+        public static int myButton=0x7f0c001a;
         public static int parentPanel=0x7f0c0011;
         public static int right=0x7f0c0004;
         public static int start=0x7f0c0010;
-        public static int text=0x7f0c001b;
-        public static int title=0x7f0c001a;
+        public static int text=0x7f0c001c;
+        public static int title=0x7f0c001b;
         public static int top=0x7f0c0005;
-        public static int watch_view_stub=0x7f0c0018;
+        public static int watch_view_stub=0x7f0c0019;
     }
     public static final class interpolator {
         public static int generic_confirmation_animation_interpolator_0=0x7f060000;
@@ -576,12 +577,13 @@ containing a value of this type.
     }
     public static final class layout {
         public static int alert_dialog_wearable=0x7f030000;
-        public static int dismiss_overlay=0x7f030001;
-        public static int error_layout=0x7f030002;
-        public static int main=0x7f030003;
-        public static int rectanglemain=0x7f030004;
-        public static int roundmain=0x7f030005;
-        public static int watch_card_content=0x7f030006;
+        public static int cardsets=0x7f030001;
+        public static int dismiss_overlay=0x7f030002;
+        public static int error_layout=0x7f030003;
+        public static int main=0x7f030004;
+        public static int rectanglemain=0x7f030005;
+        public static int roundmain=0x7f030006;
+        public static int watch_card_content=0x7f030007;
     }
     public static final class string {
         public static int app_name=0x7f0a0001;

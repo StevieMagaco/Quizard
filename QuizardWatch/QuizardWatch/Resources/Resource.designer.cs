@@ -455,6 +455,9 @@ namespace QuizardWatch
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f0c0015
+			public const int QuizList = 2131492885;
+			
 			// aapt resource value: 0x7f0c0013
 			public const int alertTitle = 2131492883;
 			
@@ -485,11 +488,11 @@ namespace QuizardWatch
 			// aapt resource value: 0x7f0c000b
 			public const int clip_vertical = 2131492875;
 			
-			// aapt resource value: 0x7f0c0016
-			public const int dismiss_overlay_button = 2131492886;
+			// aapt resource value: 0x7f0c0017
+			public const int dismiss_overlay_button = 2131492887;
 			
-			// aapt resource value: 0x7f0c0015
-			public const int dismiss_overlay_explain = 2131492885;
+			// aapt resource value: 0x7f0c0016
+			public const int dismiss_overlay_explain = 2131492886;
 			
 			// aapt resource value: 0x7f0c000c
 			public const int end = 2131492876;
@@ -512,11 +515,11 @@ namespace QuizardWatch
 			// aapt resource value: 0x7f0c0003
 			public const int left = 2131492867;
 			
-			// aapt resource value: 0x7f0c0017
-			public const int message = 2131492887;
+			// aapt resource value: 0x7f0c0018
+			public const int message = 2131492888;
 			
-			// aapt resource value: 0x7f0c0019
-			public const int myButton = 2131492889;
+			// aapt resource value: 0x7f0c001a
+			public const int myButton = 2131492890;
 			
 			// aapt resource value: 0x7f0c0011
 			public const int parentPanel = 2131492881;
@@ -527,17 +530,17 @@ namespace QuizardWatch
 			// aapt resource value: 0x7f0c0010
 			public const int start = 2131492880;
 			
-			// aapt resource value: 0x7f0c001b
-			public const int text = 2131492891;
+			// aapt resource value: 0x7f0c001c
+			public const int text = 2131492892;
 			
-			// aapt resource value: 0x7f0c001a
-			public const int title = 2131492890;
+			// aapt resource value: 0x7f0c001b
+			public const int title = 2131492891;
 			
 			// aapt resource value: 0x7f0c0005
 			public const int top = 2131492869;
 			
-			// aapt resource value: 0x7f0c0018
-			public const int watch_view_stub = 2131492888;
+			// aapt resource value: 0x7f0c0019
+			public const int watch_view_stub = 2131492889;
 			
 			static Id()
 			{

@@ -537,6 +537,7 @@ containing a value of this type.
         public static final int open_on_phone_animation=0x7f02000a;
     }
     public static final class id {
+        public static final int QuizList=0x7f0c0015;
         public static final int alertTitle=0x7f0c0013;
         public static final int all=0x7f0c0001;
         public static final int animatedWrapperContainer=0x7f0c0012;
@@ -547,8 +548,8 @@ containing a value of this type.
         public static final int center_vertical=0x7f0c0009;
         public static final int clip_horizontal=0x7f0c000a;
         public static final int clip_vertical=0x7f0c000b;
-        public static final int dismiss_overlay_button=0x7f0c0016;
-        public static final int dismiss_overlay_explain=0x7f0c0015;
+        public static final int dismiss_overlay_button=0x7f0c0017;
+        public static final int dismiss_overlay_explain=0x7f0c0016;
         public static final int end=0x7f0c000c;
         public static final int fill=0x7f0c000d;
         public static final int fill_horizontal=0x7f0c000e;
@@ -556,15 +557,15 @@ containing a value of this type.
         public static final int fit=0x7f0c0007;
         public static final int item_touch_helper_previous_elevation=0x7f0c0000;
         public static final int left=0x7f0c0003;
-        public static final int message=0x7f0c0017;
-        public static final int myButton=0x7f0c0019;
+        public static final int message=0x7f0c0018;
+        public static final int myButton=0x7f0c001a;
         public static final int parentPanel=0x7f0c0011;
         public static final int right=0x7f0c0004;
         public static final int start=0x7f0c0010;
-        public static final int text=0x7f0c001b;
-        public static final int title=0x7f0c001a;
+        public static final int text=0x7f0c001c;
+        public static final int title=0x7f0c001b;
         public static final int top=0x7f0c0005;
-        public static final int watch_view_stub=0x7f0c0018;
+        public static final int watch_view_stub=0x7f0c0019;
     }
     public static final class interpolator {
         public static final int generic_confirmation_animation_interpolator_0=0x7f060000;

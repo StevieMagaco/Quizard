@@ -11,42 +11,33 @@ using Android.Support.V4.App;
 using Android.Support.V4.View;
 using Java.Interop;
 using Android.Views.Animations;
+using System.Collections.Generic;
 
 namespace QuizardWatch
 {
     [Activity(Label = "QuizardWatch", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-        int count = 1;
-        
+        private ListView QuizList;
+        //Temporary List of Dummy data
+        private List<string> tempList = new List<string>();
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            //Set our view from the "main" layout resource
+            SetContentView(Resource.Layout.CardSets);
 
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
+            tempList.Add("History");
+            tempList.Add("Mathematics");
+            tempList.Add("Literature");
 
-            var v = FindViewById<WatchViewStub>(Resource.Id.watch_view_stub);
-            v.LayoutInflated += delegate
-            {
+            QuizList = FindViewById<ListView>(Resource.Id.QuizList);
 
-                // Get our button from the layout resource,
-                // and attach an event to it
-                Button button = FindViewById<Button>(Resource.Id.myButton);
+            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleExpandableListItem1, tempList);
 
-                button.Click += delegate
-                {
-                    var notification = new NotificationCompat.Builder(this)
-                        .SetContentTitle("Button tapped")
-                        .SetContentText("Button tapped " + count++ + " times!")
-                        .SetSmallIcon(Android.Resource.Drawable.StatNotifyVoicemail)
-                        .SetGroup("group_key_demo").Build();
+            QuizList.Adapter = adapter;
 
-                    var manager = NotificationManagerCompat.From(this);
-                    manager.Notify(1, notification);
-                    button.Text = "Check Notification!";
-                };
-            };
         }
     }
 }
