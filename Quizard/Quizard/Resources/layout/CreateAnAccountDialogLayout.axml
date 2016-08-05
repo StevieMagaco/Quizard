@@ -6,6 +6,8 @@
     android:minWidth="600px"
     android:minHeight="1200px"
     android:weightSum="100"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     android:background="#02243C">
     <TextView
         android:textAppearance="?android:attr/textAppearanceMedium"
