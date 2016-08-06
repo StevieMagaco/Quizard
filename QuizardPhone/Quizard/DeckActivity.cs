@@ -23,6 +23,8 @@ namespace Quizard.Resources.layout
         List<string> answers;
 
         List<string> quizAnswers;
+
+
         // Initializes list, and creates action bar
         protected override void OnCreate(Bundle bundle)
         {
