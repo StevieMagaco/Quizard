@@ -85,7 +85,7 @@ namespace Quizard.DataBase
                 whereclause = Constants.Users_UserName + " = ? and " + Constants.Users_Password + " = ?";
                 return db.Query(Constants.Users_TB_Name, columns, whereclause, Clause2, null, null, null); ;
             }
-            else if(UserName.Length > 0 && Password.Length == 0)
+            else if(UserName.Length > 0 && Password == "")
             {
                 whereclause = Constants.Users_UserName + " = ? ";
                 return db.Query(Constants.Users_TB_Name, columns, whereclause, Clause1, null, null, null); ;

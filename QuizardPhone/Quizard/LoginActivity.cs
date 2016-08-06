@@ -129,7 +129,7 @@ namespace Quizard
                 {
                     DataBase.DBAdapter db = new DataBase.DBAdapter(this);
                     db.openDB();
-                    ICursor UserInfo = db.GetUser(userLoginUsername.Text, "");
+                    ICursor UserInfo = db.GetUser(NewUsername, "");
                     if (UserInfo.Count == 0)
                     {
                         DataBase.DBFunction DataFunc = new DataBase.DBFunction();
