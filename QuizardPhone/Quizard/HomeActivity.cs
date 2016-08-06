@@ -108,7 +108,7 @@ namespace Quizard
                 flashcardSubject = "Computer Science",
                 flashcardCount = "1"
             });
-            ///////////////////////////////////////////////////
+            /////////////////////////////////////////////////
 
             layoutManager = new LinearLayoutManager(this);
             flashsetItem.SetLayoutManager(layoutManager);
@@ -127,6 +127,7 @@ namespace Quizard
         {
             switch (item.ItemId)
             {
+                #region Add
                 case Resource.Id.addAFlashSetItemID:
 
                     // For testing ////////////////////////////////////
@@ -137,9 +138,18 @@ namespace Quizard
                     });
                     ///////////////////////////////////////////////////
 
+                    FragmentTransaction transaction = FragmentManager.BeginTransaction();
+
+                    CreateASetDialogFragment fragment = new CreateASetDialogFragment();
+                    fragment.Show(transaction, "dialog fragment");
+
+                    fragment.onCreateASetIsClicked += CreateASet_onCreateASetIsClicked;
+
                     adapter.NotifyItemInserted(0);
                     return true;
+                #endregion
 
+                #region Delete
                 case Resource.Id.deleteAFlashSetItemID:
 
                     // This code removes the most recent flashset
@@ -147,19 +157,29 @@ namespace Quizard
 
                     adapter.NotifyItemRemoved(0);
                     return true;
+                #endregion
 
+                #region Settings
                 case Resource.Id.settingsItemID:
 
                     // TODO: Implement a settings layout to replace this intent
                     Intent intent = new Intent(this, typeof(LoginActivity));
                     this.StartActivity(intent);
                     return true;
+                #endregion
 
                 default:
                     break;
             }
 
             return true;
+        }
+
+        private void CreateASet_onCreateASetIsClicked(object sender, OnCreateASetEventArgs e)
+        {
+            // TODO: Add set creation error checking
+            Intent intent = new Intent(this, typeof(DeckActivity));
+            this.StartActivity(intent);
         }
     }
 }

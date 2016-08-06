@@ -2,35 +2,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
-using Android;
-using Android.Graphics.Drawables;
-using Android.Graphics;
 
-namespace Quizard.Resources.layout
+namespace Quizard
 {
-    // turn off MainLauncher after testing
-    [Activity(Label = "DeckActivity", MainLauncher = true)]
+    [Activity(Label = "DeckActivity", MainLauncher = false /*Keep the MainLauncher = false unless this dialog fragment needs to be tested*/)]
     public class DeckActivity : Activity
     {
-        List<string> questions;
-        List<string> answers;
+        List<string> questions, answers, quizAnswers;
 
-        List<string> quizAnswers;
-      //public DeckActivity(List<string> _questions, List<string> _answers)
-      //{
-      //    // Uncomment once actual decks are sent in
-      //    questions = new List<string>();
-      //     questions = _questions;
-      //    answers = new List<string>();
-      //     answers = _answers;
-      //}
+        //public DeckActivity(List<string> _questions, List<string> _answers)
+        //{
+        //    questions = new List<string>();
+        //    questions = _questions;
+        //    answers = new List<string>();
+        //    answers = _answers;
+        //}
 
         // Initializes list, and creates action bar
         protected override void OnCreate(Bundle bundle)
@@ -57,14 +52,14 @@ namespace Quizard.Resources.layout
             quizAnswers.Add("2) answer");
             quizAnswers.Add("3) answer");
             quizAnswers.Add("4) answer");
-            // Set our view from the "main" layout resource
+
+            // Set our view from the "DeckLayout" layout resource
             SetContentView(Resource.Layout.DeckLayout);
 
             this.ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
 
             AddTab("CARDS", Resource.Drawable.cardIconSmall, new DeckCardTabFragment(questions, answers));
             AddTab("QUIZ", Resource.Drawable.quizIcon, new DeckQuizTabFragment(questions, quizAnswers));
-
 
             if (bundle != null)
                 this.ActionBar.SelectTab(this.ActionBar.GetTabAt(bundle.GetInt("tab")));
@@ -74,6 +69,7 @@ namespace Quizard.Resources.layout
         void AddTab(string tabText, int iconResourceId, Fragment view)
         {
             var tab = this.ActionBar.NewTab();
+
             tab.SetText(tabText);
             tab.SetIcon(iconResourceId);
 
@@ -81,27 +77,29 @@ namespace Quizard.Resources.layout
             tab.TabSelected += delegate (object sender, ActionBar.TabEventArgs e)
             {
                 var fragment = this.FragmentManager.FindFragmentById(Resource.Id.fragmentContainer);
+
                 if (fragment != null)
                     e.FragmentTransaction.Remove(fragment);
+
                 e.FragmentTransaction.Add(Resource.Id.fragmentContainer, view);
             };
-            tab.TabUnselected += delegate (object sender, ActionBar.TabEventArgs e) {
+
+            tab.TabUnselected += delegate (object sender, ActionBar.TabEventArgs e)
+            {
                 e.FragmentTransaction.Remove(view);
             };
+
             this.ActionBar.AddTab(tab);
         }
     }
 
-
-public class DeckCardDialogFragment : DialogFragment
+    public class DeckCardDialogFragment : DialogFragment
     {
-        List<string> questions;
-        List<string> answers;
+        List<string> questions, answers;
         int position;
-
-        Button viewAnswerButton;
-        Button editButton;
+        Button viewAnswerButton, editButton;
         TextView textView;
+
         public DeckCardDialogFragment(List<string> _questions, List<string> _answers, int pos)
         {
             questions = new List<string>();
@@ -115,22 +113,19 @@ public class DeckCardDialogFragment : DialogFragment
         {
             base.OnCreate(savedInstanceState);
 
-
             var view = inflater.Inflate(Resource.Layout.DeckCardDialogBox, container, false);
             textView = view.FindViewById<TextView>(Resource.Id.cardDialogTextView);
-
             textView.Text = questions[position];
-
 
             // Set up a handler to dismiss this DialogFragment when this button is clicked.
             view.FindViewById<Button>(Resource.Id.cardDialogExitButton).Click += (sender, args) => Dismiss();
-
 
             viewAnswerButton = view.FindViewById<Button>(Resource.Id.cardDialogAnswerButton);
             viewAnswerButton.Click += ViewAnswerButton_Click;
 
             editButton = view.FindViewById<Button>(Resource.Id.cardDialogEditButton);
             editButton.Click += EditButton_Click;
+
             return view;
         }
 
@@ -144,15 +139,12 @@ public class DeckCardDialogFragment : DialogFragment
         private void ViewAnswerButton_Click(object sender, EventArgs e)
         {
             textView.Text = answers[position];
-
         }
     }
 
-public class DeckCardTabEditFragment : DialogFragment
+    public class DeckCardTabEditFragment : DialogFragment
     {
-
         EditText questionText, answerText;
-
 
         public DeckCardTabEditFragment(string question, string answer)
         {
@@ -163,6 +155,7 @@ public class DeckCardTabEditFragment : DialogFragment
             questionText.Text = question;
             answerText.Text = answer;
         }
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -175,21 +168,18 @@ public class DeckCardTabEditFragment : DialogFragment
             // Use this to return your custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
-            return base.OnCreateView(inflater, container, savedInstanceState);
-
             var view = inflater.Inflate(Resource.Layout.DeckCardTab, container, false);
 
-
+            return base.OnCreateView(inflater, container, savedInstanceState);
         }
     }
 
-
-public class DeckCardTabFragment : Fragment
+    public class DeckCardTabFragment : Fragment
     {
         List<string> questions, answers;
         ListView cardTabListView;
-
         ImageButton playButton, addButton, homeButton;
+
         public DeckCardTabFragment(List<string> _questions, List<string> _answers)
         {
             questions = new List<string>();
@@ -198,6 +188,7 @@ public class DeckCardTabFragment : Fragment
             questions = _questions;
             answers = _answers;
         }
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -226,14 +217,15 @@ public class DeckCardTabFragment : Fragment
                 DeckCardDialogFragment aDifferentDetailsFrag = new DeckCardDialogFragment(questions, answers, e.Position);
                 aDifferentDetailsFrag.Show(fragmentTx, "dialog_fragment");
             };
+
             playButton = view.FindViewById<ImageButton>(Resource.Id.cardTabPlayButton);
             playButton.Click += PlayButton_Click;
+
             addButton = view.FindViewById<ImageButton>(Resource.Id.cardTabAddButton);
             addButton.Click += AddButton_Click;
+
             homeButton = view.FindViewById<ImageButton>(Resource.Id.cardTabHomeButton);
             homeButton.Click += HomeButton_Click;
-
-
 
             return view;
         }
@@ -254,9 +246,6 @@ public class DeckCardTabFragment : Fragment
             cardTabListView.Adapter = ListAdapter;
 
             // TODO: Add code for adding it into actual set 
-
-
-
         }
 
         private void PlayButton_Click(object sender, EventArgs e)
@@ -265,14 +254,12 @@ public class DeckCardTabFragment : Fragment
         }
     }
 
-
-
-public class DeckQuizDialogFragment : DialogFragment
+    public class DeckQuizDialogFragment : DialogFragment
     {
         List<string> list;
         int position;
-
         Button nextButton;
+
         public DeckQuizDialogFragment(List<string> _list, int pos, Action<bool> nextResult)
         {
             list = new List<string>();
@@ -283,8 +270,6 @@ public class DeckQuizDialogFragment : DialogFragment
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-
 
             var view = inflater.Inflate(Resource.Layout.DeckQuizDialogBox, container, false);
             var textView = view.FindViewById<TextView>(Resource.Id.quizRightWrongTextView);
@@ -300,8 +285,10 @@ public class DeckQuizDialogFragment : DialogFragment
 
             // Set up a handler to dismiss this DialogFragment when this button is clicked.
             view.FindViewById<Button>(Resource.Id.quizDialogRedoButton).Click += (sender, args) => Dismiss();
+
             return view;
         }
+
         private void NextButton_Click(object sender, EventArgs e)
         {
             position++;
@@ -309,56 +296,50 @@ public class DeckQuizDialogFragment : DialogFragment
         }
     }
 
-
-
-
-public class DeckQuizTabFragment : Fragment
-{
-    List<string> questionList;
-    List<string> answerList;
-    int currPosition = 0;
-    Action<bool> nextButtonDialogResult;
-
-    public DeckQuizTabFragment(List<string> _questionList, List<string> _answerList)
+    public class DeckQuizTabFragment : Fragment
     {
-        questionList = _questionList;
-        answerList = _answerList;
-    }
+        List<string> questionList;
+        List<string> answerList;
+        int currPosition = 0;
+        Action<bool> nextButtonDialogResult;
 
-    public override void OnCreate(Bundle savedInstanceState)
-    {
-        base.OnCreate(savedInstanceState);
-        // Create your fragment here
-    }
-
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
-        FragmentManager.PopBackStack();
-
-        base.OnCreateView(inflater, container, savedInstanceState);
-
-
-        var view = inflater.Inflate(Resource.Layout.DeckQuizTab, container, false);
-
-        var sampleTextView = view.FindViewById<TextView>(Resource.Id.quizTabQuestionTextView);
-        sampleTextView.Text = questionList[currPosition];
-
-        var sampleListView = view.FindViewById<ListView>(Resource.Id.quizTabAnswerListView);
-
-        ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, answerList);
-
-        sampleListView.Adapter = ListAdapter;
-
-        sampleListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) =>
+        public DeckQuizTabFragment(List<string> _questionList, List<string> _answerList)
         {
-            FragmentTransaction fragmentTx = this.FragmentManager.BeginTransaction();
-            DeckQuizDialogFragment aDifferentDetailsFrag = new DeckQuizDialogFragment(answerList, e.Position, nextButtonDialogResult);
-            aDifferentDetailsFrag.Show(fragmentTx, "dialog_fragment");
-        };
-        return view;
+            questionList = _questionList;
+            answerList = _answerList;
+        }
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            // Create your fragment here
+        }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            FragmentManager.PopBackStack();
+
+            base.OnCreateView(inflater, container, savedInstanceState);
+
+            var view = inflater.Inflate(Resource.Layout.DeckQuizTab, container, false);
+
+            var sampleTextView = view.FindViewById<TextView>(Resource.Id.quizTabQuestionTextView);
+            sampleTextView.Text = questionList[currPosition];
+
+            var sampleListView = view.FindViewById<ListView>(Resource.Id.quizTabAnswerListView);
+
+            ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, answerList);
+
+            sampleListView.Adapter = ListAdapter;
+
+            sampleListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) =>
+            {
+                FragmentTransaction fragmentTx = this.FragmentManager.BeginTransaction();
+                DeckQuizDialogFragment aDifferentDetailsFrag = new DeckQuizDialogFragment(answerList, e.Position, nextButtonDialogResult);
+                aDifferentDetailsFrag.Show(fragmentTx, "dialog_fragment");
+            };
+
+            return view;
+        }
     }
 }
-
-}
-
-

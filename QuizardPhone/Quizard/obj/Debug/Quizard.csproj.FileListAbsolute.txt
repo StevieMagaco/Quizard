@@ -62,4 +62,3 @@ E:\School\PP4\Quizard_new\QuizardPhone\Quizard\obj\Debug\android\assets\System.S
 E:\School\PP4\Quizard_new\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.dll.mdb
 E:\School\PP4\Quizard_new\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 E:\School\PP4\Quizard_new\QuizardPhone\Quizard\obj\Debug\Quizard.dll.mdb
-E:\School\PP4\Quizard_new\QuizardPhone\Quizard\bin\Debug\Quizard.dll.mdb

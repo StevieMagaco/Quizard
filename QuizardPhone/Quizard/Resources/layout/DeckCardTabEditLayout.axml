@@ -3,24 +3,24 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:text="Question"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/questionTextView" />
-    <EditText
-        android:inputType="textMultiLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/questionTextBox" />
-    <TextView
-        android:text="Answer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/answerTextView" />
-    <EditText
-        android:inputType="textMultiLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/answerTextBox" />
+  <TextView
+      android:text="Question"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/questionTextView" />
+  <EditText
+      android:inputType="textMultiLine"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/questionTextBox" />
+  <TextView
+      android:text="Answer"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/answerTextView" />
+  <EditText
+      android:inputType="textMultiLine"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/answerTextBox" />
 </LinearLayout>

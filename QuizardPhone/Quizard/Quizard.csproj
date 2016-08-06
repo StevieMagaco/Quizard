@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CreateAnAccountDialogFragment.cs" />
+    <Compile Include="CreateASetDialogFragment.cs" />
     <Compile Include="HomeActivity.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="DeckActivity.cs" />
@@ -97,6 +98,9 @@
     <AndroidResource Include="Resources\layout\DeckQuizDialogBox.axml" />
     <AndroidResource Include="Resources\layout\DeckQuizTab.axml" />
     <AndroidResource Include="Resources\layout\DeckCardTabEditLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CreateASetDialogLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

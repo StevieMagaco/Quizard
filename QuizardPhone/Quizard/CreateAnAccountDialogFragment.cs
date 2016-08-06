@@ -17,7 +17,7 @@ namespace Quizard
     public class OnCreateAnAccountEventArgs : EventArgs
     {
         private string eventNewUsername, eventNewPassword, eventNewConfirmPassword;
-        
+
         public string newUsername
         {
             get { return eventNewUsername; }
