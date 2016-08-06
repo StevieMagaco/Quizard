@@ -49,6 +49,10 @@
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="mscorlib" />
+    <Reference Include="SQLite.Net, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLite.Net.Core-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -66,6 +70,11 @@
     <Compile Include="CreateAnAccountDialogFragment.cs" />
     <Compile Include="HomeActivity.cs" />
     <Compile Include="LoginActivity.cs" />
+    <Compile Include="Resources\layout\DeckActivity.cs" />
+    <Compile Include="Resources\layout\DeckCardDialogFragment.cs" />
+    <Compile Include="Resources\layout\DeckCardTabFragment.cs" />
+    <Compile Include="Resources\layout\DeckQuizDialogFragment.cs" />
+    <Compile Include="Resources\layout\DeckQuizTabFragment.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -85,6 +94,12 @@
     <AndroidResource Include="Resources\layout\FlashSetRowView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\DeckAddCardLayout.axml" />
+    <AndroidResource Include="Resources\layout\DeckCardDialogBox.axml" />
+    <AndroidResource Include="Resources\layout\DeckCardTab.axml" />
+    <AndroidResource Include="Resources\layout\DeckLayout.axml" />
+    <AndroidResource Include="Resources\layout\DeckQuizDialogBox.axml" />
+    <AndroidResource Include="Resources\layout\DeckQuizTab.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\LoginLayout.axml">
@@ -120,6 +135,21 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\cardIconSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\file_edit_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\flashcard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\homepageIcon_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\quizIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
