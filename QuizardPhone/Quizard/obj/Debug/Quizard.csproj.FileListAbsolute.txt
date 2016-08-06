@@ -36,6 +36,7 @@ E:\School\PP4\Quizard_new\QuizardPhone\Quizard\obj\Debug\res\drawable\quizicon.p
 E:\School\PP4\Quizard_new\QuizardPhone\Quizard\obj\Debug\R.cs.flag
 E:\School\PP4\Quizard_new\QuizardPhone\Quizard\obj\Debug\uploadflags.txt
 E:\School\PP4\Quizard_new\QuizardPhone\Quizard\obj\Debug\Quizard.csprojResolveAssemblyReference.cache
+E:\School\PP4\Quizard_new\QuizardPhone\Quizard\obj\Debug\res\layout\deckcardtabeditlayout.xml
 E:\School\PP4\Quizard_new\QuizardPhone\Quizard\bin\Debug\Quizard.dll.mdb
 E:\School\PP4\Quizard_new\QuizardPhone\Quizard\bin\Debug\Java.Interop.dll.mdb
 E:\School\PP4\Quizard_new\QuizardPhone\Quizard\bin\Debug\Mono.Android.dll.mdb

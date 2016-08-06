@@ -15,15 +15,31 @@
     <Button
         android:background="#005db3"
         android:text="VIEW ANSWER"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/cardDialogAnswerButton"
-        android:layout_weight="0" />
-    <Button
-        android:background="#005db3"
-        android:text="EXIT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Toolbar
+        android:background="?android:attr/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cardDialogExitButton"
-        android:layout_weight="0" />
+        android:id="@+id/toolbar1">
+        <Button
+            android:background="#005db3"
+            android:text="EDIT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cardDialogEditButton"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:width="150dp" />
+        <Button
+            android:background="#005db3"
+            android:text="EXIT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cardDialogExitButton"
+            android:layout_weight="0"
+            android:layout_marginLeft="30dp"
+            android:width="150dp" />
+    </Toolbar>
 </LinearLayout>

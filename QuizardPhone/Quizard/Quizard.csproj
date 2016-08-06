@@ -70,11 +70,7 @@
     <Compile Include="CreateAnAccountDialogFragment.cs" />
     <Compile Include="HomeActivity.cs" />
     <Compile Include="LoginActivity.cs" />
-    <Compile Include="Resources\layout\DeckActivity.cs" />
-    <Compile Include="Resources\layout\DeckCardDialogFragment.cs" />
-    <Compile Include="Resources\layout\DeckCardTabFragment.cs" />
-    <Compile Include="Resources\layout\DeckQuizDialogFragment.cs" />
-    <Compile Include="Resources\layout\DeckQuizTabFragment.cs" />
+    <Compile Include="DeckActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -100,6 +96,9 @@
     <AndroidResource Include="Resources\layout\DeckLayout.axml" />
     <AndroidResource Include="Resources\layout\DeckQuizDialogBox.axml" />
     <AndroidResource Include="Resources\layout\DeckQuizTab.axml" />
+    <AndroidResource Include="Resources\layout\DeckCardTabEditLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\LoginLayout.axml">
