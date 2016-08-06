@@ -71,10 +71,9 @@ namespace Quizard
                     {
                         DataBase.DBAdapter db = new DataBase.DBAdapter(this);
                         db.openDB();
-                        ICursor c = db.GetUser(userLoginUsername.Text, userLoginPassword.Text);
-                        c.MoveToNext();
-                        String username = c.GetString(0), password = c.GetString(1);
-                        if (userLoginUsername.Text == username && userLoginPassword.Text == password)
+                        ICursor LoginInfo = db.GetUser(userLoginUsername.Text, userLoginPassword.Text);
+                        LoginInfo.MoveToNext();
+                        if (userLoginUsername.Text == LoginInfo.GetString(0) && userLoginPassword.Text == LoginInfo.GetString(1))
                         {
                             userLoginPassword.Text = "";
                             userLoginUsername.Text = "";
@@ -83,16 +82,16 @@ namespace Quizard
                             this.StartActivity(intent);
                         }
                         else
-                        {
-                            Toast.MakeText(this, "Username or Password is Incorrect", ToastLength.Short).Show();
-                        }
+                            throw new System.ArgumentException("Username or Password Didn't Match", "UserName/Password");
+
                         db.CloseDB();
                     }
                     else
-                        Toast.MakeText(this, "Username or Password is Incorrect", ToastLength.Short).Show();
+                        throw new System.ArgumentException("Username or Password size 0", "Username/Password");
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     Toast.MakeText(this, "Username or Password is Incorrect", ToastLength.Short).Show();
                 }
                 #endregion
@@ -130,8 +129,8 @@ namespace Quizard
                 {
                     DataBase.DBAdapter db = new DataBase.DBAdapter(this);
                     db.openDB();
-                    ICursor c = db.GetUser(userLoginUsername.Text, "");
-                    if (c.Count == 0)
+                    ICursor UserInfo = db.GetUser(userLoginUsername.Text, "");
+                    if (UserInfo.Count == 0)
                     {
                         DataBase.DBFunction DataFunc = new DataBase.DBFunction();
                         if (DataFunc.SaveUser(NewUsername, NewPassword, this))
@@ -141,16 +140,17 @@ namespace Quizard
                             this.StartActivity(intent);
                         }
                         else
-                            Toast.MakeText(this, "Unable to Create new User", ToastLength.Short).Show();
+                            throw new System.ArgumentException("Failed to Save USer", "SaveUser");
                     }
                     else
-                        Toast.MakeText(this, "Unable to Create new User", ToastLength.Short).Show();
+                        throw new System.ArgumentException("UserInfo Size 0", "UserInfo");
                 }
                 else
-                    Toast.MakeText(this, "Unable to Create new User", ToastLength.Short).Show();
+                    throw new System.ArgumentException("Username or Password size 0", "UserName / Password");
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 Toast.MakeText(this, "Unable to Create new User", ToastLength.Short).Show();
             }
             fragment.SetNewConfermPassword("");

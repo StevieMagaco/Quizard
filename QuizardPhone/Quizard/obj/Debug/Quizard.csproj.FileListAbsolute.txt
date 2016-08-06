@@ -48,3 +48,4 @@ C:\Users\God\Desktop\Quizard2\QuizardPhone\Quizard\obj\Debug\android\assets\Syst
 C:\Users\God\Desktop\Quizard2\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\God\Desktop\Quizard2\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\God\Desktop\Quizard2\QuizardPhone\Quizard\obj\Debug\Quizard.dll.mdb
+C:\Users\God\Desktop\Quizard2\QuizardPhone\Quizard\bin\Debug\Quizard.dll.mdb
