@@ -77,12 +77,18 @@ namespace Quizard.DataBase
         public ICursor GetUser(String UserName, String Password)
         {
             String whereclause;
-            String[] Clause = { UserName, Password };
+            String[] Clause2 = { UserName, Password };
+            String[] Clause1 = { UserName };
             String[] columns = { Constants.Users_UserName, Constants.Users_Password };
             if (UserName.Length > 0 && Password.Length > 0)
             {
                 whereclause = Constants.Users_UserName + " = ? and " + Constants.Users_Password + " = ?";
-                return db.Query(Constants.Users_TB_Name, columns, whereclause, Clause, null, null, null); ;
+                return db.Query(Constants.Users_TB_Name, columns, whereclause, Clause2, null, null, null); ;
+            }
+            else if(UserName.Length > 0 && Password.Length == 0)
+            {
+                whereclause = Constants.Users_UserName + " = ? ";
+                return db.Query(Constants.Users_TB_Name, columns, whereclause, Clause1, null, null, null); ;
             }
             else
             {

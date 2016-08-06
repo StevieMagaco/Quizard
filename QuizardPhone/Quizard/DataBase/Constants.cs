@@ -48,7 +48,7 @@ namespace Quizard.DataBase
         // Creating Quizard Tables
         // Create User Table 
         public static String Create_Users_tb = "create table Users_tb(" +
-             " UserName Text NOT NULL," +
+             " UserName Text NOT NULL UNIQUE," +
              "Password Text NOT NULL" +
                ")";
         // Create Sets Tables 

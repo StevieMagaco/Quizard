@@ -40,7 +40,7 @@ namespace Quizard.DataBase
          * it returns a ICursor that holds the column info
          * Pass in The username and password and this for the Context
          */
-        private ICursor Retrieve_User(String Username, String Password, Context c)
+        public ICursor Retrieve_User(String Username, String Password, Context c)
         {
             DBAdapter db = new DBAdapter(c);
             db.openDB();
