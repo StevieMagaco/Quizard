@@ -23,7 +23,14 @@ namespace Quizard.Resources.layout
         List<string> answers;
 
         List<string> quizAnswers;
-
+      //public DeckActivity(List<string> _questions, List<string> _answers)
+      //{
+      //    // Uncomment once actual decks are sent in
+      //    questions = new List<string>();
+      //     questions = _questions;
+      //    answers = new List<string>();
+      //     answers = _answers;
+      //}
 
         // Initializes list, and creates action bar
         protected override void OnCreate(Bundle bundle)
