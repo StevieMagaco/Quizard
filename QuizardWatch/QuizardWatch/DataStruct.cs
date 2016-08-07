@@ -10,14 +10,17 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-class CardSet { }
+
 
 namespace QuizardWatch
 {
     class DataStruct
     {
-        List<CardSet> WatchSet;
-
-
+        public List<string> Answers { get; set; }
+        public List<string> Questions { get; set; }
+        public string NameOfSet { get; set; }
+        public int Count { get; set; }
+        public int Correnct { get; set; }
+        public int Incorrect { get; set; }
     }
 }

@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 namespace QuizardWatch
 {
-    [Activity(Label = "QuizardWatch", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "QuizardWatch", MainLauncher = false, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         private ListView QuizList;

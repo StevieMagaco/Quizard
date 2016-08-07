@@ -1,24 +1,3 @@
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.dll
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.pdb
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.QuizardWatch.apk
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.QuizardWatch-Signed.apk
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\Xamarin.Android.Support.v4.dll
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\Xamarin.Android.Support.v7.RecyclerView.dll
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\Xamarin.Android.Wearable.dll
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.dll
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.pdb
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\android\bin\QuizardWatch.QuizardWatch.apk
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\layout\cardsets.xml
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\drawable\icon.png
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\layout\main.xml
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\layout\rectanglemain.xml
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\layout\roundmain.xml
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\values\strings.xml
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\R.cs.flag
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\uploadflags.txt
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.csprojResolveAssemblyReference.cache
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.dll.mdb
-C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.dll.mdb
 C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.dll
 C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.pdb
 C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.QuizardWatch.apk
@@ -61,4 +40,29 @@ C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatc
 C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
 C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.dll.mdb
-C:\My Stuff\Full Sail Classes\2016 8 August\Project and Portfolio IV\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.dll.mdb
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.dll
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.pdb
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.QuizardWatch.apk
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.QuizardWatch-Signed.apk
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\Xamarin.Android.Support.v4.dll
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\Xamarin.Android.Support.v7.RecyclerView.dll
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\Xamarin.Android.Wearable.dll
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.dll
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.pdb
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\android\bin\QuizardWatch.QuizardWatch.apk
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\layout\cardsets.xml
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\layout\answerflashcard.xml
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\layout\questionflashcard.xml
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\drawable\icon.png
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\layout\main.xml
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\layout\rectanglemain.xml
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\layout\roundmain.xml
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\values\strings.xml
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\drawable\error.png
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\res\drawable\success.png
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\R.cs.flag
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\uploadflags.txt
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\obj\Debug\QuizardWatch.dll.mdb
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\QuizardWatch\bin\Debug\QuizardWatch.dll.mdb

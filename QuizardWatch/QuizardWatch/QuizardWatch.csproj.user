@@ -2,5 +2,6 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AndroidDesignerPreferredDevice>Android Wear Square</AndroidDesignerPreferredDevice>
+    <SelectedDevice>Android_Wear_Square_API_23</SelectedDevice>
   </PropertyGroup>
 </Project>

@@ -100,6 +100,7 @@ class MonoPackageManager_Resources {
 		/* We need to ensure that "QuizardWatch.dll" comes first in this list. */
 		"QuizardWatch.dll",
 		"Java.Interop.dll",
+		"Newtonsoft.Json.dll",
 		"Xamarin.Android.Support.v4.dll",
 		"Xamarin.Android.Support.v7.RecyclerView.dll",
 		"Xamarin.Android.Wearable.dll",
@@ -114,6 +115,18 @@ class MonoPackageManager_Resources {
 		"System.Runtime.Extensions.dll",
 		"System.Reflection.Extensions.dll",
 		"System.ServiceModel.Internals.dll",
+		"System.IO.dll",
+		"System.Threading.Tasks.dll",
+		"System.Xml.XDocument.dll",
+		"System.Globalization.dll",
+		"System.Runtime.Serialization.Primitives.dll",
+		"System.Linq.Expressions.dll",
+		"System.Dynamic.Runtime.dll",
+		"System.ObjectModel.dll",
+		"System.Text.RegularExpressions.dll",
+		"System.Xml.ReaderWriter.dll",
+		"System.Text.Encoding.dll",
+		"System.Text.Encoding.Extensions.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};
