@@ -11,7 +11,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-
+using Android.Database.Sqlite;
 namespace Quizard
 {
     public class OnCreateAnAccountEventArgs : EventArgs
@@ -69,6 +69,29 @@ namespace Quizard
             };
 
             return view;
+
         }
+        #region Get/Set
+        public String GetNewUserName()
+        {
+            return newUserUsername.Text;
+        }
+        public String GetNewPassword()
+        {
+            return newUserPassword.Text;
+        }
+        public void SetNewUserName(string Username)
+        {
+            newUserUsername.Text = Username;
+        }
+        public void SetNewPassword(string Password)
+        {
+            newUserPassword.Text = Password;
+        }
+        public void SetNewConfermPassword(string ConPassword)
+        {
+            newUserConfirmPassword.Text = ConPassword;
+        }
+        #endregion
     }
 }

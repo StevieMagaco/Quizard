@@ -64,6 +64,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CreateAnAccountDialogFragment.cs" />
+    <Compile Include="DataBase\Cards.cs" />
+    <Compile Include="DataBase\Constants.cs" />
+    <Compile Include="DataBase\DBAdapter.cs" />
+    <Compile Include="DataBase\DBFunction.cs" />
+    <Compile Include="DataBase\DBHelper.cs" />
+    <Compile Include="DataBase\Sets.cs" />
+    <Compile Include="DataBase\User.cs" />
+    <Compile Include="DataBase\UserInfo.cs" />
     <Compile Include="HomeActivity.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
