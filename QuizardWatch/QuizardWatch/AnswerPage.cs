@@ -49,13 +49,15 @@ namespace QuizardWatch
         }
 
         private void CorrectButton_Click(object sender, EventArgs e)
-        {            
+        {
+            data.Correnct++;         
             //Add true to correct bool
             Transition_To_QuestionPage();
         }
 
         private void IncorrectButton_Click(object sender, EventArgs e)
         {
+            data.Incorrect++;
             //Add true to inccorrect bool
             Transition_To_QuestionPage();
         }
