@@ -528,16 +528,25 @@ containing a value of this type.
         public static final int card_frame=0x7f020001;
         public static final int card_frame_pressed=0x7f020002;
         public static final int close_button=0x7f020003;
-        public static final int generic_confirmation=0x7f020004;
-        public static final int generic_confirmation_animation=0x7f020005;
-        public static final int ic_full_cancel=0x7f020006;
-        public static final int ic_full_sad=0x7f020007;
-        public static final int icon=0x7f020008;
-        public static final int open_on_phone=0x7f020009;
-        public static final int open_on_phone_animation=0x7f02000a;
+        public static final int error=0x7f020004;
+        public static final int generic_confirmation=0x7f020005;
+        public static final int generic_confirmation_animation=0x7f020006;
+        public static final int ic_full_cancel=0x7f020007;
+        public static final int ic_full_sad=0x7f020008;
+        public static final int icon=0x7f020009;
+        public static final int open_on_phone=0x7f02000a;
+        public static final int open_on_phone_animation=0x7f02000b;
+        public static final int success=0x7f02000c;
     }
     public static final class id {
-        public static final int QuizList=0x7f0c0015;
+        public static final int AnswerCorrect=0x7f0c0018;
+        public static final int AnswerIncorrect=0x7f0c0019;
+        public static final int AnswerTextBox=0x7f0c0016;
+        public static final int AnswerTitle=0x7f0c0015;
+        public static final int QuestionNext=0x7f0c0021;
+        public static final int QuestionTextBox=0x7f0c0020;
+        public static final int QuestionTitle=0x7f0c001f;
+        public static final int QuizList=0x7f0c001a;
         public static final int alertTitle=0x7f0c0013;
         public static final int all=0x7f0c0001;
         public static final int animatedWrapperContainer=0x7f0c0012;
@@ -548,8 +557,8 @@ containing a value of this type.
         public static final int center_vertical=0x7f0c0009;
         public static final int clip_horizontal=0x7f0c000a;
         public static final int clip_vertical=0x7f0c000b;
-        public static final int dismiss_overlay_button=0x7f0c0017;
-        public static final int dismiss_overlay_explain=0x7f0c0016;
+        public static final int dismiss_overlay_button=0x7f0c001c;
+        public static final int dismiss_overlay_explain=0x7f0c001b;
         public static final int end=0x7f0c000c;
         public static final int fill=0x7f0c000d;
         public static final int fill_horizontal=0x7f0c000e;
@@ -557,15 +566,16 @@ containing a value of this type.
         public static final int fit=0x7f0c0007;
         public static final int item_touch_helper_previous_elevation=0x7f0c0000;
         public static final int left=0x7f0c0003;
-        public static final int message=0x7f0c0018;
-        public static final int myButton=0x7f0c001a;
+        public static final int linearLayout1=0x7f0c0017;
+        public static final int message=0x7f0c001d;
+        public static final int myButton=0x7f0c0022;
         public static final int parentPanel=0x7f0c0011;
         public static final int right=0x7f0c0004;
         public static final int start=0x7f0c0010;
-        public static final int text=0x7f0c001c;
-        public static final int title=0x7f0c001b;
+        public static final int text=0x7f0c0024;
+        public static final int title=0x7f0c0023;
         public static final int top=0x7f0c0005;
-        public static final int watch_view_stub=0x7f0c0019;
+        public static final int watch_view_stub=0x7f0c001e;
     }
     public static final class interpolator {
         public static final int generic_confirmation_animation_interpolator_0=0x7f060000;
@@ -577,13 +587,15 @@ containing a value of this type.
     }
     public static final class layout {
         public static final int alert_dialog_wearable=0x7f030000;
-        public static final int cardsets=0x7f030001;
-        public static final int dismiss_overlay=0x7f030002;
-        public static final int error_layout=0x7f030003;
-        public static final int main=0x7f030004;
-        public static final int rectanglemain=0x7f030005;
-        public static final int roundmain=0x7f030006;
-        public static final int watch_card_content=0x7f030007;
+        public static final int answerflashcard=0x7f030001;
+        public static final int cardsets=0x7f030002;
+        public static final int dismiss_overlay=0x7f030003;
+        public static final int error_layout=0x7f030004;
+        public static final int main=0x7f030005;
+        public static final int questionflashcard=0x7f030006;
+        public static final int rectanglemain=0x7f030007;
+        public static final int roundmain=0x7f030008;
+        public static final int watch_card_content=0x7f030009;
     }
     public static final class string {
         public static final int app_name=0x7f0a0001;

@@ -1,0 +1,4 @@
+QuizardWatch.MainActivity, FakeQuizardPhone;md5dcf0ec3d4386ab7041681046d2637563.MainActivity
+QuizardWatch.MainActivity, FakeQuizardPhone, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5dcf0ec3d4386ab7041681046d2637563.MainActivity
+QuizardWatch.MainActivity;md5dcf0ec3d4386ab7041681046d2637563.MainActivity
+quizardwatch.MainActivity;md5dcf0ec3d4386ab7041681046d2637563.MainActivity
