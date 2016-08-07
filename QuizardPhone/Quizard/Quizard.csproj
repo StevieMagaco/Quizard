@@ -68,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CreateAnAccountDialogFragment.cs" />
-<<<<<<< HEAD
     <Compile Include="DataBase\Cards.cs" />
     <Compile Include="DataBase\Constants.cs" />
     <Compile Include="DataBase\DBAdapter.cs" />
@@ -77,9 +76,7 @@
     <Compile Include="DataBase\Sets.cs" />
     <Compile Include="DataBase\User.cs" />
     <Compile Include="DataBase\UserInfo.cs" />
-=======
     <Compile Include="CreateASetDialogFragment.cs" />
->>>>>>> Deck_Kris
     <Compile Include="HomeActivity.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="DeckActivity.cs" />

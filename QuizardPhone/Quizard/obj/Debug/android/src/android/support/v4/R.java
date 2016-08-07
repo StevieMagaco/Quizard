@@ -50,41 +50,6 @@ containing a value of this type.
     public static final class drawable {
         public static int add=0x7f020000;
         public static int buttonstyle=0x7f020001;
-<<<<<<< HEAD
-        public static int delete=0x7f020002;
-        public static int edittextstyle=0x7f020003;
-        public static int icon=0x7f020004;
-        public static int settings=0x7f020005;
-    }
-    public static final class id {
-        public static int addAFlashSetItemID=0x7f050011;
-        public static int createAnAccountButtonID=0x7f05000f;
-        public static int createNewAccountButtonID=0x7f050004;
-        public static int deleteAFlashSetItemID=0x7f050012;
-        public static int flashsetCardCountTextViewID=0x7f050006;
-        public static int flashsetRecyclerViewID=0x7f050009;
-        public static int flashsetSubjectTextViewID=0x7f050005;
-        public static int homeLinearLayoutID=0x7f050008;
-        public static int item_touch_helper_previous_elevation=0x7f050000;
-        public static int loginButtonID=0x7f05000e;
-        public static int loginProgressBarID=0x7f050010;
-        public static int loginViewLinearLayoutID=0x7f05000a;
-        public static int newUserConfirmPasswordEditTextID=0x7f050003;
-        public static int newUserPasswordEditTextID=0x7f050002;
-        public static int newUserUsernameEditTextID=0x7f050001;
-        public static int rememberMeCheckBoxID=0x7f05000d;
-        public static int settingsItemID=0x7f050013;
-        public static int toolbarID=0x7f050007;
-        public static int userLoginPasswordEditTextID=0x7f05000c;
-        public static int userLoginUsernameEditTextID=0x7f05000b;
-    }
-    public static final class layout {
-        public static int createanaccountdialoglayout=0x7f030000;
-        public static int flashsetrowview=0x7f030001;
-        public static int homelayout=0x7f030002;
-        public static int hometoolbar=0x7f030003;
-        public static int loginlayout=0x7f030004;
-=======
         public static int cardiconsmall=0x7f020002;
         public static int delete=0x7f020003;
         public static int edittextstyle=0x7f020004;
@@ -98,10 +63,10 @@ containing a value of this type.
     public static final class id {
         public static int DeckAddCardCancelButton=0x7f05000c;
         public static int DeckAddCardSaveButton=0x7f05000b;
-        public static int PlaySetFront_ViewAnswerButton=0x7f05002e;
+        public static int PlaySetFront_ViewAnswerButton=0x7f050030;
         public static int PlaySetQuestionTextView=0x7f05002d;
         public static int QuestionEditText=0x7f050008;
-        public static int addAFlashSetItemID=0x7f05002f;
+        public static int addAFlashSetItemID=0x7f050031;
         public static int answerTextBox=0x7f05001a;
         public static int answerTextView=0x7f050019;
         public static int cardDialogAnswerButton=0x7f05000e;
@@ -116,7 +81,7 @@ containing a value of this type.
         public static int createAnAccountButtonID=0x7f05002b;
         public static int createNewAccountButtonID=0x7f050004;
         public static int createSetButtonID=0x7f050006;
-        public static int deleteAFlashSetItemID=0x7f050030;
+        public static int deleteAFlashSetItemID=0x7f050032;
         public static int editText2=0x7f05000a;
         public static int flashsetCardCountTextViewID=0x7f050022;
         public static int flashsetRecyclerViewID=0x7f050025;
@@ -130,6 +95,8 @@ containing a value of this type.
         public static int newUserConfirmPasswordEditTextID=0x7f050003;
         public static int newUserPasswordEditTextID=0x7f050002;
         public static int newUserUsernameEditTextID=0x7f050001;
+        public static int playSetNoButton=0x7f05002f;
+        public static int playSetYesButton=0x7f05002e;
         public static int questionTextBox=0x7f050018;
         public static int questionTextView=0x7f050017;
         public static int quizDialobNextButton=0x7f05001e;
@@ -139,7 +106,7 @@ containing a value of this type.
         public static int quizTabQuestionTextView=0x7f05001f;
         public static int rememberMeCheckBoxID=0x7f050029;
         public static int setSubjectEditTextID=0x7f050005;
-        public static int settingsItemID=0x7f050031;
+        public static int settingsItemID=0x7f050033;
         public static int textView1=0x7f050007;
         public static int textView2=0x7f050009;
         public static int toolbar1=0x7f05000f;
@@ -161,8 +128,8 @@ containing a value of this type.
         public static int homelayout=0x7f03000a;
         public static int hometoolbar=0x7f03000b;
         public static int loginlayout=0x7f03000c;
-        public static int playsetlayout_front=0x7f03000d;
->>>>>>> Deck_Kris
+        public static int playsetlayout_back=0x7f03000d;
+        public static int playsetlayout_front=0x7f03000e;
     }
     public static final class menu {
         public static int toolbaritems=0x7f080000;

@@ -50,41 +50,6 @@ containing a value of this type.
     public static final class drawable {
         public static final int add=0x7f020000;
         public static final int buttonstyle=0x7f020001;
-<<<<<<< HEAD
-        public static final int delete=0x7f020002;
-        public static final int edittextstyle=0x7f020003;
-        public static final int icon=0x7f020004;
-        public static final int settings=0x7f020005;
-    }
-    public static final class id {
-        public static final int addAFlashSetItemID=0x7f050011;
-        public static final int createAnAccountButtonID=0x7f05000f;
-        public static final int createNewAccountButtonID=0x7f050004;
-        public static final int deleteAFlashSetItemID=0x7f050012;
-        public static final int flashsetCardCountTextViewID=0x7f050006;
-        public static final int flashsetRecyclerViewID=0x7f050009;
-        public static final int flashsetSubjectTextViewID=0x7f050005;
-        public static final int homeLinearLayoutID=0x7f050008;
-        public static final int item_touch_helper_previous_elevation=0x7f050000;
-        public static final int loginButtonID=0x7f05000e;
-        public static final int loginProgressBarID=0x7f050010;
-        public static final int loginViewLinearLayoutID=0x7f05000a;
-        public static final int newUserConfirmPasswordEditTextID=0x7f050003;
-        public static final int newUserPasswordEditTextID=0x7f050002;
-        public static final int newUserUsernameEditTextID=0x7f050001;
-        public static final int rememberMeCheckBoxID=0x7f05000d;
-        public static final int settingsItemID=0x7f050013;
-        public static final int toolbarID=0x7f050007;
-        public static final int userLoginPasswordEditTextID=0x7f05000c;
-        public static final int userLoginUsernameEditTextID=0x7f05000b;
-    }
-    public static final class layout {
-        public static final int createanaccountdialoglayout=0x7f030000;
-        public static final int flashsetrowview=0x7f030001;
-        public static final int homelayout=0x7f030002;
-        public static final int hometoolbar=0x7f030003;
-        public static final int loginlayout=0x7f030004;
-=======
         public static final int cardiconsmall=0x7f020002;
         public static final int delete=0x7f020003;
         public static final int edittextstyle=0x7f020004;
@@ -165,7 +130,6 @@ containing a value of this type.
         public static final int loginlayout=0x7f03000c;
         public static final int playsetlayout_back=0x7f03000d;
         public static final int playsetlayout_front=0x7f03000e;
->>>>>>> Deck_Kris
     }
     public static final class menu {
         public static final int toolbaritems=0x7f080000;
