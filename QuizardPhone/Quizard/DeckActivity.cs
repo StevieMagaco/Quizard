@@ -14,7 +14,7 @@ using Android.Widget;
 
 namespace Quizard
 {
-    [Activity(Label = "DeckActivity", MainLauncher = false /*Keep the MainLauncher = false unless this dialog fragment needs to be tested*/)]
+    [Activity(Label = "DeckActivity", MainLauncher = true /*Keep the MainLauncher = false unless this dialog fragment needs to be tested*/)]
     public class DeckActivity : Activity
     {
         List<string> questions, answers, quizAnswers;
@@ -250,7 +250,9 @@ namespace Quizard
 
         private void PlayButton_Click(object sender, EventArgs e)
         {
-
+            FragmentTransaction fragmentTx = this.FragmentManager.BeginTransaction();
+            deckPlayDialogFragment aDifferentDetailsFrag = new deckPlayDialogFragment(questions, answers);
+            aDifferentDetailsFrag.Show(fragmentTx, "dialog_fragment");
         }
     }
 
@@ -295,8 +297,63 @@ namespace Quizard
             Dismiss();
         }
     }
+    public class deckPlayDialogFragment : DialogFragment
+    {
+        List<string> questions, answers;
+        int position;
+        Button answerButton;
+        View view;
+        ViewGroup mContainer;
+        LayoutInflater mInflater;
 
-    public class DeckQuizTabFragment : Fragment
+        public deckPlayDialogFragment(List<string> _questions, List<string> _answers)
+        {
+            questions = new List<string>();
+            answers = new List<string>();
+        }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            mInflater = inflater;
+            mContainer = container;
+
+
+            view = inflater.Inflate(Resource.Layout.PlaySetLayout_Front, container, false);
+
+
+            // Set up a handler to dismiss this DialogFragment when this button is clicked.
+            answerButton = view.FindViewById<Button>(Resource.Id.PlaySetFront_ViewAnswerButton);
+            answerButton.Click += AnswerButton_Click;
+            return view;
+        }
+
+        private void AnswerButton_Click(object sender, EventArgs e)
+        {
+            FragmentTransaction fragmentTx = this.FragmentManager.BeginTransaction();
+            deckPlayDialogFragment_Answer aDifferentDetailsFrag = new deckPlayDialogFragment_Answer(answers[position]);
+            aDifferentDetailsFrag.Show(fragmentTx, "dialog_fragment");
+            
+        }
+    }
+public class deckPlayDialogFragment_Answer : DialogFragment
+{
+        TextView answerTextView;
+        string answer;
+        public deckPlayDialogFragment_Answer(string _answer)
+        {
+            answer = _answer;
+            
+        }
+    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+            var view = inflater.Inflate(Resource.Layout.PlaySetLayout_Front, container, false);
+
+            answerTextView = view.FindViewById<TextView>(Resource.Id.answerTextView);
+
+            return view;
+    }
+}
+public class DeckQuizTabFragment : Fragment
     {
         List<string> questionList;
         List<string> answerList;
@@ -335,8 +392,8 @@ namespace Quizard
             sampleListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) =>
             {
                 FragmentTransaction fragmentTx = this.FragmentManager.BeginTransaction();
-                DeckQuizDialogFragment aDifferentDetailsFrag = new DeckQuizDialogFragment(answerList, e.Position, nextButtonDialogResult);
-                aDifferentDetailsFrag.Show(fragmentTx, "dialog_fragment");
+                DeckQuizDialogFragment quizDialogFrag = new DeckQuizDialogFragment(answerList, e.Position, nextButtonDialogResult);
+                quizDialogFrag.Show(fragmentTx, "dialog_fragment");
             };
 
             return view;

@@ -130,11 +130,17 @@ namespace Quizard
 			// aapt resource value: 0x7f05000b
 			public const int DeckAddCardSaveButton = 2131034123;
 			
+			// aapt resource value: 0x7f050030
+			public const int PlaySetFront_ViewAnswerButton = 2131034160;
+			
+			// aapt resource value: 0x7f05002d
+			public const int PlaySetQuestionTextView = 2131034157;
+			
 			// aapt resource value: 0x7f050008
 			public const int QuestionEditText = 2131034120;
 			
-			// aapt resource value: 0x7f05002d
-			public const int addAFlashSetItemID = 2131034157;
+			// aapt resource value: 0x7f050031
+			public const int addAFlashSetItemID = 2131034161;
 			
 			// aapt resource value: 0x7f05001a
 			public const int answerTextBox = 2131034138;
@@ -178,8 +184,8 @@ namespace Quizard
 			// aapt resource value: 0x7f050006
 			public const int createSetButtonID = 2131034118;
 			
-			// aapt resource value: 0x7f05002e
-			public const int deleteAFlashSetItemID = 2131034158;
+			// aapt resource value: 0x7f050032
+			public const int deleteAFlashSetItemID = 2131034162;
 			
 			// aapt resource value: 0x7f05000a
 			public const int editText2 = 2131034122;
@@ -220,6 +226,12 @@ namespace Quizard
 			// aapt resource value: 0x7f050001
 			public const int newUserUsernameEditTextID = 2131034113;
 			
+			// aapt resource value: 0x7f05002f
+			public const int playSetNoButton = 2131034159;
+			
+			// aapt resource value: 0x7f05002e
+			public const int playSetYesButton = 2131034158;
+			
 			// aapt resource value: 0x7f050018
 			public const int questionTextBox = 2131034136;
 			
@@ -247,8 +259,8 @@ namespace Quizard
 			// aapt resource value: 0x7f050005
 			public const int setSubjectEditTextID = 2131034117;
 			
-			// aapt resource value: 0x7f05002f
-			public const int settingsItemID = 2131034159;
+			// aapt resource value: 0x7f050033
+			public const int settingsItemID = 2131034163;
 			
 			// aapt resource value: 0x7f050007
 			public const int textView1 = 2131034119;
@@ -319,6 +331,12 @@ namespace Quizard
 			
 			// aapt resource value: 0x7f03000c
 			public const int LoginLayout = 2130903052;
+			
+			// aapt resource value: 0x7f03000d
+			public const int PlaySetLayout_Back = 2130903053;
+			
+			// aapt resource value: 0x7f03000e
+			public const int PlaySetLayout_Front = 2130903054;
 			
 			static Layout()
 			{

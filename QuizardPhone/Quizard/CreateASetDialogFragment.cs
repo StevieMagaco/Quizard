@@ -42,14 +42,14 @@ namespace Quizard
 
             var view = inflater.Inflate(Resource.Layout.CreateASetDialogLayout, container, false);
 
-            subject = view.FindViewById<EditText>(Resource.Id.setSubjectEditTextID);
-            createSet = view.FindViewById<Button>(Resource.Id.createSetButtonID);
-
-            createSet.Click += (object sender, EventArgs e) =>
-            {
-                onCreateASetIsClicked.Invoke(this, new OnCreateASetEventArgs(subject.Text));
-                this.Dismiss();
-            };
+            // subject = view.FindViewById<EditText>(Resource.Id.setSubjectEditTextID);
+            // createSet = view.FindViewById<Button>(Resource.Id.createSetButtonID);
+            // 
+            // createSet.Click += (object sender, EventArgs e) =>
+            // {
+            //     onCreateASetIsClicked.Invoke(this, new OnCreateASetEventArgs(subject.Text));
+            //     this.Dismiss();
+            // };
 
             return view;
         }
