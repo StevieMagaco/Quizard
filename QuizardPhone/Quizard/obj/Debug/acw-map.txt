@@ -2,6 +2,13 @@ Quizard.CreateAnAccountDialogFragment, Quizard;md578c1a7d2435980346ab2e908307741
 Quizard.CreateAnAccountDialogFragment, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md578c1a7d2435980346ab2e90830774191.CreateAnAccountDialogFragment
 Quizard.CreateAnAccountDialogFragment;md578c1a7d2435980346ab2e90830774191.CreateAnAccountDialogFragment
 quizard.CreateAnAccountDialogFragment;md578c1a7d2435980346ab2e90830774191.CreateAnAccountDialogFragment
+<<<<<<< HEAD
+=======
+Quizard.CreateASetDialogFragment, Quizard;md578c1a7d2435980346ab2e90830774191.CreateASetDialogFragment
+Quizard.CreateASetDialogFragment, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md578c1a7d2435980346ab2e90830774191.CreateASetDialogFragment
+Quizard.CreateASetDialogFragment;md578c1a7d2435980346ab2e90830774191.CreateASetDialogFragment
+quizard.CreateASetDialogFragment;md578c1a7d2435980346ab2e90830774191.CreateASetDialogFragment
+>>>>>>> Deck_Kris
 Quizard.RecyclerAdapter, Quizard;md578c1a7d2435980346ab2e90830774191.RecyclerAdapter
 Quizard.RecyclerAdapter, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md578c1a7d2435980346ab2e90830774191.RecyclerAdapter
 Quizard.RecyclerAdapter;md578c1a7d2435980346ab2e90830774191.RecyclerAdapter
@@ -18,10 +25,45 @@ Quizard.LoginActivity, Quizard;md578c1a7d2435980346ab2e90830774191.LoginActivity
 Quizard.LoginActivity, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md578c1a7d2435980346ab2e90830774191.LoginActivity
 Quizard.LoginActivity;md578c1a7d2435980346ab2e90830774191.LoginActivity
 quizard.LoginActivity;md578c1a7d2435980346ab2e90830774191.LoginActivity
+<<<<<<< HEAD
 Quizard.DataBase.DBHelper, Quizard;md52e9522528e17be1709b0416a57e1e0fc.DBHelper
 Quizard.DataBase.DBHelper, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52e9522528e17be1709b0416a57e1e0fc.DBHelper
 Quizard.DataBase.DBHelper;md52e9522528e17be1709b0416a57e1e0fc.DBHelper
 quizard.database.DBHelper;md52e9522528e17be1709b0416a57e1e0fc.DBHelper
+=======
+Quizard.DeckActivity, Quizard;md578c1a7d2435980346ab2e90830774191.DeckActivity
+Quizard.DeckActivity, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md578c1a7d2435980346ab2e90830774191.DeckActivity
+Quizard.DeckActivity;md578c1a7d2435980346ab2e90830774191.DeckActivity
+quizard.DeckActivity;md578c1a7d2435980346ab2e90830774191.DeckActivity
+Quizard.DeckCardDialogFragment, Quizard;md578c1a7d2435980346ab2e90830774191.DeckCardDialogFragment
+Quizard.DeckCardDialogFragment, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md578c1a7d2435980346ab2e90830774191.DeckCardDialogFragment
+Quizard.DeckCardDialogFragment;md578c1a7d2435980346ab2e90830774191.DeckCardDialogFragment
+quizard.DeckCardDialogFragment;md578c1a7d2435980346ab2e90830774191.DeckCardDialogFragment
+Quizard.DeckCardTabEditFragment, Quizard;md578c1a7d2435980346ab2e90830774191.DeckCardTabEditFragment
+Quizard.DeckCardTabEditFragment, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md578c1a7d2435980346ab2e90830774191.DeckCardTabEditFragment
+Quizard.DeckCardTabEditFragment;md578c1a7d2435980346ab2e90830774191.DeckCardTabEditFragment
+quizard.DeckCardTabEditFragment;md578c1a7d2435980346ab2e90830774191.DeckCardTabEditFragment
+Quizard.DeckCardTabFragment, Quizard;md578c1a7d2435980346ab2e90830774191.DeckCardTabFragment
+Quizard.DeckCardTabFragment, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md578c1a7d2435980346ab2e90830774191.DeckCardTabFragment
+Quizard.DeckCardTabFragment;md578c1a7d2435980346ab2e90830774191.DeckCardTabFragment
+quizard.DeckCardTabFragment;md578c1a7d2435980346ab2e90830774191.DeckCardTabFragment
+Quizard.DeckQuizDialogFragment, Quizard;md578c1a7d2435980346ab2e90830774191.DeckQuizDialogFragment
+Quizard.DeckQuizDialogFragment, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md578c1a7d2435980346ab2e90830774191.DeckQuizDialogFragment
+Quizard.DeckQuizDialogFragment;md578c1a7d2435980346ab2e90830774191.DeckQuizDialogFragment
+quizard.DeckQuizDialogFragment;md578c1a7d2435980346ab2e90830774191.DeckQuizDialogFragment
+Quizard.deckPlayDialogFragment, Quizard;md578c1a7d2435980346ab2e90830774191.deckPlayDialogFragment
+Quizard.deckPlayDialogFragment, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md578c1a7d2435980346ab2e90830774191.deckPlayDialogFragment
+Quizard.deckPlayDialogFragment;md578c1a7d2435980346ab2e90830774191.deckPlayDialogFragment
+quizard.deckPlayDialogFragment;md578c1a7d2435980346ab2e90830774191.deckPlayDialogFragment
+Quizard.deckPlayDialogFragment_Answer, Quizard;md578c1a7d2435980346ab2e90830774191.deckPlayDialogFragment_Answer
+Quizard.deckPlayDialogFragment_Answer, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md578c1a7d2435980346ab2e90830774191.deckPlayDialogFragment_Answer
+Quizard.deckPlayDialogFragment_Answer;md578c1a7d2435980346ab2e90830774191.deckPlayDialogFragment_Answer
+quizard.deckPlayDialogFragment_Answer;md578c1a7d2435980346ab2e90830774191.deckPlayDialogFragment_Answer
+Quizard.DeckQuizTabFragment, Quizard;md578c1a7d2435980346ab2e90830774191.DeckQuizTabFragment
+Quizard.DeckQuizTabFragment, Quizard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md578c1a7d2435980346ab2e90830774191.DeckQuizTabFragment
+Quizard.DeckQuizTabFragment;md578c1a7d2435980346ab2e90830774191.DeckQuizTabFragment
+quizard.DeckQuizTabFragment;md578c1a7d2435980346ab2e90830774191.DeckQuizTabFragment
+>>>>>>> Deck_Kris
 Android.Support.V4.View.ViewPager/IOnPageChangeListenerImplementor, Xamarin.Android.Support.v4;mono.android.support.v4.view.ViewPager_OnPageChangeListenerImplementor
 Android.Support.V4.View.ViewPager+IOnPageChangeListenerImplementor, Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;mono.android.support.v4.view.ViewPager_OnPageChangeListenerImplementor
 Android.Support.V4.View.ViewPager.IOnPageChangeListenerImplementor;mono.android.support.v4.view.ViewPager_OnPageChangeListenerImplementor

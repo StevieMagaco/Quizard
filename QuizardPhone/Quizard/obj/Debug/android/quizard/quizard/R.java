@@ -50,6 +50,7 @@ containing a value of this type.
     public static final class drawable {
         public static final int add=0x7f020000;
         public static final int buttonstyle=0x7f020001;
+<<<<<<< HEAD
         public static final int delete=0x7f020002;
         public static final int edittextstyle=0x7f020003;
         public static final int icon=0x7f020004;
@@ -83,6 +84,88 @@ containing a value of this type.
         public static final int homelayout=0x7f030002;
         public static final int hometoolbar=0x7f030003;
         public static final int loginlayout=0x7f030004;
+=======
+        public static final int cardiconsmall=0x7f020002;
+        public static final int delete=0x7f020003;
+        public static final int edittextstyle=0x7f020004;
+        public static final int file_edit_small=0x7f020005;
+        public static final int flashcard=0x7f020006;
+        public static final int homepageicon_small=0x7f020007;
+        public static final int icon=0x7f020008;
+        public static final int quizicon=0x7f020009;
+        public static final int settings=0x7f02000a;
+    }
+    public static final class id {
+        public static final int DeckAddCardCancelButton=0x7f05000c;
+        public static final int DeckAddCardSaveButton=0x7f05000b;
+        public static final int PlaySetFront_ViewAnswerButton=0x7f050030;
+        public static final int PlaySetQuestionTextView=0x7f05002d;
+        public static final int QuestionEditText=0x7f050008;
+        public static final int addAFlashSetItemID=0x7f050031;
+        public static final int answerTextBox=0x7f05001a;
+        public static final int answerTextView=0x7f050019;
+        public static final int cardDialogAnswerButton=0x7f05000e;
+        public static final int cardDialogEditButton=0x7f050010;
+        public static final int cardDialogExitButton=0x7f050011;
+        public static final int cardDialogTextView=0x7f05000d;
+        public static final int cardTabAddButton=0x7f050014;
+        public static final int cardTabHomeButton=0x7f050013;
+        public static final int cardTabListView=0x7f050016;
+        public static final int cardTabPlayButton=0x7f050015;
+        public static final int cardTabToolbar=0x7f050012;
+        public static final int createAnAccountButtonID=0x7f05002b;
+        public static final int createNewAccountButtonID=0x7f050004;
+        public static final int createSetButtonID=0x7f050006;
+        public static final int deleteAFlashSetItemID=0x7f050032;
+        public static final int editText2=0x7f05000a;
+        public static final int flashsetCardCountTextViewID=0x7f050022;
+        public static final int flashsetRecyclerViewID=0x7f050025;
+        public static final int flashsetSubjectTextViewID=0x7f050021;
+        public static final int fragmentContainer=0x7f05001b;
+        public static final int homeLinearLayoutID=0x7f050024;
+        public static final int item_touch_helper_previous_elevation=0x7f050000;
+        public static final int loginButtonID=0x7f05002a;
+        public static final int loginProgressBarID=0x7f05002c;
+        public static final int loginViewLinearLayoutID=0x7f050026;
+        public static final int newUserConfirmPasswordEditTextID=0x7f050003;
+        public static final int newUserPasswordEditTextID=0x7f050002;
+        public static final int newUserUsernameEditTextID=0x7f050001;
+        public static final int playSetNoButton=0x7f05002f;
+        public static final int playSetYesButton=0x7f05002e;
+        public static final int questionTextBox=0x7f050018;
+        public static final int questionTextView=0x7f050017;
+        public static final int quizDialobNextButton=0x7f05001e;
+        public static final int quizDialogRedoButton=0x7f05001d;
+        public static final int quizRightWrongTextView=0x7f05001c;
+        public static final int quizTabAnswerListView=0x7f050020;
+        public static final int quizTabQuestionTextView=0x7f05001f;
+        public static final int rememberMeCheckBoxID=0x7f050029;
+        public static final int setSubjectEditTextID=0x7f050005;
+        public static final int settingsItemID=0x7f050033;
+        public static final int textView1=0x7f050007;
+        public static final int textView2=0x7f050009;
+        public static final int toolbar1=0x7f05000f;
+        public static final int toolbarID=0x7f050023;
+        public static final int userLoginPasswordEditTextID=0x7f050028;
+        public static final int userLoginUsernameEditTextID=0x7f050027;
+    }
+    public static final class layout {
+        public static final int createanaccountdialoglayout=0x7f030000;
+        public static final int createasetdialoglayout=0x7f030001;
+        public static final int deckaddcardlayout=0x7f030002;
+        public static final int deckcarddialogbox=0x7f030003;
+        public static final int deckcardtab=0x7f030004;
+        public static final int deckcardtabeditlayout=0x7f030005;
+        public static final int decklayout=0x7f030006;
+        public static final int deckquizdialogbox=0x7f030007;
+        public static final int deckquiztab=0x7f030008;
+        public static final int flashsetrowview=0x7f030009;
+        public static final int homelayout=0x7f03000a;
+        public static final int hometoolbar=0x7f03000b;
+        public static final int loginlayout=0x7f03000c;
+        public static final int playsetlayout_back=0x7f03000d;
+        public static final int playsetlayout_front=0x7f03000e;
+>>>>>>> Deck_Kris
     }
     public static final class menu {
         public static final int toolbaritems=0x7f080000;

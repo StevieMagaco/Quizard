@@ -6,7 +6,12 @@
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <application android:label="Quizard" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
     <activity android:label="Home" android:name="md578c1a7d2435980346ab2e90830774191.HomeActivity" />
+<<<<<<< HEAD
     <activity android:icon="@drawable/icon" android:label="Quizard" android:name="md578c1a7d2435980346ab2e90830774191.LoginActivity">
+=======
+    <activity android:icon="@drawable/icon" android:label="Quizard" android:name="md578c1a7d2435980346ab2e90830774191.LoginActivity" />
+    <activity android:label="DeckActivity" android:name="md578c1a7d2435980346ab2e90830774191.DeckActivity">
+>>>>>>> Deck_Kris
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
