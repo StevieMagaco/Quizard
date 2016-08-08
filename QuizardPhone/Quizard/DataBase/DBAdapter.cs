@@ -121,8 +121,28 @@ namespace Quizard.DataBase
         }
         public ICursor GetSets(String UserName)
         {
+            String whereclause;
+            String[] Clause = { UserName };
+            whereclause = Constants.Users_UserName + " = ?";
             String[] columns = { Constants.Sets_UserName, Constants.Sets_SetName, Constants.Sets_Notify, Constants.Sets_Correct, Constants.Sets_Incorrect };
-            return db.Query(Constants.Users_TB_Name, columns, null, null, null, null, null);
+            return db.Query(Constants.Sets_TB_Name, columns, whereclause, Clause, null, null, null);
+        }
+       public ICursor GetSpecificSet(String Username, String SetName)
+        {
+            String whereclause;
+            String[] Clause = { Username, SetName };
+            whereclause = Constants.Users_UserName + " = ? and " + Constants.Sets_SetName + " = ?";
+            String[] columns = { Constants.Sets_UserName, Constants.Sets_SetName, Constants.Sets_Notify, Constants.Sets_Correct, Constants.Sets_Incorrect };
+            return db.Query(Constants.Sets_TB_Name, columns, whereclause, Clause, null, null, null);
+        }
+        public bool DeleteRowSet_tb(string Username,string SetName)
+        {
+            String whereclause = Constants.Users_UserName + " = ? and " + Constants.Sets_SetName + " = ?";
+            String[] Clause = { Username, SetName };
+            if(db.Delete(Constants.Sets_TB_Name, whereclause, Clause) > 0)
+                return true;
+            else
+            return false;
         }
     }
 }

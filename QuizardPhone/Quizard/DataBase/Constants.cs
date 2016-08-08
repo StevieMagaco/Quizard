@@ -57,7 +57,7 @@ namespace Quizard.DataBase
                                              " SetName Text NOT NULL," +
                                            " Notify INTEGER NOT NULL," +
                                           " Correct INTEGER NOT NULL," +
-                                               " Incorrect INTEGER NOT NULL)";
+                                          " Incorrect INTEGER NOT NULL)";
         // Create Cards table             
         public static String Create_Cards_tb = "create table Cards_tb (" +
                                                "UserName Text NOT NULL," +
@@ -65,7 +65,7 @@ namespace Quizard.DataBase
                                                "Question Text NOT NULL," +
                                                  "Answer Text NOT NULL," +
                                           "Number_Box integer NOT NULL," +
-                                                   "PreRun integer NOT NULL)";
+                                           "PreRun integer NOT NULL)";
         // Drop Quizard Table
         public static String Drop_Users_tb = "drop table if exists " + Users_TB_Name;
         public static String Drop_Sets_tb = "drop table if exists " + Sets_TB_Name;

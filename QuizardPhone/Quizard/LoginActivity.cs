@@ -169,16 +169,13 @@ namespace Quizard
                         if (mUserLoginUsername.Text == LoginInfo.GetString(0) && mUserLoginPassword.Text == LoginInfo.GetString(1))
                         {
                             DataBase.User NewUser = new DataBase.User(mUserLoginUsername.Text, mUserLoginPassword.Text);
-
                             UserInformation.SetUser(NewUser);
-
-                            mUserLoginUsername.Text = "";
-                            mUserLoginPassword.Text = "";
-
                             Toast.MakeText(this, "Welcome to Quizify!", ToastLength.Short).Show();
-
                             // Once the user has clicked the "Login" button, take them to the home screen
                             Intent intent = new Intent(this, typeof(HomeActivity));
+                            intent.PutExtra("UserName", mUserLoginUsername.Text);
+                            mUserLoginUsername.Text = "";
+                            mUserLoginPassword.Text = "";
                             this.StartActivity(intent);
                         }
                         else
@@ -245,6 +242,7 @@ namespace Quizard
 
                             // Once the user has clicked the "New to Quizard?" button, take them to the home screen
                             Intent intent = new Intent(this, typeof(HomeActivity));
+                            intent.PutExtra("UserName", NewUsername);
                             this.StartActivity(intent);
                         }
                         else
