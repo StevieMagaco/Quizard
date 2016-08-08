@@ -129,4 +129,3 @@ C:\Users\God\Desktop\Quizard\QuizardPhone\Quizard\obj\Debug\android\assets\Syste
 C:\Users\God\Desktop\Quizard\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\God\Desktop\Quizard\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 C:\Users\God\Desktop\Quizard\QuizardPhone\Quizard\obj\Debug\Quizard.dll.mdb
-C:\Users\God\Desktop\Quizard\QuizardPhone\Quizard\bin\Debug\Quizard.dll.mdb

@@ -99,11 +99,11 @@ namespace Quizard
 			// aapt resource value: 0x7f060008
 			public const int DeckAddCardSaveButton = 2131099656;
 			
-			// aapt resource value: 0x7f060039
-			public const int PlaySetFront_ViewAnswerButton = 2131099705;
+			// aapt resource value: 0x7f06003a
+			public const int PlaySetFront_ViewAnswerButton = 2131099706;
 			
-			// aapt resource value: 0x7f060036
-			public const int PlaySetQuestionTextView = 2131099702;
+			// aapt resource value: 0x7f060037
+			public const int PlaySetQuestionTextView = 2131099703;
 			
 			// aapt resource value: 0x7f060005
 			public const int QuestionEditText = 2131099653;
@@ -156,8 +156,8 @@ namespace Quizard
 			// aapt resource value: 0x7f060022
 			public const int createAFlashSetTextViewID = 2131099682;
 			
-			// aapt resource value: 0x7f060034
-			public const int createAnAccountButtonID = 2131099700;
+			// aapt resource value: 0x7f060035
+			public const int createAnAccountButtonID = 2131099701;
 			
 			// aapt resource value: 0x7f060003
 			public const int createNewAccountButtonID = 2131099651;
@@ -174,6 +174,9 @@ namespace Quizard
 			// aapt resource value: 0x7f060007
 			public const int editText2 = 2131099655;
 			
+			// aapt resource value: 0x7f06002f
+			public const int enterIntoSelectedFlashSetButtonID = 2131099695;
+			
 			// aapt resource value: 0x7f06002e
 			public const int flashSetListViewID = 2131099694;
 			
@@ -183,14 +186,14 @@ namespace Quizard
 			// aapt resource value: 0x7f060018
 			public const int fragmentContainer = 2131099672;
 			
-			// aapt resource value: 0x7f060033
-			public const int loginButtonID = 2131099699;
+			// aapt resource value: 0x7f060034
+			public const int loginButtonID = 2131099700;
 			
-			// aapt resource value: 0x7f060035
-			public const int loginProgressBarID = 2131099701;
+			// aapt resource value: 0x7f060036
+			public const int loginProgressBarID = 2131099702;
 			
-			// aapt resource value: 0x7f06002f
-			public const int loginViewLinearLayoutID = 2131099695;
+			// aapt resource value: 0x7f060030
+			public const int loginViewLinearLayoutID = 2131099696;
 			
 			// aapt resource value: 0x7f060002
 			public const int newUserConfirmPasswordEditTextID = 2131099650;
@@ -204,11 +207,11 @@ namespace Quizard
 			// aapt resource value: 0x7f06001a
 			public const int nextCardButton = 2131099674;
 			
-			// aapt resource value: 0x7f060038
-			public const int playSetNoButton = 2131099704;
+			// aapt resource value: 0x7f060039
+			public const int playSetNoButton = 2131099705;
 			
-			// aapt resource value: 0x7f060037
-			public const int playSetYesButton = 2131099703;
+			// aapt resource value: 0x7f060038
+			public const int playSetYesButton = 2131099704;
 			
 			// aapt resource value: 0x7f060015
 			public const int questionTextBox = 2131099669;
@@ -231,8 +234,8 @@ namespace Quizard
 			// aapt resource value: 0x7f06001f
 			public const int quizTabQuestionTextView = 2131099679;
 			
-			// aapt resource value: 0x7f060032
-			public const int rememberMeCheckBoxID = 2131099698;
+			// aapt resource value: 0x7f060033
+			public const int rememberMeCheckBoxID = 2131099699;
 			
 			// aapt resource value: 0x7f06002b
 			public const int searchFlashSetsSearchViewID = 2131099691;
@@ -258,11 +261,11 @@ namespace Quizard
 			// aapt resource value: 0x7f060026
 			public const int updateFlashSetTextViewID = 2131099686;
 			
-			// aapt resource value: 0x7f060031
-			public const int userLoginPasswordEditTextID = 2131099697;
+			// aapt resource value: 0x7f060032
+			public const int userLoginPasswordEditTextID = 2131099698;
 			
-			// aapt resource value: 0x7f060030
-			public const int userLoginUsernameEditTextID = 2131099696;
+			// aapt resource value: 0x7f060031
+			public const int userLoginUsernameEditTextID = 2131099697;
 			
 			// aapt resource value: 0x7f06001b
 			public const int viewAnswerButton = 2131099675;
