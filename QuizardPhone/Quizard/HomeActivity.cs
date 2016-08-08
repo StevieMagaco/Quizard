@@ -147,7 +147,7 @@ namespace Quizard
                 {
                     mFlashSetSubject.Text = emptySubject;
 
-                    mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
+                    //mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
                     //AddSet(UserInformation.GetUser().GetUsername(), mFlashSetSubject.Text);
                     //RetreiveSet(mFlashSetList, UserInformation.GetUser().GetUsername());
                     // mFlashSetList.Adapter = mAdapter;
@@ -248,7 +248,7 @@ namespace Quizard
             mDeleteAFlashSet.Click += delegate (object sender, EventArgs e)
             {
 
-                if (DeleteSet(UserInformation.GetUser().GetUsername(), mSetNameList[mSelectedFlashSet].ToString())) ;
+                if (DeleteSet(UserInformation.GetUser().GetUsername(), mSetNameList[mSelectedFlashSet].ToString())) 
                 {
                     mFlashSetSubject.Text = emptySubject;
 
