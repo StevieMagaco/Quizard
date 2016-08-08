@@ -236,7 +236,7 @@ namespace Quizard
             };
 
             // If the user taps the update image button on the toolbar...
-            mUpdateAFlashSet.Click += delegate (object sender, EventArgs e)
+            /*mUpdateAFlashSet.Click += delegate (object sender, EventArgs e)
             {
                 RetreiveSet(mFlashSetList, mUserInformation.GetUser().GetUsername());
                 //if (mFlashSetSelected.UpdateAFlashSet(mFlashSetSubject.Text, mSelectedFlashSet))
@@ -260,7 +260,7 @@ namespace Quizard
 
                 Toast.MakeText(this, "Flash Set Updated", ToastLength.Short).Show();
                 //}
-            };
+            };*/
 
             // If the user taps the delete image button on the toolbar...
             mDeleteAFlashSet.Click += delegate (object sender, EventArgs e)
@@ -271,8 +271,12 @@ namespace Quizard
 
                     mFlashSetSubject.Visibility = ViewStates.Invisible;
                     mAddToFlashSetList.Visibility = ViewStates.Invisible;
+                    mEnterIntoSelectedFlashSet.Visibility = ViewStates.Invisible;
 
                     #region Toolbar Image Button Visibility Assignments
+                    mCreateAFlashSet.Visibility = ViewStates.Visible;
+                    mCreateAFlashSetLabel.Visibility = ViewStates.Visible;
+
                     mCancel.Visibility = ViewStates.Invisible;
                     mCancelLabel.Visibility = ViewStates.Invisible;
 
@@ -281,6 +285,9 @@ namespace Quizard
 
                     mDeleteAFlashSet.Visibility = ViewStates.Invisible;
                     mDeleteAFlashSetLabel.Visibility = ViewStates.Invisible;
+
+                    mSettings.Visibility = ViewStates.Visible;
+                    mSettingsLabel.Visibility = ViewStates.Visible;
                     #endregion
 
                     //mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
