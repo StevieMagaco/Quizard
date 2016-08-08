@@ -20,7 +20,7 @@ namespace Quizard
     public class DeckActivity : Activity
     {
         List<string> questions, answers, quizAnswers;
-
+        DataBase.UserInfo UserInformation = new DataBase.UserInfo();
         //public DeckActivity(List<string> _questions, List<string> _answers)
         //{
         //    questions = new List<string>();
@@ -57,10 +57,11 @@ namespace Quizard
 
             // Set our view from the "DeckLayout" layout resource
             SetContentView(Resource.Layout.DeckLayout);
-
+            string[] UserSetname_Buffer = Intent.GetStringArrayExtra("Username/SetName");
             this.ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
-
-            AddTab("CARDS", Resource.Drawable.cardIconSmall, new DeckCardTabFragment(questions, answers));
+            UserInformation.GetUser().SetUsername(UserSetname_Buffer[0]);
+            string mSetName = UserSetname_Buffer[1];
+            AddTab("CARDS", Resource.Drawable.cardIconSmall, new DeckCardTabFragment(questions, answers, UserSetname_Buffer));
             AddTab("QUIZ", Resource.Drawable.quizIcon, new DeckQuizTabFragment(questions, quizAnswers));
 
             if (bundle != null)
@@ -181,12 +182,13 @@ namespace Quizard
         List<string> questions, answers;
         ListView cardTabListView;
         ImageButton playButton, addButton, homeButton;
-
-        public DeckCardTabFragment(List<string> _questions, List<string> _answers)
+        string Username;
+        public DeckCardTabFragment(List<string> _questions, List<string> _answers, string[] UserSetName)
         {
+
             questions = new List<string>();
             answers = new List<string>();
-
+            Username = UserSetName[0];
             questions = _questions;
             answers = _answers;
         }
@@ -235,6 +237,7 @@ namespace Quizard
         private void HomeButton_Click(object sender, EventArgs e)
         {
             Intent intent = new Intent(this.Activity, typeof(HomeActivity));
+            intent.PutExtra("UserName", Username);
             StartActivity(intent);
         }
 

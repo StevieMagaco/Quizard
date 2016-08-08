@@ -187,6 +187,8 @@ namespace Quizard
             mEnterIntoSelectedFlashSet.Click += delegate (object sender, EventArgs e)
             {
                 Intent intent = new Intent(this, typeof(DeckActivity));
+                string[] UserSetName = { mUserInformation.GetUser().GetUsername(), mSetNameList[mSelectedFlashSet].ToString() };
+                intent.PutExtra("Username/SetName", UserSetName);
                 this.StartActivity(intent);
             };
 
