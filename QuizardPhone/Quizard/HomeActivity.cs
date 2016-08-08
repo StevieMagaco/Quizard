@@ -82,8 +82,7 @@ namespace Quizard
         private Button mAddToFlashSetList;
         private int mSelectedFlashSet = -1;
         private string emptySubject = "";
-        private DataBase.UserInfo UserInformation;
-        private ArrayAdapter madapter;
+        private DataBase.UserInfo mUserInformation;
         private JavaList<string> mSetNameList = new JavaList<string>();
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -110,8 +109,8 @@ namespace Quizard
             mSettings = FindViewById<ImageButton>(Resource.Id.settingsImageButtonID);
             mSearchThroughFlashSets = FindViewById<SearchView>(Resource.Id.searchFlashSetsSearchViewID);
             mAddToFlashSetList = FindViewById<Button>(Resource.Id.addToFlashSetListButtonID);
-            UserInformation = new DataBase.UserInfo();
-            madapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mSetNameList);
+            mUserInformation = new DataBase.UserInfo();
+            mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mSetNameList);
             #endregion
 
             if (Username_Buffer != "Data not available")
@@ -119,7 +118,7 @@ namespace Quizard
                 DataBase.User NewUser = new DataBase.User();
                 NewUser.SetUsername(Username_Buffer);
                 NewUser.SetPassword("");
-                UserInformation.SetUser(NewUser);
+                mUserInformation.SetUser(NewUser);
             }
             else
             {
@@ -127,14 +126,14 @@ namespace Quizard
             }
             RetreiveSet(mFlashSetList, Username_Buffer);
             mFlashSets = new ArrayList();
-            mFlashSetSelected = new FlashSetCommand(mFlashSets, mAdapter);
+            //mFlashSetSelected = new FlashSetCommand(mFlashSets, mAdapter);
 
-            mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
+           // mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
             //mFlashSetList.Adapter = mAdapter;
 
             mSearchThroughFlashSets.QueryTextChange += delegate (object sender, SearchView.QueryTextChangeEventArgs e)
             {
-                madapter.Filter.InvokeFilter(e.NewText);
+                mAdapter.Filter.InvokeFilter(e.NewText);
             };
 
             // If the user taps the add button to add a new flash set into the list view...
@@ -143,7 +142,7 @@ namespace Quizard
                 // TODO: Implement the flash set error checking
                // AddSet(UserInformation.GetUser().GetUsername(), mFlashSetSubject.Text);
 
-                if (AddSet(UserInformation.GetUser().GetUsername(), mFlashSetSubject.Text))
+                if (AddSet(mUserInformation.GetUser().GetUsername(), mFlashSetSubject.Text))
                 {
                     mFlashSetSubject.Text = emptySubject;
 
@@ -221,8 +220,9 @@ namespace Quizard
             // If the user taps the update image button on the toolbar...
             mUpdateAFlashSet.Click += delegate (object sender, EventArgs e)
             {
-                if (mFlashSetSelected.UpdateAFlashSet(mFlashSetSubject.Text, mSelectedFlashSet))
-                {
+                RetreiveSet(mFlashSetList, mUserInformation.GetUser().GetUsername());
+                //if (mFlashSetSelected.UpdateAFlashSet(mFlashSetSubject.Text, mSelectedFlashSet))
+                //{
                     mFlashSetSubject.Visibility = ViewStates.Invisible;
                     mAddToFlashSetList.Visibility = ViewStates.Invisible;
 
@@ -237,18 +237,18 @@ namespace Quizard
                     mDeleteAFlashSetLabel.Visibility = ViewStates.Invisible;
                     #endregion
 
-                    mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
-                    mFlashSetList.Adapter = mAdapter;
+                    //mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
+                    //mFlashSetList.Adapter = mAdapter;
 
                     Toast.MakeText(this, "Flash Set Updated", ToastLength.Short).Show();
-                }
+                //}
             };
 
             // If the user taps the delete image button on the toolbar...
             mDeleteAFlashSet.Click += delegate (object sender, EventArgs e)
             {
 
-                if (DeleteSet(UserInformation.GetUser().GetUsername(), mSetNameList[mSelectedFlashSet].ToString())) 
+                if (DeleteSet(mUserInformation.GetUser().GetUsername(), mSetNameList[mSelectedFlashSet].ToString())) 
                 {
                     mFlashSetSubject.Text = emptySubject;
 
@@ -291,7 +291,7 @@ namespace Quizard
                 }
 
                 db.CloseDB();
-                m_FlashSet.Adapter = madapter;
+                m_FlashSet.Adapter = mAdapter;
             }
             catch (Exception exception)
             {
