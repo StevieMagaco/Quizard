@@ -6,13 +6,13 @@
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <application android:label="Quizard" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
     <activity android:label="Home" android:name="md578c1a7d2435980346ab2e90830774191.HomeActivity" />
-    <activity android:icon="@drawable/icon" android:label="Quizard" android:name="md578c1a7d2435980346ab2e90830774191.LoginActivity">
+    <activity android:icon="@drawable/icon" android:label="Quizard" android:name="md578c1a7d2435980346ab2e90830774191.LoginActivity" />
+    <activity android:label="DeckActivity" android:name="md578c1a7d2435980346ab2e90830774191.DeckActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:label="DeckActivity" android:name="md578c1a7d2435980346ab2e90830774191.DeckActivity" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="Quizard.Quizard.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">

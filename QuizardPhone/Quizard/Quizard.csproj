@@ -117,6 +117,7 @@
     <AndroidResource Include="Resources\layout\PlaySetLayout_Back.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\deckPlayLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\LoginLayout.axml">

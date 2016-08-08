@@ -64,5 +64,6 @@ E:\School\PP4\Quizardnewest\QuizardPhone\Quizard\obj\Debug\android\assets\System
 E:\School\PP4\Quizardnewest\QuizardPhone\Quizard\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
 E:\School\PP4\Quizardnewest\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.dll.mdb
 E:\School\PP4\Quizardnewest\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
+E:\School\PP4\Quizardnewest\QuizardPhone\Quizard\obj\Debug\res\layout\deckplaylayout.xml
 E:\School\PP4\Quizardnewest\QuizardPhone\Quizard\obj\Debug\Quizard.dll.mdb
 E:\School\PP4\Quizardnewest\QuizardPhone\Quizard\bin\Debug\Quizard.dll.mdb
