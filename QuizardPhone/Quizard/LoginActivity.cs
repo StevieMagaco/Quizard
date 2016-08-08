@@ -14,6 +14,7 @@ using Android.Views.InputMethods;
 using Android.Widget;
 using Android.Database.Sqlite;
 using Android.Database;
+
 namespace Quizard
 {
     [Activity(Label = "Quizard", MainLauncher = false /* MainLauncher does NOT need to be changed unless another layout or diaglog fragment needs to be tested*/, Icon = "@drawable/icon")]
@@ -25,6 +26,7 @@ namespace Quizard
         private CheckBox rememberMe;
         private ProgressBar loginProgressBar;
         private string NewUsername, NewPassword;
+        private DataBase.UserInfo UserInformation = new DataBase.UserInfo();
        private CreateAnAccountDialogFragment fragment = new CreateAnAccountDialogFragment();
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -75,6 +77,8 @@ namespace Quizard
                         LoginInfo.MoveToNext();
                         if (userLoginUsername.Text == LoginInfo.GetString(0) && userLoginPassword.Text == LoginInfo.GetString(1))
                         {
+                            DataBase.User NewUser = new DataBase.User(userLoginUsername.Text, userLoginPassword.Text);
+                            UserInformation.SetUser(NewUser);
                             userLoginPassword.Text = "";
                             userLoginUsername.Text = "";
                             Toast.MakeText(this, "Welcome", ToastLength.Short).Show();
@@ -135,8 +139,12 @@ namespace Quizard
                         DataBase.DBFunction DataFunc = new DataBase.DBFunction();
                         if (DataFunc.SaveUser(NewUsername, NewPassword, this))
                         {
+                            DataBase.User NewUser = new DataBase.User(NewUsername, NewPassword);
+                            UserInformation.SetUser(NewUser);
                             Toast.MakeText(this, "Welcome", ToastLength.Short).Show();
                             Intent intent = new Intent(this, typeof(HomeActivity));
+                            //Intent.PutExtra("UserInformation", NewUser);
+                            
                             this.StartActivity(intent);
                         }
                         else

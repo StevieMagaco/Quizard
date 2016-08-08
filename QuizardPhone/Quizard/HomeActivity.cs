@@ -181,5 +181,12 @@ namespace Quizard
             Intent intent = new Intent(this, typeof(DeckActivity));
             this.StartActivity(intent);
         }
+
+        private void AddSet(string SetName)
+        {
+            DataBase.Sets NewSet = new DataBase.Sets();
+            NewSet.SetSetName(SetName);
+            //NewSet.SetUsername();
+        }
     }
 }
