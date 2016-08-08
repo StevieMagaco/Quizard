@@ -266,10 +266,10 @@ namespace Quizard
                     mDeleteAFlashSetLabel.Visibility = ViewStates.Invisible;
                     #endregion
 
-                    mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
-                    mFlashSetList.Adapter = mAdapter;
+                    //mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
+                    //mFlashSetList.Adapter = mAdapter;
 
-                    Toast.MakeText(this, "Flash Set Deleted", ToastLength.Short).Show();
+                    //Toast.MakeText(this, "Flash Set Deleted", ToastLength.Short).Show();
                 }
             };
             // Function to retrive Sets
@@ -340,8 +340,8 @@ namespace Quizard
             db.openDB();
             if (db.DeleteRowSet_tb(m_Username, m_SetName))
             {
-                Toast.MakeText(this, m_SetName + " was deleted", ToastLength.Short).Show();
                 RetreiveSet(mFlashSetList, m_Username);
+                Toast.MakeText(this, m_SetName + " was deleted", ToastLength.Short).Show();
                 db.CloseDB();
                 return true;
             }
