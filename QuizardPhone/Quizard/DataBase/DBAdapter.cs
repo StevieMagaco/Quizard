@@ -38,6 +38,7 @@ namespace Quizard.DataBase
             {
                 Console.WriteLine(ex.Message);
             }
+
             return this;
         }
 
@@ -55,6 +56,7 @@ namespace Quizard.DataBase
             }
             //  return this;
         }
+
         // Add a new User to a users table pass Username, Password, FirstName, Lastname
         // In that order
         public bool AddUser(String Username, String Password)
@@ -73,6 +75,7 @@ namespace Quizard.DataBase
             }
             return false;
         }
+
         //Get the user with that UserName and Passord
         public ICursor GetUser(String UserName, String Password)
         {
@@ -80,12 +83,13 @@ namespace Quizard.DataBase
             String[] Clause2 = { UserName, Password };
             String[] Clause1 = { UserName };
             String[] columns = { Constants.Users_UserName, Constants.Users_Password };
+
             if (UserName.Length > 0 && Password.Length > 0)
             {
                 whereclause = Constants.Users_UserName + " = ? and " + Constants.Users_Password + " = ?";
                 return db.Query(Constants.Users_TB_Name, columns, whereclause, Clause2, null, null, null); ;
             }
-            else if(UserName.Length > 0 && Password == "")
+            else if (UserName.Length > 0 && Password == "")
             {
                 whereclause = Constants.Users_UserName + " = ? ";
                 return db.Query(Constants.Users_TB_Name, columns, whereclause, Clause1, null, null, null); ;
@@ -95,6 +99,7 @@ namespace Quizard.DataBase
                 return db.Query(Constants.Users_TB_Name, columns, null, null, null, null, null);
             }
         }
+
         public bool SaveSet(Sets m_Set)
         {
             try

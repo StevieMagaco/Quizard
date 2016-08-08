@@ -25,6 +25,8 @@ namespace Quizard.DataBase
         {
 
         }
+
+        // Overloaded class constructor
         public Cards(string m_Username, string m_SetName, string m_Question, string m_Answer, string m_NumberBox, string m_PreRun)
         {
             UserName = m_Username;
@@ -34,7 +36,8 @@ namespace Quizard.DataBase
             NumberBox = m_NumberBox;
             PreRun = m_PreRun;
         }
-        #region Getters/Setters
+
+        #region Accessors & Mutators
         public string GetUserName()
         {
             return UserName;

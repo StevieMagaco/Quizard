@@ -26,14 +26,17 @@ namespace Quizard.DataBase
 
             DBAdapter db = new DBAdapter(c);
             db.openDB();
+
             if (db.AddUser(Username, Password))
             {
                 db.CloseDB();
                 return true;
             }
+
             db.CloseDB();
             return false;
         }
+
         /*
          * The Retrieve User Function retrieves a user with 
          * the specific username and password of the user 

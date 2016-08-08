@@ -10,21 +10,21 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace Quizard.DataBase 
+namespace Quizard.DataBase
 {
-    class UserInfo 
+    class UserInfo
     {
         User QuizUser;
         List<Sets> QuizSets;
         List<Cards> QuizCards;
-        
-       
+
         public UserInfo()
         {
             QuizUser = new User();
             QuizSets = new List<Sets>();
             QuizCards = new List<Cards>();
         }
+
         public UserInfo(User m_User, List<Sets> m_Sets, List<Cards> m_Cards)
         {
             QuizUser = m_User;
@@ -32,7 +32,7 @@ namespace Quizard.DataBase
             QuizCards = m_Cards;
         }
 
-        #region Get/Setters
+        #region Accessors & Mutators
         public User GetUser()
         {
             return QuizUser;
@@ -63,7 +63,6 @@ namespace Quizard.DataBase
         public void AddSet(Sets m_Set)
         {
             QuizSets.Add(m_Set);
-
         }
         public void RemoveSet(Sets m_Set)
         {
@@ -77,7 +76,5 @@ namespace Quizard.DataBase
         {
             QuizCards.Remove(m_Card);
         }
-
-
     }
 }

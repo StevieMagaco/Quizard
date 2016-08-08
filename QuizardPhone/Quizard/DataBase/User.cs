@@ -21,12 +21,15 @@ namespace Quizard.DataBase
         {
 
         }
+
+        // Overloaded class constructor
         public User(string m_Username, string m_Password)
         {
             Username = m_Username;
             Password = m_Password;
         }
-        #region Getters/Setters
+
+        #region Accessors & Mutators
         public string GetUsername()
         {
             return Username;

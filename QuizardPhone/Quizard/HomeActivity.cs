@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,185 +9,248 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.V7.Widget;
 using Android.Util;
 using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
 
 namespace Quizard
 {
-    public class Flashcard
+    public class FlashSetCommand
     {
-        public string flashcardSubject { get; set; }
-        public string flashcardCount { get; set; }
-    }
+        private ArrayList mFlashSets;
+        private ArrayAdapter mAdapter;
 
-    public class RecyclerAdapter : RecyclerView.Adapter
-    {
-        private List<Flashcard> flashSetCards;
-        private RecyclerView view;
-
-        public class FlashSetView : RecyclerView.ViewHolder
+        public FlashSetCommand(ArrayList flashSets, ArrayAdapter adapter)
         {
-            public View flashSetView { get; set; }
-            public TextView flashSetSubject { get; set; }
-            public TextView flashSetCardCount { get; set; }
+            mFlashSets = flashSets;
+            mAdapter = adapter;
+        }
 
-            public FlashSetView(View view) : base(view)
+        public bool CreateAFlashSet(string flashSetSubject)
+        {
+            try
             {
-                flashSetView = view;
+                mFlashSets.Add(flashSetSubject);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 
-        public RecyclerAdapter(List<Flashcard> flashSet, RecyclerView flashSetView)
+        public bool UpdateAFlashSet(string flashSetUpdatedSubject, int flashSetIndex)
         {
-            flashSetCards = flashSet;
-            view = flashSetView;
-        }
-
-        public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
-        {
-            View flashSetRow = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.FlashSetRowView, parent, false);
-
-            TextView flashSetSubjectText = flashSetRow.FindViewById<TextView>(Resource.Id.flashsetSubjectTextViewID);
-            TextView flashSetCardCountText = flashSetRow.FindViewById<TextView>(Resource.Id.flashsetCardCountTextViewID);
-
-            FlashSetView view = new FlashSetView(flashSetRow)
+            try
             {
-                flashSetSubject = flashSetSubjectText,
-                flashSetCardCount = flashSetCardCountText
-            };
-
-            return view;
-        }
-
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int flashSetPosition)
-        {
-            FlashSetView flashSetHolder = holder as FlashSetView;
-
-            flashSetHolder.flashSetView.Click += (object sender, EventArgs e) =>
+                mFlashSets.RemoveAt(flashSetIndex);
+                mFlashSets.Insert(flashSetIndex, flashSetUpdatedSubject);
+                return true;
+            }
+            catch (Exception)
             {
-                // TODO: Implement the navigation to the inner flash set layout
-            };
-
-            int indexPosition = (flashSetCards.Count - 1) - flashSetPosition;
-
-            flashSetHolder.flashSetSubject.Text = flashSetCards[indexPosition].flashcardSubject;
-            flashSetHolder.flashSetCardCount.Text = flashSetCards[indexPosition].flashcardCount;
+                return false;
+            }
         }
 
-        public override int ItemCount
+        public bool DeleteAFlashSet(int flashSetIndex)
         {
-            get { return flashSetCards.Count; }
+            try
+            {
+                mFlashSets.RemoveAt(flashSetIndex);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 
-    [Activity(Label = "Home", MainLauncher = false /*Keep the MainLauncher = false unless this dialog fragment needs to be tested*/)]
+    [Activity(MainLauncher = false /* MainLauncher does NOT need to be changed unless another layout or diaglog fragment needs to be tested*/, Theme = "@style/CustomActionToolbarTheme")]
     public class HomeActivity : Activity
     {
-        private Toolbar toolbar;
-        private RecyclerView flashsetItem;
-        private RecyclerView.LayoutManager layoutManager;
-        private RecyclerView.Adapter adapter;
-        private List<Flashcard> flashset;
+        private ArrayList mFlashSets;
+        private ArrayAdapter mAdapter;
+        private ListView mFlashSetList;
+        private FlashSetCommand mFlashSetSelected;
+        private EditText mFlashSetSubject;
+        private ImageButton mCreateAFlashSet, mCancel, mUpdateAFlashSet, mDeleteAFlashSet, mSettings;
+        private TextView mCreateAFlashSetLabel, mCancelLabel, mUpdateAFlashSetLabel, mDeleteAFlashSetLabel, mSettingsLabel;
+        private SearchView mSearchThroughFlashSets;
+        private Button mAddToFlashSetList;
+        private int mSelectedFlashSet = -1;
+        private string emptySubject = "";
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            Window.RequestFeature(WindowFeatures.NoTitle);
+
             base.OnCreate(savedInstanceState);
 
             // Set our view from the "HomeLayout" layout resource
             SetContentView(Resource.Layout.HomeLayout);
 
-            toolbar = FindViewById<Toolbar>(Resource.Id.toolbarID);
-            flashsetItem = FindViewById<RecyclerView>(Resource.Id.flashsetRecyclerViewID);
+            #region Class Variable FindViewById<> Assignments
+            mFlashSetList = FindViewById<ListView>(Resource.Id.flashSetListViewID);
+            mFlashSetSubject = FindViewById<EditText>(Resource.Id.flashSetSubjectEditTextID);
+            mCreateAFlashSetLabel = FindViewById<TextView>(Resource.Id.createAFlashSetTextViewID);
+            mCancelLabel = FindViewById<TextView>(Resource.Id.cancelTextViewID);
+            mUpdateAFlashSetLabel = FindViewById<TextView>(Resource.Id.updateFlashSetTextViewID);
+            mDeleteAFlashSetLabel = FindViewById<TextView>(Resource.Id.deleteFlashSetTextViewID);
+            mSettingsLabel = FindViewById<TextView>(Resource.Id.settingsTextViewID);
+            mCreateAFlashSet = FindViewById<ImageButton>(Resource.Id.createAFlashSetImageButtonID);
+            mCancel = FindViewById<ImageButton>(Resource.Id.cancelImageButtonID);
+            mUpdateAFlashSet = FindViewById<ImageButton>(Resource.Id.updateFlashSetImageButtonID);
+            mDeleteAFlashSet = FindViewById<ImageButton>(Resource.Id.deleteFlashSetImageButtonID);
+            mSettings = FindViewById<ImageButton>(Resource.Id.settingsImageButtonID);
+            mSearchThroughFlashSets = FindViewById<SearchView>(Resource.Id.searchFlashSetsSearchViewID);
+            mAddToFlashSetList = FindViewById<Button>(Resource.Id.addToFlashSetListButtonID);
+            #endregion
 
-            // For testing ////////////////////////////////////
-            flashset = new List<Flashcard>();
+            mFlashSets = new ArrayList();
+            mFlashSetSelected = new FlashSetCommand(mFlashSets, mAdapter);
 
-            flashset.Add(new Flashcard()
+            mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
+            mFlashSetList.Adapter = mAdapter;
+
+            mSearchThroughFlashSets.QueryTextChange += delegate (object sender, SearchView.QueryTextChangeEventArgs e)
             {
-                flashcardSubject = "Computer Science",
-                flashcardCount = "1"
-            });
-            /////////////////////////////////////////////////
+                mAdapter.Filter.InvokeFilter(e.NewText);
+            };
 
-            layoutManager = new LinearLayoutManager(this);
-            flashsetItem.SetLayoutManager(layoutManager);
-
-            adapter = new RecyclerAdapter(flashset, flashsetItem);
-            flashsetItem.SetAdapter(adapter);
-        }
-
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.ToolbarItems, menu);
-            return true;
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
+            // If the user taps the add button to add a new flash set into the list view...
+            mAddToFlashSetList.Click += delegate (object sender, EventArgs e)
             {
-                #region Add
-                case Resource.Id.addAFlashSetItemID:
+                // TODO: Implement the flash set error checking
 
-                    // For testing ////////////////////////////////////
-                    flashset.Add(new Flashcard()
-                    {
-                        flashcardSubject = "New Subject",
-                        flashcardCount = "New Flashcard Count"
-                    });
-                    ///////////////////////////////////////////////////
+                if (mFlashSetSelected.CreateAFlashSet(mFlashSetSubject.Text))
+                {
+                    mFlashSetSubject.Text = emptySubject;
 
-                    FragmentTransaction transaction = FragmentManager.BeginTransaction();
+                    mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
+                    mFlashSetList.Adapter = mAdapter;
+                }
+            };
 
-                    CreateASetDialogFragment fragment = new CreateASetDialogFragment();
-                    fragment.Show(transaction, "dialog fragment");
+            // If the user taps an existing flash set item in the list view...
+            mFlashSetList.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs e)
+            {
+                mSelectedFlashSet = e.Position;
+                mFlashSetSubject.Text = mFlashSets[mSelectedFlashSet].ToString();
 
-                    fragment.onCreateASetIsClicked += CreateASet_onCreateASetIsClicked;
+                mFlashSetSubject.Visibility = ViewStates.Visible;
 
-                    adapter.NotifyItemInserted(0);
-                    return true;
+                #region Toolbar Image Button Visibility Assignments
+                mCancel.Visibility = ViewStates.Visible;
+                mCancelLabel.Visibility = ViewStates.Visible;
+
+                mUpdateAFlashSet.Visibility = ViewStates.Visible;
+                mUpdateAFlashSetLabel.Visibility = ViewStates.Visible;
+
+                mDeleteAFlashSet.Visibility = ViewStates.Visible;
+                mDeleteAFlashSetLabel.Visibility = ViewStates.Visible;
+                #endregion
+            };
+
+            // If the user taps the create image button on the toolbar...
+            mCreateAFlashSet.Click += delegate (object sender, EventArgs e)
+            {
+                mFlashSetSubject.Visibility = ViewStates.Visible;
+                mAddToFlashSetList.Visibility = ViewStates.Visible;
+
+                #region Toolbar Image Button Visibility Assignments
+                mCreateAFlashSet.Visibility = ViewStates.Invisible;
+                mCreateAFlashSetLabel.Visibility = ViewStates.Invisible;
+
+                mCancel.Visibility = ViewStates.Visible;
+                mCancelLabel.Visibility = ViewStates.Visible;
+
+                mSettings.Visibility = ViewStates.Invisible;
+                mSettingsLabel.Visibility = ViewStates.Invisible;
+                #endregion
+            };
+
+            // If the user needs to cancel out of a flash set creation, update, or delete command...
+            mCancel.Click += delegate (object sender, EventArgs e)
+            {
+                mFlashSetSubject.Visibility = ViewStates.Invisible;
+                mAddToFlashSetList.Visibility = ViewStates.Invisible;
+
+                #region Toolbar Image Button Visibility Assignments
+                mCreateAFlashSet.Visibility = ViewStates.Visible;
+                mCreateAFlashSetLabel.Visibility = ViewStates.Visible;
+
+                mCancel.Visibility = ViewStates.Invisible;
+                mCancelLabel.Visibility = ViewStates.Invisible;
+
+                mUpdateAFlashSet.Visibility = ViewStates.Invisible;
+                mUpdateAFlashSetLabel.Visibility = ViewStates.Invisible;
+
+                mDeleteAFlashSet.Visibility = ViewStates.Invisible;
+                mDeleteAFlashSetLabel.Visibility = ViewStates.Invisible;
+
+                mSettings.Visibility = ViewStates.Visible;
+                mSettingsLabel.Visibility = ViewStates.Visible;
                 #endregion
 
-                #region Delete
-                case Resource.Id.deleteAFlashSetItemID:
+                mFlashSetSubject.Text = emptySubject;
+            };
 
-                    // This code removes the most recent flashset
-                    flashset.RemoveAt(flashset.Count - 1);
+            // If the user taps the update image button on the toolbar...
+            mUpdateAFlashSet.Click += delegate (object sender, EventArgs e)
+            {
+                if (mFlashSetSelected.UpdateAFlashSet(mFlashSetSubject.Text, mSelectedFlashSet))
+                {
+                    mFlashSetSubject.Visibility = ViewStates.Invisible;
+                    mAddToFlashSetList.Visibility = ViewStates.Invisible;
 
-                    adapter.NotifyItemRemoved(0);
-                    return true;
-                #endregion
+                    #region Toolbar Image Button Visibility Assignments
+                    mCancel.Visibility = ViewStates.Invisible;
+                    mCancelLabel.Visibility = ViewStates.Invisible;
 
-                #region Settings
-                case Resource.Id.settingsItemID:
+                    mUpdateAFlashSet.Visibility = ViewStates.Invisible;
+                    mUpdateAFlashSetLabel.Visibility = ViewStates.Invisible;
 
-                    // TODO: Implement a settings layout to replace this intent
-                    Intent intent = new Intent(this, typeof(LoginActivity));
-                    this.StartActivity(intent);
-                    return true;
-                #endregion
+                    mDeleteAFlashSet.Visibility = ViewStates.Invisible;
+                    mDeleteAFlashSetLabel.Visibility = ViewStates.Invisible;
+                    #endregion
 
-                default:
-                    break;
-            }
+                    mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
+                    mFlashSetList.Adapter = mAdapter;
 
-            return true;
-        }
+                    Toast.MakeText(this, "Flash Set Updated", ToastLength.Short).Show();
+                }
+            };
 
-        private void CreateASet_onCreateASetIsClicked(object sender, OnCreateASetEventArgs e)
-        {
-            // TODO: Add set creation error checking
-            Intent intent = new Intent(this, typeof(DeckActivity));
-            this.StartActivity(intent);
-        }
+            // If the user taps the delete image button on the toolbar...
+            mDeleteAFlashSet.Click += delegate (object sender, EventArgs e)
+            {
+                if (mFlashSetSelected.DeleteAFlashSet(mSelectedFlashSet))
+                {
+                    mFlashSetSubject.Text = emptySubject;
 
-        private void AddSet(string SetName)
-        {
-            DataBase.Sets NewSet = new DataBase.Sets();
-            NewSet.SetSetName(SetName);
-            //NewSet.SetUsername();
+                    mFlashSetSubject.Visibility = ViewStates.Invisible;
+                    mAddToFlashSetList.Visibility = ViewStates.Invisible;
+
+                    #region Toolbar Image Button Visibility Assignments
+                    mCancel.Visibility = ViewStates.Invisible;
+                    mCancelLabel.Visibility = ViewStates.Invisible;
+
+                    mUpdateAFlashSet.Visibility = ViewStates.Invisible;
+                    mUpdateAFlashSetLabel.Visibility = ViewStates.Invisible;
+
+                    mDeleteAFlashSet.Visibility = ViewStates.Invisible;
+                    mDeleteAFlashSetLabel.Visibility = ViewStates.Invisible;
+                    #endregion
+
+                    mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mFlashSets);
+                    mFlashSetList.Adapter = mAdapter;
+
+                    Toast.MakeText(this, "Flash Set Deleted", ToastLength.Short).Show();
+                }
+            };
         }
     }
 }

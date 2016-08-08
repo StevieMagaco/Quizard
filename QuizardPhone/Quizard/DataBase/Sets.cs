@@ -24,6 +24,8 @@ namespace Quizard.DataBase
         {
 
         }
+
+        // Overloaded class constructor
         public Sets(string m_Username, string m_SetName, string m_Notify, string m_Correct, string m_Incorrect)
         {
             UserName = m_Username;
@@ -32,7 +34,8 @@ namespace Quizard.DataBase
             Correct = m_Correct;
             Incorrect = m_Incorrect;
         }
-        #region Getters/Setters
+
+        #region Accessors & Mutators
         public string GetUsername()
         {
             return UserName;

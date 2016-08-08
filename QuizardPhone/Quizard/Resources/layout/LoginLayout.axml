@@ -3,8 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minWidth="25px"
-    android:minHeight="25px"
     android:weightSum="100"
     android:background="#02243C"
     android:descendantFocusability="beforeDescendants"
