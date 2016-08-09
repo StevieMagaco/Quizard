@@ -73,12 +73,8 @@ namespace Quizard
         {
             mNewUserPassword.Text = Password;
         }
-        public string GetNewConfirmPassword()
-        {
-            return mNewUserConfirmPassword.Text;
-        }
 
-        public void SetNewConfirmPassword(string ConPassword)
+        public void SetNewConfermPassword(string ConPassword)
         {
             mNewUserConfirmPassword.Text = ConPassword;
         }
@@ -115,10 +111,10 @@ namespace Quizard
         private Button mLogin, mCreateAnAccount;
         private CheckBox mRememberMe;
         private ProgressBar mLoginProgressBar;
-        private CreateAnAccountDialogFragment mfragment = new CreateAnAccountDialogFragment();
-        private string[] mRemembermeInfo;
+        private CreateAnAccountDialogFragment mFragment = new CreateAnAccountDialogFragment();
+
         #region Database Variables
-        private string mNewUsername, mNewPassword, mNewConfirmPassword;
+        private string NewUsername, NewPassword;
         private DataBase.UserInfo UserInformation = new DataBase.UserInfo();
         #endregion
 
@@ -140,12 +136,7 @@ namespace Quizard
             mRememberMe = FindViewById<CheckBox>(Resource.Id.rememberMeCheckBoxID);
             mLoginProgressBar = FindViewById<ProgressBar>(Resource.Id.loginProgressBarID);
             #endregion
-            mRemembermeInfo = GetRememberMe();
-            if (!mRemembermeInfo[0].Contains("{..Failed..}"))
-            {
-                mUserLoginUsername.Text = mRemembermeInfo[0];
-                mUserLoginPassword.Text = mRemembermeInfo[1];
-            }
+
             // If the "CreateAnAccount" dialog fragment is brought up by accident, the user may click the
             // layout around the dialog fragment to close it and bring them back to the main login layout
             mLoginView.Click += delegate (object sender, EventArgs e)
@@ -160,9 +151,50 @@ namespace Quizard
 
                 Thread progressBarThread = new Thread(ServerRequest);
                 progressBarThread.Start();
-                UserLogin();
-                
-               
+
+                #region Database Login Error Checking
+                // This try catch will check to make sure
+                // Username and password are greater than 0
+                // & that the user actually exists in the database
+                try
+                {
+                    if (mUserLoginUsername.Length() > 0 && mUserLoginPassword.Length() > 0)
+                    {
+                        DataBase.DBAdapter db = new DataBase.DBAdapter(this);
+                        db.openDB();
+
+                        ICursor LoginInfo = db.GetUser(mUserLoginUsername.Text, mUserLoginPassword.Text);
+                        LoginInfo.MoveToNext();
+
+                        if (mUserLoginUsername.Text == LoginInfo.GetString(0) && mUserLoginPassword.Text == LoginInfo.GetString(1))
+                        {
+                            DataBase.User NewUser = new DataBase.User(mUserLoginUsername.Text, mUserLoginPassword.Text);
+                            UserInformation.SetUser(NewUser);
+                            Toast.MakeText(this, "Welcome to Quizard!", ToastLength.Short).Show();
+
+                            // Once the user has clicked the "Login" button, take them to the home screen
+                            Intent intent = new Intent(this, typeof(HomeActivity));
+                            intent.PutExtra("UserName", mUserLoginUsername.Text);
+
+                            mUserLoginUsername.Text = "";
+                            mUserLoginPassword.Text = "";
+
+                            this.StartActivity(intent);
+                        }
+                        else
+                            throw new System.ArgumentException("Username or Password is incorrect", "Username/Password");
+
+                        db.CloseDB();
+                    }
+                    else
+                        throw new System.ArgumentException("Username or Password is blank", "Username/Password");
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+                    Toast.MakeText(this, "Username or Password is incorrect", ToastLength.Short).Show();
+                }
+                #endregion
             };
 
             mCreateAnAccount.Click += delegate (object sender, EventArgs e)
@@ -170,9 +202,9 @@ namespace Quizard
                 FragmentTransaction transaction = FragmentManager.BeginTransaction();
 
                 // When the "New to Quizard?" button is clicked, bring up the assigned dialog fragment
-                mfragment.Show(transaction, "dialog fragment");
+                mFragment.Show(transaction, "dialog fragment");
 
-                mfragment.mOnCreateAnAccountIsClicked += CreateAnAccount_mOnCreateAnAccountIsClicked;
+                mFragment.mOnCreateAnAccountIsClicked += CreateAnAccount_mOnCreateAnAccountIsClicked;
             };
         }
 
@@ -184,13 +216,58 @@ namespace Quizard
             progressBarThread.Start();
 
             #region Database Create An Account Error Checking
-            mNewUsername = mfragment.GetNewUserName();
-            mNewPassword = mfragment.GetNewPassword();
-            mNewConfirmPassword = mfragment.GetNewConfirmPassword();
-            CreateUser();
-            mfragment.SetNewUserName("");
-            mfragment.SetNewPassword("");
-            mfragment.SetNewConfirmPassword("");
+            // Once the user clicks create account this will check to make sure
+            // Username and password are grater than 0
+            // Username is does not already exist
+            // attempt to add the user to the database
+
+            NewUsername = mFragment.GetNewUserName();
+            NewPassword = mFragment.GetNewPassword();
+
+            try
+            {
+                if (NewUsername.Length > 0 && NewPassword.Length > 0)
+                {
+                    DataBase.DBAdapter db = new DataBase.DBAdapter(this);
+                    db.openDB();
+
+                    ICursor UserInfo = db.GetUser(NewUsername, "");
+
+                    if (UserInfo.Count == 0)
+                    {
+                        DataBase.DBFunction DataFunc = new DataBase.DBFunction();
+
+                        if (DataFunc.SaveUser(NewUsername, NewPassword, this))
+                        {
+                            DataBase.User NewUser = new DataBase.User(NewUsername, NewPassword);
+
+                            UserInformation.SetUser(NewUser);
+
+                            Toast.MakeText(this, "Welcome to Quizard!", ToastLength.Short).Show();
+
+                            // Once the user has clicked the "New to Quizard?" button, take them to the home screen
+                            Intent intent = new Intent(this, typeof(HomeActivity));
+                            intent.PutExtra("UserName", NewUsername);
+                            this.StartActivity(intent);
+                        }
+                        else
+                            throw new System.ArgumentException("Failed to save new username", "SaveUser");
+                    }
+                    else
+                        throw new System.ArgumentException("UserInfo is Size 0", "UserInfo");
+                }
+                else
+                    throw new System.ArgumentException("Username or Password is blank", "Username/Password");
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                Toast.MakeText(this, "Unable to create a new user", ToastLength.Short).Show();
+            }
+
+            mFragment.SetNewUserName("");
+            mFragment.SetNewPassword("");
+            mFragment.SetNewConfermPassword("");
             #endregion
         }
 
@@ -204,164 +281,5 @@ namespace Quizard
                 mLoginProgressBar.Visibility = ViewStates.Invisible;
             });
         }
-
-        #region DataBase Funtions
-        private void UserLogin()
-        {
-            
-            // This try catch will check to make sure
-            // Username and password are greater than 0
-            // & that the user actually exists in the database
-            try
-            {
-                if (mUserLoginUsername.Length() > 0 && mUserLoginPassword.Length() > 0)
-                {
-                    DataBase.DBAdapter db = new DataBase.DBAdapter(this);
-                    db.openDB();
-
-                    ICursor LoginInfo = db.GetUser(mUserLoginUsername.Text, mUserLoginPassword.Text);
-                    LoginInfo.MoveToNext();
-
-                    if (mUserLoginUsername.Text == LoginInfo.GetString(0) && mUserLoginPassword.Text == LoginInfo.GetString(1))
-                    {
-                        DataBase.User NewUser = new DataBase.User(mUserLoginUsername.Text, mUserLoginPassword.Text);
-                        UserInformation.SetUser(NewUser);
-                        Toast.MakeText(this, "Welcome to Quizify!", ToastLength.Short).Show();
-                        // Once the user has clicked the "Login" button, take them to the home screen
-                        Intent intent = new Intent(this, typeof(HomeActivity));
-                        intent.PutExtra("UserName", mUserLoginUsername.Text);
-                        if (mRememberMe.Checked)
-                        {
-                            if (!RememberMeSaveUser(mUserLoginUsername.Text, mUserLoginPassword.Text))
-                                Toast.MakeText(this, "Failed to Save RemeberMe", ToastLength.Short).Show();
-                        }
-                        mUserLoginUsername.Text = "";
-                        mUserLoginPassword.Text = "";
-
-                        this.StartActivity(intent);
-                    }
-                    else
-                        throw new System.ArgumentException("Username or Password is incorrect", "Username/Password");
-
-                    db.CloseDB();
-                }
-                else
-                    throw new System.ArgumentException("Username or Password is blank", "Username/Password");
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.Message);
-                Toast.MakeText(this, "Username or Password is incorrect", ToastLength.Short).Show();
-            }
-            
-        }
-        /*
-         * Creates a New User Adds it to the 
-         * User table Does error checking for Username and Password 
-         * Username - atleast 4 char
-         * Password - Equal Confim, Atleast 6 char, has to have 1 #, can not have a space
-         */
-        private void CreateUser()
-        {
-
-            try
-            {
-                if (mNewUsername.Length >= 4 && mNewPassword.Length >= 6 && mNewConfirmPassword.Length >= 6 && mNewPassword == mNewConfirmPassword
-                    && mNewPassword.Contains("0") || mNewPassword.Contains("1") || mNewPassword.Contains("2")
-                    || mNewPassword.Contains("3") || mNewPassword.Contains("4") || mNewPassword.Contains("5")
-                    || mNewPassword.Contains("6") || mNewPassword.Contains("7") || mNewPassword.Contains("8")
-                    || mNewPassword.Contains("9") && !mNewUsername.Contains(" "))
-                {
-                    if(mNewPassword != mNewConfirmPassword)
-                    {
-                        throw new System.ArgumentException("Username or Password is blank", "Username/Password");
-                    }
-                    DataBase.DBAdapter db = new DataBase.DBAdapter(this);
-                    db.openDB();
-
-                    ICursor UserInfo = db.GetUser(mNewUsername, "");
-
-                    if (UserInfo.Count == 0)
-                    {
-                        DataBase.DBFunction DataFunc = new DataBase.DBFunction();
-
-                        if (DataFunc.SaveUser(mNewUsername, mNewPassword, this))
-                        {
-                            DataBase.User NewUser = new DataBase.User(mNewUsername, mNewPassword);
-
-                            UserInformation.SetUser(NewUser);
-
-                            Toast.MakeText(this, "Welcome", ToastLength.Short).Show();
-
-                            // Once the user has clicked the "New to Quizard?" button, take them to the home screen
-                            Intent intent = new Intent(this, typeof(HomeActivity));
-                            intent.PutExtra("UserName", mNewUsername);
-                            this.StartActivity(intent);
-                        }
-                        else
-                            throw new System.ArgumentException("Failed to save new Username", "SaveUser");
-                    }
-                    else
-                        throw new System.ArgumentException("UserInfo is Size 0", "UserInfo");
-                }
-                else
-                    throw new System.ArgumentException("Username or Password is blank", "Username/Password");
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception.Message);
-                if (exception.Message.Contains("Username or Password is blank"))
-                {
-                    Toast.MakeText(this, "Username or Password do not meet requirments", ToastLength.Short).Show();
-                }
-                else
-                    Toast.MakeText(this, "Unable to create a new user", ToastLength.Short).Show();
-
-            }
-            
-        }
-        /*
-         * if remeber me is Checked 
-         * Saves users info to RemeberMe table 
-         */
-        private bool RememberMeSaveUser(string _Username, string _Password)
-        {
-            DataBase.DBAdapter db = new DataBase.DBAdapter(this);
-            db.openDB();
-            if (db.AddRemeberMe_tb( _Username, _Password))
-            {
-                db.CloseDB();
-                return true;
-            }
-            else
-            {
-                db.CloseDB();
-                return false;
-            }
-        }
-        /*
-         * If user Checked Remeber me
-         * Will retrieve last Username and Password 
-         * from database
-         */
-        private string[] GetRememberMe()
-        {
-            DataBase.DBAdapter db = new DataBase.DBAdapter(this);
-            db.openDB();
-            ICursor RemeberInfo;
-            RemeberInfo = db.GetRemeberMe();
-            if (RemeberInfo.MoveToNext())
-            {
-                string[] infoBuffer = { RemeberInfo.GetString(0), RemeberInfo.GetString(1) };
-                return infoBuffer;
-            }
-            else
-            {
-                string[] noto = { "{..Failed..}" };
-                return noto;
-            }
-        }
-        #endregion
     }
-
 }
