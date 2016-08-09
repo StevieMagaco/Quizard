@@ -56,7 +56,10 @@ namespace Quizard.DataBase
             }
             //  return this;
         }
-
+        public SQLiteDatabase GetDataBase()
+        {
+            return mdb;
+        }
         // Add a new User to a users table pass Username, Password, FirstName, Lastname
         // In that order
         public bool AddUser(String _Username, String _Password)
@@ -135,6 +138,11 @@ namespace Quizard.DataBase
             String[] columns = { Constants.Sets_UserName, Constants.Sets_SetName, Constants.Sets_Notify, Constants.Sets_Correct, Constants.Sets_Incorrect };
             return mdb.Query(Constants.Sets_TB_Name, columns, whereclause, Clause, null, null, null);
         }
+        public ICursor GetRemeberMe()
+        {
+            String[] columns = {Constants.RemeberMe_Username, Constants.RemeberMe_Password };
+            return mdb.Query(Constants.RemeberMe_TB_Name, columns, null, null, null, null, null);
+        }
         public bool DeleteRowSet_tb(string _Username,string _SetName)
         {
             String whereclause = Constants.Users_UserName + " = ? and " + Constants.Sets_SetName + " = ?";
@@ -158,6 +166,25 @@ namespace Quizard.DataBase
                 return true;
             else
                 return false;
+        }
+        public bool AddRemeberMe_tb( string _Username, string _Password)
+        {
+
+            try
+            {
+                mdb.Delete(Constants.RemeberMe_TB_Name, null, null);
+                ContentValues insertValues = new ContentValues();
+                insertValues.Put(Constants.RemeberMe_Username, _Username);
+                insertValues.Put(Constants.RemeberMe_Password, _Password);
+                mdb.Insert(Constants.RemeberMe_TB_Name, null, insertValues);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+
         }
     }
 }

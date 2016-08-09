@@ -26,6 +26,7 @@ namespace Quizard.DataBase
                 db.ExecSQL(Constants.Create_Users_tb);
                 db.ExecSQL(Constants.Create_Sets_tb);
                 db.ExecSQL(Constants.Create_Cards_tb);
+                db.ExecSQL(Constants.Create_RemeberMe_tb);
 
             }
             catch (Exception ex)
@@ -39,8 +40,10 @@ namespace Quizard.DataBase
             db.ExecSQL(Constants.Drop_Users_tb);
             db.ExecSQL(Constants.Drop_Sets_tb);
             db.ExecSQL(Constants.Drop_Cards_tb);
+            db.ExecSQL(Constants.Drop_RemeberMe_tb);
             OnCreate(db);
         }
+       
 
     }
 }
