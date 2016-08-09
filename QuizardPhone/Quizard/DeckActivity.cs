@@ -35,34 +35,25 @@ namespace Quizard
             base.OnCreate(bundle);
 
             mQuestions = new List<string>();
-            mQuestions.Add("question 1");
-            mQuestions.Add("question 2");
-            mQuestions.Add("question 3");
-            mQuestions.Add("question 4");
-            mQuestions.Add("question 5");
 
             mAnswers = new List<string>();
-            mAnswers.Add("answer 1");
-            mAnswers.Add("answer 2");
-            mAnswers.Add("answer 3");
-            mAnswers.Add("answer 4");
-            mAnswers.Add("answer 5");
 
 
             mQuizAnswers = new List<string>();
-            mQuizAnswers.Add("1) answer");
-            mQuizAnswers.Add("2) answer");
-            mQuizAnswers.Add("3) answer");
-            mQuizAnswers.Add("4) answer");
 
             // Set our view from the "DeckLayout" layout resource
             SetContentView(Resource.Layout.DeckLayout);
+
+            
             string[] UserSetname_Buffer = Intent.GetStringArrayExtra("Username/SetName");
             this.ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
             UserInformation.GetUser().SetUsername(UserSetname_Buffer[0]);
             string mSetName = UserSetname_Buffer[1];
+
+
             AddTab("CARDS", Resource.Drawable.cardIconSmall, new DeckCardTabFragment(mQuestions, mAnswers, UserSetname_Buffer));
             AddTab("QUIZ", Resource.Drawable.quizIcon, new DeckQuizTabFragment(mQuestions, mQuizAnswers));
+
 
             if (bundle != null)
                 this.ActionBar.SelectTab(this.ActionBar.GetTabAt(bundle.GetInt("tab")));
@@ -100,8 +91,8 @@ namespace Quizard
     {
         List<string> mQuestions, mAnswers;
         int mPosition;
-        Button mViewAnswerButton, mEditButton;
-        TextView mTextView;
+        Button mEditButton;
+        TextView mQuestionTextView, mAnswerTextView;
 
         public DeckCardDialogFragment(List<string> _questions, List<string> _answers, int pos)
         {
@@ -117,16 +108,17 @@ namespace Quizard
             base.OnCreate(savedInstanceState);
 
             var view = inflater.Inflate(Resource.Layout.DeckCardDialogBox, container, false);
-            mTextView = view.FindViewById<TextView>(Resource.Id.cardDialogTextView);
-            mTextView.Text = mQuestions[mPosition];
+            mQuestionTextView = view.FindViewById<TextView>(Resource.Id.cardDialogQuestionTextViewID);
+            mQuestionTextView.Text = mQuestions[mPosition];
+
+            mAnswerTextView = view.FindViewById<TextView>(Resource.Id.cardDialogAnswerTextViewID);
+            mAnswerTextView.Text = mAnswers[mPosition];
 
             // Set up a handler to dismiss this DialogFragment when this button is clicked.
-            view.FindViewById<Button>(Resource.Id.cardDialogExitButton).Click += (sender, args) => Dismiss();
+            view.FindViewById<Button>(Resource.Id.cardDialogExitButtonID).Click += (sender, args) => Dismiss();
 
-            mViewAnswerButton = view.FindViewById<Button>(Resource.Id.cardDialogAnswerButton);
-            mViewAnswerButton.Click += ViewAnswerButton_Click;
 
-            mEditButton = view.FindViewById<Button>(Resource.Id.cardDialogEditButton);
+            mEditButton = view.FindViewById<Button>(Resource.Id.cardDialogEditButtonID);
             mEditButton.Click += EditButton_Click;
 
             return view;
@@ -136,13 +128,9 @@ namespace Quizard
         {
             FragmentTransaction fragmentTx = this.FragmentManager.BeginTransaction();
             DeckCardTabEditFragment aDifferentDetailsFrag = new DeckCardTabEditFragment(mQuestions[mPosition], mAnswers[mPosition]);
-            aDifferentDetailsFrag.Show(fragmentTx, "dialog_fragment");
+            aDifferentDetailsFrag.Show(fragmentTx, "Edit dialog fragment");
         }
 
-        private void ViewAnswerButton_Click(object sender, EventArgs e)
-        {
-            mTextView.Text = mAnswers[mPosition];
-        }
     }
 
     public class DeckCardTabEditFragment : DialogFragment
@@ -182,6 +170,8 @@ namespace Quizard
         List<string> mQuestions, mAnswers;
         ListView mCardTabListView;
         ImageButton mPlayButton, mAddButton, mHomeButton;
+        Button mAddCardNextButton, mDoneButton;
+        EditText mAddCardQuestionText, mAddCardAnswerText;
         string mUsername;
         public DeckCardTabFragment(List<string> _questions, List<string> _answers, string[] UserSetName)
         {
@@ -222,6 +212,15 @@ namespace Quizard
                 aDifferentDetailsFrag.Show(fragmentTx, "dialog_fragment");
             };
 
+            mAddCardQuestionText = view.FindViewById<EditText>(Resource.Id.deckAddCardQuestionEditTextID);
+
+            mAddCardAnswerText = view.FindViewById<EditText>(Resource.Id.deckAddCardAnswerEditTextID);
+
+            mAddCardNextButton = view.FindViewById<Button>(Resource.Id.deckAddToDeckButtonID);
+            mAddCardNextButton.Click += AddCardNextButton_Click;
+            mDoneButton = view.FindViewById<Button>(Resource.Id.deckDoneAddCardButtonID);
+            mDoneButton.Click += DoneButton_Click;
+
             mPlayButton = view.FindViewById<ImageButton>(Resource.Id.cardTabPlayButton);
             mPlayButton.Click += PlayButton_Click;
 
@@ -234,6 +233,46 @@ namespace Quizard
             return view;
         }
 
+        private void DoneButton_Click(object sender, EventArgs e)
+        {
+
+            string tempSubject, tempAnswer;
+            tempSubject = mAddCardQuestionText.Text;
+            tempAnswer = mAddCardAnswerText.Text;
+
+            mQuestions.Add(tempSubject);
+            mAnswers.Add(tempAnswer);
+
+
+
+            mAddCardQuestionText.Visibility = ViewStates.Invisible;
+            mAddCardAnswerText.Visibility = ViewStates.Invisible;
+
+            mDoneButton.Visibility = ViewStates.Invisible;
+            mAddCardNextButton.Visibility = ViewStates.Invisible;
+
+            // TODO
+        }
+
+        private void AddCardNextButton_Click(object sender, EventArgs e)
+        {
+            string tempSubject, tempAnswer;
+            tempSubject = mAddCardQuestionText.Text;
+            tempAnswer = mAddCardAnswerText.Text;
+            
+            // temp code til added to actual database
+            mQuestions.Add(tempSubject);
+            mAnswers.Add(tempAnswer);
+
+            mAddCardQuestionText.Text = "";
+            mAddCardAnswerText.Text = "";
+            // TODO: add to actual deck
+            
+            ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
+
+            mCardTabListView.Adapter = ListAdapter;
+        }
+
         private void HomeButton_Click(object sender, EventArgs e)
         {
             Intent intent = new Intent(this.Activity, typeof(HomeActivity));
@@ -243,14 +282,16 @@ namespace Quizard
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            mQuestions.Add("New question");
-            mAnswers.Add("New question answer");
+         
+            mAddCardQuestionText.Visibility = ViewStates.Visible;
+            mAddCardAnswerText.Visibility = ViewStates.Visible;
 
-            ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
-
-            mCardTabListView.Adapter = ListAdapter;
+            mDoneButton.Visibility = ViewStates.Visible;
+            mAddCardNextButton.Visibility = ViewStates.Visible;
+            
 
             // TODO: Add code for adding it into actual set 
+            
         }
 
         private void PlayButton_Click(object sender, EventArgs e)

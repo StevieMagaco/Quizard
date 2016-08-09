@@ -4,42 +4,44 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="350dp">
-  <TextView
-      android:textColor="#02243c"
-      android:text="Question would be here"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/cardDialogTextView"
-      android:layout_weight="1"
-      android:background="@drawable/flashcard" />
-  <Button
-      android:background="#005db3"
-      android:text="VIEW ANSWER"
-      android:id="@+id/cardDialogAnswerButton"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
-  <Toolbar
-      android:background="?android:attr/colorPrimary"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/toolbar1">
-    <Button
-        android:background="#005db3"
-        android:text="EDIT"
-        android:layout_width="wrap_content"
+    <TextView
+        android:textColor="#02243c"
+        android:text="Question would be here"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cardDialogEditButton"
-        android:layout_weight="0"
-        android:gravity="center"
-        android:width="150dp" />
-    <Button
-        android:background="#005db3"
-        android:text="EXIT"
-        android:layout_width="wrap_content"
+        android:id="@+id/cardDialogQuestionTextViewID"
+        android:layout_weight="1"
+        android:background="@drawable/flashcard" />
+    <TextView
+        android:textColor="#02243c"
+        android:text="Answer would be here"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cardDialogExitButton"
-        android:layout_weight="0"
-        android:layout_marginLeft="30dp"
-        android:width="150dp" />
-  </Toolbar>
+        android:id="@+id/cardDialogAnswerTextViewID"
+        android:layout_weight="1"
+        android:background="@drawable/flashcard" />
+    <Toolbar
+        android:background="?android:attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/deckCardToolbarID">
+        <Button
+            android:background="#005db3"
+            android:text="EDIT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cardDialogEditButtonID"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:width="150dp" />
+        <Button
+            android:background="#005db3"
+            android:text="EXIT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cardDialogExitButtonID"
+            android:layout_weight="0"
+            android:layout_marginLeft="30dp"
+            android:width="150dp" />
+    </Toolbar>
 </LinearLayout>
