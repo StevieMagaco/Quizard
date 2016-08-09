@@ -143,6 +143,34 @@ namespace Quizard.DataBase
             String[] columns = {Constants.RememberMe_Username, Constants.RememberMe_Password };
             return mdb.Query(Constants.RememberMe_TB_Name, columns, null, null, null, null, null);
         }
+        public ICursor GetCards(String _Username, String _SetName)
+        {
+            String whereclause;
+            String[] Clause = { _Username, _SetName };
+            whereclause = Constants.Cards_UserName + " = ? and " + Constants.Cards_SetName + " = ?";
+            String[] columns = { Constants.Cards_UserName, Constants.Cards_SetName, Constants.Cards_Question, Constants.Cards_Answer, Constants.Cards_NumberBox, Constants.Cards_PreRun};
+            return mdb.Query(Constants.Cards_TB_Name, columns, whereclause, Clause, null, null, null);
+        }
+        public bool SetCard(Cards _Card)
+        {
+            try
+            {
+                ContentValues insertValues = new ContentValues();
+                insertValues.Put(Constants.Cards_UserName, _Card.GetUserName());
+                insertValues.Put(Constants.Cards_SetName, _Card.GetSetName());
+                insertValues.Put(Constants.Cards_Answer, _Card.GetAnswer());
+                insertValues.Put(Constants.Cards_Question,_Card.GetQuestion());
+                insertValues.Put(Constants.Cards_NumberBox,_Card.GetNumberBox());
+                insertValues.Put(Constants.Cards_PreRun,_Card.GetPreRun());
+                mdb.Insert(Constants.Cards_TB_Name, null, insertValues);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
         public bool DeleteRowSet_tb(string _Username,string _SetName)
         {
             String whereclause = Constants.Users_UserName + " = ? and " + Constants.Sets_SetName + " = ?";
@@ -188,3 +216,61 @@ namespace Quizard.DataBase
         }
     }
 }
+
+
+// Add card to database Code 
+/*
+   private bool AddCard_db(string _Username, string _SetName, string _Question, string _Answer)
+        {
+            try
+            {
+                DataBase.Cards CardBuffer = new DataBase.Cards(_Username, _SetName, _Question, _Answer, "", "");
+                DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
+                db.openDB();
+                if (db.SetCard(CardBuffer))
+                {
+                    RetrieveCards(_Username, _SetName);
+
+                    db.CloseDB();
+                    return true;
+                }
+                else
+                    throw new System.ArgumentException("Failed to save new Card", "CardSave");
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                Toast.MakeText(mContext, "Failed to add card", ToastLength.Short).Show();
+                return false;
+            }
+        }
+        private void RetrieveCards(string _Username, string _SetName)
+        {
+            try
+            {
+                DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
+                db.openDB();
+                
+                ICursor CardsInfo = db.GetCards(_Username, _SetName);
+                mAnswers.Clear();
+                mQuestions.Clear();
+                while (CardsInfo.MoveToNext())
+                {
+                    string Question = CardsInfo.GetString(2);
+                    string Answer = CardsInfo.GetString(3);
+                    mAnswers.Add(Answer);
+                    mQuestions.Add(Question);
+                }
+                db.CloseDB();
+
+                mCardTabListView.Adapter = mAdapterQ;
+
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                Toast.MakeText(mContext, "Failed to retrieve Cards", ToastLength.Short).Show();
+            }
+
+        }
+ */

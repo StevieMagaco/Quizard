@@ -115,7 +115,7 @@ namespace Quizard
         private Button mLogin, mCreateAnAccount;
         private CheckBox mRememberMe;
         private ProgressBar mLoginProgressBar;
-        private CreateAnAccountDialogFragment fragment = new CreateAnAccountDialogFragment();
+        private CreateAnAccountDialogFragment mfragment = new CreateAnAccountDialogFragment();
         private string[] mRemembermeInfo;
         #region Database Variables
         private string mNewUsername, mNewPassword, mNewConfirmPassword;
@@ -170,9 +170,9 @@ namespace Quizard
                 FragmentTransaction transaction = FragmentManager.BeginTransaction();
 
                 // When the "New to Quizard?" button is clicked, bring up the assigned dialog fragment
-                fragment.Show(transaction, "dialog fragment");
+                mfragment.Show(transaction, "dialog fragment");
 
-                fragment.mOnCreateAnAccountIsClicked += CreateAnAccount_mOnCreateAnAccountIsClicked;
+                mfragment.mOnCreateAnAccountIsClicked += CreateAnAccount_mOnCreateAnAccountIsClicked;
             };
         }
 
@@ -184,13 +184,13 @@ namespace Quizard
             progressBarThread.Start();
 
             #region Database Create An Account Error Checking
-            mNewUsername = fragment.GetNewUserName();
-            mNewPassword = fragment.GetNewPassword();
-            mNewConfirmPassword = fragment.GetNewConfirmPassword();
+            mNewUsername = mfragment.GetNewUserName();
+            mNewPassword = mfragment.GetNewPassword();
+            mNewConfirmPassword = mfragment.GetNewConfirmPassword();
             CreateUser();
-            fragment.SetNewUserName("");
-            fragment.SetNewPassword("");
-            fragment.SetNewConfirmPassword("");
+            mfragment.SetNewUserName("");
+            mfragment.SetNewPassword("");
+            mfragment.SetNewConfirmPassword("");
             #endregion
         }
 

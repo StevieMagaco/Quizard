@@ -259,7 +259,6 @@ C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\Quizard.pdb
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\Quizard.Quizard.apk
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\Quizard.Quizard-Signed.apk
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\SQLite.Net.dll
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\Quizard.csprojResolveAssemblyReference.cache
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\Quizard.dll
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\Quizard.pdb
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\android\bin\Quizard.Quizard.apk
