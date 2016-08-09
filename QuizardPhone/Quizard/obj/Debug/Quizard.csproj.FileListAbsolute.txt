@@ -314,5 +314,6 @@ C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\android\assets\Syst
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
+C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\Quizard.csprojResolveAssemblyReference.cache
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\Quizard.dll.mdb
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\Quizard.dll.mdb
