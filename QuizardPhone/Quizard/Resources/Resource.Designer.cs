@@ -31,18 +31,6 @@ namespace Quizard
 		public partial class Attribute
 		{
 			
-			// aapt resource value: 0x7f010000
-			public const int layoutManager = 2130771968;
-			
-			// aapt resource value: 0x7f010002
-			public const int reverseLayout = 2130771970;
-			
-			// aapt resource value: 0x7f010001
-			public const int spanCount = 2130771969;
-			
-			// aapt resource value: 0x7f010003
-			public const int stackFromEnd = 2130771971;
-			
 			static Attribute()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -53,48 +41,41 @@ namespace Quizard
 			}
 		}
 		
-		public partial class Dimension
-		{
-			
-			// aapt resource value: 0x7f040000
-			public const int item_touch_helper_max_drag_scroll_per_frame = 2130968576;
-			
-			// aapt resource value: 0x7f040001
-			public const int item_touch_helper_swipe_escape_max_velocity = 2130968577;
-			
-			// aapt resource value: 0x7f040002
-			public const int item_touch_helper_swipe_escape_velocity = 2130968578;
-			
-			static Dimension()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Dimension()
-			{
-			}
-		}
-		
 		public partial class Drawable
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Add = 2130837504;
+			public const int ButtonStyle = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int ButtonStyle = 2130837505;
+			public const int Cancel = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int Delete = 2130837506;
+			public const int cardIconSmall = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int EditTextStyle = 2130837507;
+			public const int Create = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int Icon = 2130837508;
+			public const int Delete = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int Settings = 2130837509;
+			public const int EditTextStyle = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public const int flashcard = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public const int homepageIcon_small = 2130837511;
+			
+			// aapt resource value: 0x7f020008
+			public const int quizIcon = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int Settings = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public const int Update = 2130837514;
 			
 			static Drawable()
 			{
@@ -109,65 +90,182 @@ namespace Quizard
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050011
-			public const int addAFlashSetItemID = 2131034129;
+			// aapt resource value: 0x7f060009
+			public const int DeckAddCardCancelButton = 2131099657;
 			
-			// aapt resource value: 0x7f05000f
-			public const int createAnAccountButtonID = 2131034127;
+			// aapt resource value: 0x7f060008
+			public const int DeckAddCardSaveButton = 2131099656;
 			
-			// aapt resource value: 0x7f050004
-			public const int createNewAccountButtonID = 2131034116;
+			// aapt resource value: 0x7f06003a
+			public const int PlaySetFront_ViewAnswerButton = 2131099706;
 			
-			// aapt resource value: 0x7f050012
-			public const int deleteAFlashSetItemID = 2131034130;
+			// aapt resource value: 0x7f060037
+			public const int PlaySetQuestionTextView = 2131099703;
 			
-			// aapt resource value: 0x7f050006
-			public const int flashsetCardCountTextViewID = 2131034118;
+			// aapt resource value: 0x7f060005
+			public const int QuestionEditText = 2131099653;
 			
-			// aapt resource value: 0x7f050009
-			public const int flashsetRecyclerViewID = 2131034121;
+			// aapt resource value: 0x7f06002d
+			public const int addToFlashSetListButtonID = 2131099693;
 			
-			// aapt resource value: 0x7f050005
-			public const int flashsetSubjectTextViewID = 2131034117;
+			// aapt resource value: 0x7f060017
+			public const int answerTextBox = 2131099671;
 			
-			// aapt resource value: 0x7f050008
-			public const int homeLinearLayoutID = 2131034120;
+			// aapt resource value: 0x7f060016
+			public const int answerTextView = 2131099670;
 			
-			// aapt resource value: 0x7f050000
-			public const int item_touch_helper_previous_elevation = 2131034112;
+			// aapt resource value: 0x7f060023
+			public const int cancelImageButtonID = 2131099683;
 			
-			// aapt resource value: 0x7f05000e
-			public const int loginButtonID = 2131034126;
+			// aapt resource value: 0x7f060024
+			public const int cancelTextViewID = 2131099684;
 			
-			// aapt resource value: 0x7f050010
-			public const int loginProgressBarID = 2131034128;
+			// aapt resource value: 0x7f06000b
+			public const int cardDialogAnswerButton = 2131099659;
 			
-			// aapt resource value: 0x7f05000a
-			public const int loginViewLinearLayoutID = 2131034122;
+			// aapt resource value: 0x7f06000d
+			public const int cardDialogEditButton = 2131099661;
 			
-			// aapt resource value: 0x7f050003
-			public const int newUserConfirmPasswordEditTextID = 2131034115;
+			// aapt resource value: 0x7f06000e
+			public const int cardDialogExitButton = 2131099662;
 			
-			// aapt resource value: 0x7f050002
-			public const int newUserPasswordEditTextID = 2131034114;
+			// aapt resource value: 0x7f06000a
+			public const int cardDialogTextView = 2131099658;
 			
-			// aapt resource value: 0x7f050001
-			public const int newUserUsernameEditTextID = 2131034113;
+			// aapt resource value: 0x7f060011
+			public const int cardTabAddButton = 2131099665;
 			
-			// aapt resource value: 0x7f05000d
-			public const int rememberMeCheckBoxID = 2131034125;
+			// aapt resource value: 0x7f060010
+			public const int cardTabHomeButton = 2131099664;
 			
-			// aapt resource value: 0x7f050013
-			public const int settingsItemID = 2131034131;
+			// aapt resource value: 0x7f060013
+			public const int cardTabListView = 2131099667;
 			
-			// aapt resource value: 0x7f050007
-			public const int toolbarID = 2131034119;
+			// aapt resource value: 0x7f060012
+			public const int cardTabPlayButton = 2131099666;
 			
-			// aapt resource value: 0x7f05000c
-			public const int userLoginPasswordEditTextID = 2131034124;
+			// aapt resource value: 0x7f06000f
+			public const int cardTabToolbar = 2131099663;
 			
-			// aapt resource value: 0x7f05000b
-			public const int userLoginUsernameEditTextID = 2131034123;
+			// aapt resource value: 0x7f060021
+			public const int createAFlashSetImageButtonID = 2131099681;
+			
+			// aapt resource value: 0x7f060022
+			public const int createAFlashSetTextViewID = 2131099682;
+			
+			// aapt resource value: 0x7f060035
+			public const int createAnAccountButtonID = 2131099701;
+			
+			// aapt resource value: 0x7f060003
+			public const int createNewAccountButtonID = 2131099651;
+			
+			// aapt resource value: 0x7f060019
+			public const int deckTextView = 2131099673;
+			
+			// aapt resource value: 0x7f060027
+			public const int deleteFlashSetImageButtonID = 2131099687;
+			
+			// aapt resource value: 0x7f060028
+			public const int deleteFlashSetTextViewID = 2131099688;
+			
+			// aapt resource value: 0x7f060007
+			public const int editText2 = 2131099655;
+			
+			// aapt resource value: 0x7f06002f
+			public const int enterIntoSelectedFlashSetButtonID = 2131099695;
+			
+			// aapt resource value: 0x7f06002e
+			public const int flashSetListViewID = 2131099694;
+			
+			// aapt resource value: 0x7f06002c
+			public const int flashSetSubjectEditTextID = 2131099692;
+			
+			// aapt resource value: 0x7f060018
+			public const int fragmentContainer = 2131099672;
+			
+			// aapt resource value: 0x7f060034
+			public const int loginButtonID = 2131099700;
+			
+			// aapt resource value: 0x7f060036
+			public const int loginProgressBarID = 2131099702;
+			
+			// aapt resource value: 0x7f060030
+			public const int loginViewLinearLayoutID = 2131099696;
+			
+			// aapt resource value: 0x7f060002
+			public const int newUserConfirmPasswordEditTextID = 2131099650;
+			
+			// aapt resource value: 0x7f060001
+			public const int newUserPasswordEditTextID = 2131099649;
+			
+			// aapt resource value: 0x7f060000
+			public const int newUserUsernameEditTextID = 2131099648;
+			
+			// aapt resource value: 0x7f06001a
+			public const int nextCardButton = 2131099674;
+			
+			// aapt resource value: 0x7f060039
+			public const int playSetNoButton = 2131099705;
+			
+			// aapt resource value: 0x7f060038
+			public const int playSetYesButton = 2131099704;
+			
+			// aapt resource value: 0x7f060015
+			public const int questionTextBox = 2131099669;
+			
+			// aapt resource value: 0x7f060014
+			public const int questionTextView = 2131099668;
+			
+			// aapt resource value: 0x7f06001e
+			public const int quizDialobNextButton = 2131099678;
+			
+			// aapt resource value: 0x7f06001d
+			public const int quizDialogRedoButton = 2131099677;
+			
+			// aapt resource value: 0x7f06001c
+			public const int quizRightWrongTextView = 2131099676;
+			
+			// aapt resource value: 0x7f060020
+			public const int quizTabAnswerListView = 2131099680;
+			
+			// aapt resource value: 0x7f06001f
+			public const int quizTabQuestionTextView = 2131099679;
+			
+			// aapt resource value: 0x7f060033
+			public const int rememberMeCheckBoxID = 2131099699;
+			
+			// aapt resource value: 0x7f06002b
+			public const int searchFlashSetsSearchViewID = 2131099691;
+			
+			// aapt resource value: 0x7f060029
+			public const int settingsImageButtonID = 2131099689;
+			
+			// aapt resource value: 0x7f06002a
+			public const int settingsTextViewID = 2131099690;
+			
+			// aapt resource value: 0x7f060004
+			public const int textView1 = 2131099652;
+			
+			// aapt resource value: 0x7f060006
+			public const int textView2 = 2131099654;
+			
+			// aapt resource value: 0x7f06000c
+			public const int toolbar1 = 2131099660;
+			
+			// aapt resource value: 0x7f060025
+			public const int updateFlashSetImageButtonID = 2131099685;
+			
+			// aapt resource value: 0x7f060026
+			public const int updateFlashSetTextViewID = 2131099686;
+			
+			// aapt resource value: 0x7f060032
+			public const int userLoginPasswordEditTextID = 2131099698;
+			
+			// aapt resource value: 0x7f060031
+			public const int userLoginUsernameEditTextID = 2131099697;
+			
+			// aapt resource value: 0x7f06001b
+			public const int viewAnswerButton = 2131099675;
 			
 			static Id()
 			{
@@ -186,16 +284,40 @@ namespace Quizard
 			public const int CreateAnAccountDialogLayout = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int FlashSetRowView = 2130903041;
+			public const int DeckAddCardLayout = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int HomeLayout = 2130903042;
+			public const int DeckCardDialogBox = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int HomeToolbar = 2130903043;
+			public const int DeckCardTab = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int LoginLayout = 2130903044;
+			public const int DeckCardTabEditLayout = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int DeckLayout = 2130903045;
+			
+			// aapt resource value: 0x7f030006
+			public const int deckPlayLayout = 2130903046;
+			
+			// aapt resource value: 0x7f030007
+			public const int DeckQuizDialogBox = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int DeckQuizTab = 2130903048;
+			
+			// aapt resource value: 0x7f030009
+			public const int HomeLayout = 2130903049;
+			
+			// aapt resource value: 0x7f03000a
+			public const int LoginLayout = 2130903050;
+			
+			// aapt resource value: 0x7f03000b
+			public const int PlaySetLayout_Back = 2130903051;
+			
+			// aapt resource value: 0x7f03000c
+			public const int PlaySetLayout_Front = 2130903052;
 			
 			static Layout()
 			{
@@ -207,27 +329,11 @@ namespace Quizard
 			}
 		}
 		
-		public partial class Menu
-		{
-			
-			// aapt resource value: 0x7f080000
-			public const int ToolbarItems = 2131230720;
-			
-			static Menu()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Menu()
-			{
-			}
-		}
-		
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f060000
-			public const int ApplicationName = 2131099648;
+			// aapt resource value: 0x7f040000
+			public const int ApplicationName = 2130968576;
 			
 			static String()
 			{
@@ -242,8 +348,11 @@ namespace Quizard
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f070000
-			public const int MyTheme = 2131165184;
+			// aapt resource value: 0x7f050000
+			public const int CustomActionToolbarTheme = 2131034112;
+			
+			// aapt resource value: 0x7f050001
+			public const int HomeActionBar = 2131034113;
 			
 			static Style()
 			{
@@ -251,41 +360,6 @@ namespace Quizard
 			}
 			
 			private Style()
-			{
-			}
-		}
-		
-		public partial class Styleable
-		{
-			
-			public static int[] RecyclerView = new int[] {
-					16842948,
-					2130771968,
-					2130771969,
-					2130771970,
-					2130771971};
-			
-			// aapt resource value: 0
-			public const int RecyclerView_android_orientation = 0;
-			
-			// aapt resource value: 1
-			public const int RecyclerView_layoutManager = 1;
-			
-			// aapt resource value: 3
-			public const int RecyclerView_reverseLayout = 3;
-			
-			// aapt resource value: 2
-			public const int RecyclerView_spanCount = 2;
-			
-			// aapt resource value: 4
-			public const int RecyclerView_stackFromEnd = 4;
-			
-			static Styleable()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Styleable()
 			{
 			}
 		}

@@ -41,5 +41,6 @@ namespace Quizard.DataBase
             db.ExecSQL(Constants.Drop_Cards_tb);
             OnCreate(db);
         }
+
     }
 }

@@ -26,11 +26,28 @@ namespace Quizard.DataBase
 
             DBAdapter db = new DBAdapter(c);
             db.openDB();
+
             if (db.AddUser(Username, Password))
             {
                 db.CloseDB();
                 return true;
             }
+
+            db.CloseDB();
+            return false;
+        }
+        public bool SaveSet(string Username, string SetName, Context c)
+        {
+            DBAdapter db = new DBAdapter(c);
+            DataBase.Sets Set_buffer = new DataBase.Sets(Username, SetName, "", "", "");
+            db.openDB();
+
+            if (db.SaveSet(Set_buffer))
+            {
+                db.CloseDB();
+                return true;
+            }
+
             db.CloseDB();
             return false;
         }

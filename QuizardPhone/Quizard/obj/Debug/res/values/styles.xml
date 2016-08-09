@@ -1,1 +1,0 @@
-<resources><style name="MyTheme" parent="@android:style/Theme.Material.Light.DarkActionBar"><!--We will be using the toolbar so no need to show ActionBar--><item name="android:windowActionBar">false</item><!-- colorPrimary is used for the default action bar background --><item name="android:colorPrimary">#5BC236</item></style></resources>

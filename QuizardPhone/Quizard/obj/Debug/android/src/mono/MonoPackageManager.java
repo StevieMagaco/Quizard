@@ -100,8 +100,7 @@ class MonoPackageManager_Resources {
 		/* We need to ensure that "Quizard.dll" comes first in this list. */
 		"Quizard.dll",
 		"Java.Interop.dll",
-		"Xamarin.Android.Support.v4.dll",
-		"Xamarin.Android.Support.v7.RecyclerView.dll",
+		"SQLite.Net.dll",
 		"System.Threading.dll",
 		"System.Runtime.dll",
 		"System.Collections.dll",
@@ -113,6 +112,9 @@ class MonoPackageManager_Resources {
 		"System.Runtime.Extensions.dll",
 		"System.Reflection.Extensions.dll",
 		"System.ServiceModel.Internals.dll",
+		"System.Linq.Expressions.dll",
+		"System.Globalization.dll",
+		"System.Text.Encoding.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

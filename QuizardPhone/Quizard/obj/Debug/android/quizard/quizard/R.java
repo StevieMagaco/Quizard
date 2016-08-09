@@ -9,174 +9,101 @@ package quizard.quizard;
 
 public final class R {
     public static final class attr {
-        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int layoutManager=0x7f010000;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int reverseLayout=0x7f010002;
-        /** <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int spanCount=0x7f010001;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int stackFromEnd=0x7f010003;
-    }
-    public static final class dimen {
-        public static final int item_touch_helper_max_drag_scroll_per_frame=0x7f040000;
-        public static final int item_touch_helper_swipe_escape_max_velocity=0x7f040001;
-        public static final int item_touch_helper_swipe_escape_velocity=0x7f040002;
     }
     public static final class drawable {
-        public static final int add=0x7f020000;
-        public static final int buttonstyle=0x7f020001;
-        public static final int delete=0x7f020002;
-        public static final int edittextstyle=0x7f020003;
-        public static final int icon=0x7f020004;
-        public static final int settings=0x7f020005;
+        public static final int buttonstyle=0x7f020000;
+        public static final int cancel=0x7f020001;
+        public static final int cardiconsmall=0x7f020002;
+        public static final int create=0x7f020003;
+        public static final int delete=0x7f020004;
+        public static final int edittextstyle=0x7f020005;
+        public static final int flashcard=0x7f020006;
+        public static final int homepageicon_small=0x7f020007;
+        public static final int quizicon=0x7f020008;
+        public static final int settings=0x7f020009;
+        public static final int update=0x7f02000a;
     }
     public static final class id {
-        public static final int addAFlashSetItemID=0x7f050011;
-        public static final int createAnAccountButtonID=0x7f05000f;
-        public static final int createNewAccountButtonID=0x7f050004;
-        public static final int deleteAFlashSetItemID=0x7f050012;
-        public static final int flashsetCardCountTextViewID=0x7f050006;
-        public static final int flashsetRecyclerViewID=0x7f050009;
-        public static final int flashsetSubjectTextViewID=0x7f050005;
-        public static final int homeLinearLayoutID=0x7f050008;
-        public static final int item_touch_helper_previous_elevation=0x7f050000;
-        public static final int loginButtonID=0x7f05000e;
-        public static final int loginProgressBarID=0x7f050010;
-        public static final int loginViewLinearLayoutID=0x7f05000a;
-        public static final int newUserConfirmPasswordEditTextID=0x7f050003;
-        public static final int newUserPasswordEditTextID=0x7f050002;
-        public static final int newUserUsernameEditTextID=0x7f050001;
-        public static final int rememberMeCheckBoxID=0x7f05000d;
-        public static final int settingsItemID=0x7f050013;
-        public static final int toolbarID=0x7f050007;
-        public static final int userLoginPasswordEditTextID=0x7f05000c;
-        public static final int userLoginUsernameEditTextID=0x7f05000b;
+        public static final int DeckAddCardCancelButton=0x7f060009;
+        public static final int DeckAddCardSaveButton=0x7f060008;
+        public static final int PlaySetFront_ViewAnswerButton=0x7f06003a;
+        public static final int PlaySetQuestionTextView=0x7f060037;
+        public static final int QuestionEditText=0x7f060005;
+        public static final int addToFlashSetListButtonID=0x7f06002d;
+        public static final int answerTextBox=0x7f060017;
+        public static final int answerTextView=0x7f060016;
+        public static final int cancelImageButtonID=0x7f060023;
+        public static final int cancelTextViewID=0x7f060024;
+        public static final int cardDialogAnswerButton=0x7f06000b;
+        public static final int cardDialogEditButton=0x7f06000d;
+        public static final int cardDialogExitButton=0x7f06000e;
+        public static final int cardDialogTextView=0x7f06000a;
+        public static final int cardTabAddButton=0x7f060011;
+        public static final int cardTabHomeButton=0x7f060010;
+        public static final int cardTabListView=0x7f060013;
+        public static final int cardTabPlayButton=0x7f060012;
+        public static final int cardTabToolbar=0x7f06000f;
+        public static final int createAFlashSetImageButtonID=0x7f060021;
+        public static final int createAFlashSetTextViewID=0x7f060022;
+        public static final int createAnAccountButtonID=0x7f060035;
+        public static final int createNewAccountButtonID=0x7f060003;
+        public static final int deckTextView=0x7f060019;
+        public static final int deleteFlashSetImageButtonID=0x7f060027;
+        public static final int deleteFlashSetTextViewID=0x7f060028;
+        public static final int editText2=0x7f060007;
+        public static final int enterIntoSelectedFlashSetButtonID=0x7f06002f;
+        public static final int flashSetListViewID=0x7f06002e;
+        public static final int flashSetSubjectEditTextID=0x7f06002c;
+        public static final int fragmentContainer=0x7f060018;
+        public static final int loginButtonID=0x7f060034;
+        public static final int loginProgressBarID=0x7f060036;
+        public static final int loginViewLinearLayoutID=0x7f060030;
+        public static final int newUserConfirmPasswordEditTextID=0x7f060002;
+        public static final int newUserPasswordEditTextID=0x7f060001;
+        public static final int newUserUsernameEditTextID=0x7f060000;
+        public static final int nextCardButton=0x7f06001a;
+        public static final int playSetNoButton=0x7f060039;
+        public static final int playSetYesButton=0x7f060038;
+        public static final int questionTextBox=0x7f060015;
+        public static final int questionTextView=0x7f060014;
+        public static final int quizDialobNextButton=0x7f06001e;
+        public static final int quizDialogRedoButton=0x7f06001d;
+        public static final int quizRightWrongTextView=0x7f06001c;
+        public static final int quizTabAnswerListView=0x7f060020;
+        public static final int quizTabQuestionTextView=0x7f06001f;
+        public static final int rememberMeCheckBoxID=0x7f060033;
+        public static final int searchFlashSetsSearchViewID=0x7f06002b;
+        public static final int settingsImageButtonID=0x7f060029;
+        public static final int settingsTextViewID=0x7f06002a;
+        public static final int textView1=0x7f060004;
+        public static final int textView2=0x7f060006;
+        public static final int toolbar1=0x7f06000c;
+        public static final int updateFlashSetImageButtonID=0x7f060025;
+        public static final int updateFlashSetTextViewID=0x7f060026;
+        public static final int userLoginPasswordEditTextID=0x7f060032;
+        public static final int userLoginUsernameEditTextID=0x7f060031;
+        public static final int viewAnswerButton=0x7f06001b;
     }
     public static final class layout {
         public static final int createanaccountdialoglayout=0x7f030000;
-        public static final int flashsetrowview=0x7f030001;
-        public static final int homelayout=0x7f030002;
-        public static final int hometoolbar=0x7f030003;
-        public static final int loginlayout=0x7f030004;
-    }
-    public static final class menu {
-        public static final int toolbaritems=0x7f080000;
+        public static final int deckaddcardlayout=0x7f030001;
+        public static final int deckcarddialogbox=0x7f030002;
+        public static final int deckcardtab=0x7f030003;
+        public static final int deckcardtabeditlayout=0x7f030004;
+        public static final int decklayout=0x7f030005;
+        public static final int deckplaylayout=0x7f030006;
+        public static final int deckquizdialogbox=0x7f030007;
+        public static final int deckquiztab=0x7f030008;
+        public static final int homelayout=0x7f030009;
+        public static final int loginlayout=0x7f03000a;
+        public static final int playsetlayout_back=0x7f03000b;
+        public static final int playsetlayout_front=0x7f03000c;
     }
     public static final class string {
-        public static final int ApplicationName=0x7f060000;
+        public static final int ApplicationName=0x7f040000;
     }
     public static final class style {
-        public static final int MyTheme=0x7f070000;
+        public static final int CustomActionToolbarTheme=0x7f050000;
+        public static final int HomeActionBar=0x7f050001;
     }
-    public static final class styleable {
-        /** Attributes that can be used with a RecyclerView.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #RecyclerView_android_orientation android:orientation}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_layoutManager Quizard.Quizard:layoutManager}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_reverseLayout Quizard.Quizard:reverseLayout}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_spanCount Quizard.Quizard:spanCount}</code></td><td></td></tr>
-           <tr><td><code>{@link #RecyclerView_stackFromEnd Quizard.Quizard:stackFromEnd}</code></td><td></td></tr>
-           </table>
-           @see #RecyclerView_android_orientation
-           @see #RecyclerView_layoutManager
-           @see #RecyclerView_reverseLayout
-           @see #RecyclerView_spanCount
-           @see #RecyclerView_stackFromEnd
-         */
-        public static final int[] RecyclerView = {
-            0x010100c4, 0x7f010000, 0x7f010001, 0x7f010002,
-            0x7f010003
-        };
-        /**
-          <p>This symbol is the offset where the {@link android.R.attr#orientation}
-          attribute's value can be found in the {@link #RecyclerView} array.
-          @attr name android:orientation
-        */
-        public static final int RecyclerView_android_orientation = 0;
-        /**
-          <p>This symbol is the offset where the {@link Quizard.Quizard.R.attr#layoutManager}
-          attribute's value can be found in the {@link #RecyclerView} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name Quizard.Quizard:layoutManager
-        */
-        public static final int RecyclerView_layoutManager = 1;
-        /**
-          <p>This symbol is the offset where the {@link Quizard.Quizard.R.attr#reverseLayout}
-          attribute's value can be found in the {@link #RecyclerView} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name Quizard.Quizard:reverseLayout
-        */
-        public static final int RecyclerView_reverseLayout = 3;
-        /**
-          <p>This symbol is the offset where the {@link Quizard.Quizard.R.attr#spanCount}
-          attribute's value can be found in the {@link #RecyclerView} array.
-
-
-          <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name Quizard.Quizard:spanCount
-        */
-        public static final int RecyclerView_spanCount = 2;
-        /**
-          <p>This symbol is the offset where the {@link Quizard.Quizard.R.attr#stackFromEnd}
-          attribute's value can be found in the {@link #RecyclerView} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name Quizard.Quizard:stackFromEnd
-        */
-        public static final int RecyclerView_stackFromEnd = 4;
-    };
 }
