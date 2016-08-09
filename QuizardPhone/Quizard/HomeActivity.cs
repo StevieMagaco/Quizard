@@ -297,17 +297,25 @@ namespace Quizard
             DataBase.DBAdapter db = new DataBase.DBAdapter(this);
             db.openDB();
             DataBase.Sets SetBuffer = new DataBase.Sets(_Username, _SetName, "", "", "");
-            if (db.UpdateRowSets(SetBuffer, _NewSetName))
+            if (_NewSetName.Length > 4 && !_NewSetName.Contains(" "))
             {
-                RetreiveSet(mFlashSetList, _Username);
-                Toast.MakeText(this, _SetName + " was updated to " + _NewSetName, ToastLength.Short).Show();
-                db.CloseDB();
-                return true;
+                if (db.UpdateRowSets(SetBuffer, _NewSetName))
+                {
+                    RetreiveSet(mFlashSetList, _Username);
+                    Toast.MakeText(this, _SetName + " was updated to " + _NewSetName, ToastLength.Short).Show();
+                    db.CloseDB();
+                    return true;
+                }
+                else
+                {
+                    Toast.MakeText(this, "Unable to update " + _SetName, ToastLength.Short).Show();
+
+                    db.CloseDB();
+                    return false;
+                }
             }
             else
             {
-                Toast.MakeText(this, "Unable to update " + _SetName, ToastLength.Short).Show();
-
                 db.CloseDB();
                 return false;
             }
