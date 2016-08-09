@@ -17,58 +17,7 @@ using Android.Widget;
 
 namespace Quizard
 {
-    public class FlashSetCommand
-    {
-        private ArrayList mFlashSets;
-        private ArrayAdapter mAdapter;
-
-        public FlashSetCommand(ArrayList flashSets, ArrayAdapter adapter)
-        {
-            mFlashSets = flashSets;
-            mAdapter = adapter;
-        }
-
-        public bool CreateAFlashSet(string flashSetSubject)
-        {
-            try
-            {
-                mFlashSets.Add(flashSetSubject);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        public bool UpdateAFlashSet(string flashSetUpdatedSubject, int flashSetIndex)
-        {
-            try
-            {
-                mFlashSets.RemoveAt(flashSetIndex);
-                mFlashSets.Insert(flashSetIndex, flashSetUpdatedSubject);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        public bool DeleteAFlashSet(int flashSetIndex)
-        {
-            try
-            {
-                mFlashSets.RemoveAt(flashSetIndex);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-    }
-
+   
     [Activity(MainLauncher = false /* MainLauncher does NOT need to be changed unless another layout or diaglog fragment needs to be tested*/, Theme = "@style/CustomActionToolbarTheme")]
     public class HomeActivity : Activity
     {
@@ -117,7 +66,6 @@ namespace Quizard
             if (Username_Buffer != "Data not available")
             {
                 DataBase.User NewUser = new DataBase.User();
-
                 NewUser.SetUsername(Username_Buffer);
                 NewUser.SetPassword("");
                 mUserInformation.SetUser(NewUser);
