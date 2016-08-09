@@ -10,5 +10,6 @@ C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\FakeQui
 C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\FakeQuizardPhone\obj\Debug\res\drawable\icon.png
 C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\FakeQuizardPhone\obj\Debug\R.cs.flag
 C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\FakeQuizardPhone\obj\Debug\uploadflags.txt
+C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\FakeQuizardPhone\obj\Debug\FakeQuizardPhone.csprojResolveAssemblyReference.cache
 C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\FakeQuizardPhone\obj\Debug\FakeQuizardPhone.dll.mdb
 C:\Users\Stevie Dominique\Work\Project Portfolio IV\Quizard\QuizardWatch\FakeQuizardPhone\bin\Debug\FakeQuizardPhone.dll.mdb
