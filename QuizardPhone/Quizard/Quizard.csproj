@@ -121,9 +121,6 @@
     <AndroidResource Include="Resources\drawable\cardIconSmall.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\file_edit_small.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\flashcard.png" />
   </ItemGroup>
   <ItemGroup>

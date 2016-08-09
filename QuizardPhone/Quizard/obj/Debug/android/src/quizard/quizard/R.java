@@ -17,12 +17,11 @@ public final class R {
         public static final int create=0x7f020003;
         public static final int delete=0x7f020004;
         public static final int edittextstyle=0x7f020005;
-        public static final int file_edit_small=0x7f020006;
-        public static final int flashcard=0x7f020007;
-        public static final int homepageicon_small=0x7f020008;
-        public static final int quizicon=0x7f020009;
-        public static final int settings=0x7f02000a;
-        public static final int update=0x7f02000b;
+        public static final int flashcard=0x7f020006;
+        public static final int homepageicon_small=0x7f020007;
+        public static final int quizicon=0x7f020008;
+        public static final int settings=0x7f020009;
+        public static final int update=0x7f02000a;
     }
     public static final class id {
         public static final int DeckAddCardCancelButton=0x7f060009;
