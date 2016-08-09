@@ -16,7 +16,7 @@ using Android.Database;
 
 namespace Quizard
 {
-    [Activity(Label = "DeckActivity", MainLauncher = true /*Keep the MainLauncher = false unless this dialog fragment needs to be tested*/)]
+    [Activity(Label = "DeckActivity", MainLauncher = false /*Keep the MainLauncher = false unless this dialog fragment needs to be tested*/)]
     public class DeckActivity : Activity
     {
         List<string> mQuestions, mAnswers, mQuizAnswers;
