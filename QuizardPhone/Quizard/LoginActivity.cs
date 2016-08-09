@@ -116,7 +116,7 @@ namespace Quizard
         private CheckBox mRememberMe;
         private ProgressBar mLoginProgressBar;
         private CreateAnAccountDialogFragment fragment = new CreateAnAccountDialogFragment();
-        private string[] mRemebermeInfo;
+        private string[] mRemembermeInfo;
         #region Database Variables
         private string mNewUsername, mNewPassword, mNewConfirmPassword;
         private DataBase.UserInfo UserInformation = new DataBase.UserInfo();
@@ -140,11 +140,11 @@ namespace Quizard
             mRememberMe = FindViewById<CheckBox>(Resource.Id.rememberMeCheckBoxID);
             mLoginProgressBar = FindViewById<ProgressBar>(Resource.Id.loginProgressBarID);
             #endregion
-            mRemebermeInfo = GetRemeberMe();
-            if (!mRemebermeInfo[0].Contains("{..Failed..}"))
+            mRemembermeInfo = GetRememberMe();
+            if (!mRemembermeInfo[0].Contains("{..Failed..}"))
             {
-                mUserLoginUsername.Text = mRemebermeInfo[0];
-                mUserLoginPassword.Text = mRemebermeInfo[1];
+                mUserLoginUsername.Text = mRemembermeInfo[0];
+                mUserLoginPassword.Text = mRemembermeInfo[1];
             }
             // If the "CreateAnAccount" dialog fragment is brought up by accident, the user may click the
             // layout around the dialog fragment to close it and bring them back to the main login layout
@@ -232,7 +232,7 @@ namespace Quizard
                         intent.PutExtra("UserName", mUserLoginUsername.Text);
                         if (mRememberMe.Checked)
                         {
-                            if (!RemeberMeSaveUser(mUserLoginUsername.Text, mUserLoginPassword.Text))
+                            if (!RememberMeSaveUser(mUserLoginUsername.Text, mUserLoginPassword.Text))
                                 Toast.MakeText(this, "Failed to Save RemeberMe", ToastLength.Short).Show();
                         }
                         mUserLoginUsername.Text = "";
@@ -272,6 +272,10 @@ namespace Quizard
                     || mNewPassword.Contains("6") || mNewPassword.Contains("7") || mNewPassword.Contains("8")
                     || mNewPassword.Contains("9") && !mNewUsername.Contains(" "))
                 {
+                    if(mNewPassword != mNewConfirmPassword)
+                    {
+                        throw new System.ArgumentException("Username or Password is blank", "Username/Password");
+                    }
                     DataBase.DBAdapter db = new DataBase.DBAdapter(this);
                     db.openDB();
 
@@ -320,7 +324,7 @@ namespace Quizard
          * if remeber me is Checked 
          * Saves users info to RemeberMe table 
          */
-        private bool RemeberMeSaveUser(string _Username, string _Password)
+        private bool RememberMeSaveUser(string _Username, string _Password)
         {
             DataBase.DBAdapter db = new DataBase.DBAdapter(this);
             db.openDB();
@@ -340,7 +344,7 @@ namespace Quizard
          * Will retrieve last Username and Password 
          * from database
          */
-        private string[] GetRemeberMe()
+        private string[] GetRememberMe()
         {
             DataBase.DBAdapter db = new DataBase.DBAdapter(this);
             db.openDB();

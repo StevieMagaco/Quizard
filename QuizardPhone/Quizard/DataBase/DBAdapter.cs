@@ -140,8 +140,8 @@ namespace Quizard.DataBase
         }
         public ICursor GetRemeberMe()
         {
-            String[] columns = {Constants.RemeberMe_Username, Constants.RemeberMe_Password };
-            return mdb.Query(Constants.RemeberMe_TB_Name, columns, null, null, null, null, null);
+            String[] columns = {Constants.RememberMe_Username, Constants.RememberMe_Password };
+            return mdb.Query(Constants.RememberMe_TB_Name, columns, null, null, null, null, null);
         }
         public bool DeleteRowSet_tb(string _Username,string _SetName)
         {
@@ -172,11 +172,11 @@ namespace Quizard.DataBase
 
             try
             {
-                mdb.Delete(Constants.RemeberMe_TB_Name, null, null);
+                mdb.Delete(Constants.RememberMe_TB_Name, null, null);
                 ContentValues insertValues = new ContentValues();
-                insertValues.Put(Constants.RemeberMe_Username, _Username);
-                insertValues.Put(Constants.RemeberMe_Password, _Password);
-                mdb.Insert(Constants.RemeberMe_TB_Name, null, insertValues);
+                insertValues.Put(Constants.RememberMe_Username, _Username);
+                insertValues.Put(Constants.RememberMe_Password, _Password);
+                mdb.Insert(Constants.RememberMe_TB_Name, null, insertValues);
                 return true;
             }
             catch (Exception ex)

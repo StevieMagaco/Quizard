@@ -45,12 +45,12 @@ namespace Quizard.DataBase
         public static String Users_TB_Name = "Users_tb";
         public static String Sets_TB_Name = "Sets_tb";
         public static String Cards_TB_Name = "Cards_tb";
-        public static String RemeberMe_TB_Name = "RemeberMe_tb";
+        public static String RememberMe_TB_Name = "RememberMe_tb";
         public static int DB_Version = 1;
 
         //Remeber Me
-        public static String RemeberMe_Username = "UserName";
-        public static String RemeberMe_Password = "Password";
+        public static String RememberMe_Username = "UserName";
+        public static String RememberMe_Password = "Password";
 
         // Creating Quizard Tables & User Tables
         public static String Create_Users_tb = "create table Users_tb(" +
@@ -72,13 +72,13 @@ namespace Quizard.DataBase
                                           "Number_Box integer NOT NULL," +
                                            "PreRun integer NOT NULL)";
 
-        public static String Create_RemeberMe_tb = "create table RemeberMe_tb(" +
+        public static String Create_RemeberMe_tb = "create table RememberMe_tb(" +
                                               "UserName Text NOT NULL UNIQUE," +
                                                "Password Text NOT NULL" + ")";
         // Drop Quizard Table
         public static String Drop_Users_tb = "drop table if exists " + Users_TB_Name;
         public static String Drop_Sets_tb = "drop table if exists " + Sets_TB_Name;
         public static String Drop_Cards_tb = "drop table if exists " + Cards_TB_Name;
-        public static String Drop_RemeberMe_tb = "drop table if exists " + RemeberMe_TB_Name;
+        public static String Drop_RemeberMe_tb = "drop table if exists " + RememberMe_TB_Name;
     }
 }
