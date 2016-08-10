@@ -166,18 +166,7 @@ C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\res\drawable\settin
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\res\drawable\update.png
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\R.cs.flag
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\uploadflags.txt
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\Quizard.dll.mdb
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\Java.Interop.dll.mdb
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\Mono.Android.dll.mdb
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\mscorlib.dll.mdb
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\System.ComponentModel.Composition.dll.mdb
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\System.Core.dll.mdb
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\System.dll.mdb
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\System.Net.Http.dll.mdb
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\System.Runtime.Serialization.dll.mdb
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\System.ServiceModel.Internals.dll.mdb
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\System.Xml.dll.mdb
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\System.Xml.Linq.dll.mdb
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\android\assets\Java.Interop.dll.mdb
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\android\assets\Mono.Android.dll.mdb
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\android\assets\mscorlib.dll.mdb
@@ -190,7 +179,6 @@ C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\android\assets\Syst
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.dll.mdb
 C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
-C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\Quizard.dll.mdb
 E:\School\PP4\Quizard\QuizardPhone\Quizard\bin\Debug\Quizard.dll
 E:\School\PP4\Quizard\QuizardPhone\Quizard\bin\Debug\Quizard.pdb
 E:\School\PP4\Quizard\QuizardPhone\Quizard\bin\Debug\Quizard.Quizard.apk
@@ -253,3 +241,6 @@ E:\School\PP4\Quizard\QuizardPhone\Quizard\obj\Debug\android\assets\System.Servi
 E:\School\PP4\Quizard\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.dll.mdb
 E:\School\PP4\Quizard\QuizardPhone\Quizard\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 E:\School\PP4\Quizard\QuizardPhone\Quizard\obj\Debug\Quizard.dll.mdb
+C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\Quizard.dll.mdb
+C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\obj\Debug\Quizard.dll.mdb
+C:\Users\God\Desktop\Quizard3\QuizardPhone\Quizard\bin\Debug\Quizard.dll.mdb
