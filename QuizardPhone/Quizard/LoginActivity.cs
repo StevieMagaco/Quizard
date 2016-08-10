@@ -179,14 +179,33 @@ namespace Quizard
             progressBarThread.Start();
 
             #region Database Create An Account Error Checking
-            // Once the user clicks create account this will check to make sure
-            // Username and password are grater than 0
-            // Username is does not already exist
-            // attempt to add the user to the database
-
             NewUsername = mFragment.GetNewUserName();
             NewPassword = mFragment.GetNewPassword();
+            CreateUser();
+            mFragment.SetNewUserName("");
+            mFragment.SetNewPassword("");
+            mFragment.SetNewConfermPassword("");
+            #endregion
+        }
 
+        private void ServerRequest()
+        {
+            // This code is temporary until a server can be implemented
+            Thread.Sleep(3000);
+
+            RunOnUiThread(() =>
+            {
+                mLoginProgressBar.Visibility = ViewStates.Invisible;
+            });
+        }
+
+        #region DataBase Funtions
+        // Once the user clicks create account this will check to make sure
+        // Username and password are grater than 0
+        // Username is does not already exist
+        // attempt to add the user to the database
+        private void CreateUser()
+        {
             try
             {
                 if (NewUsername.Length > 0 && NewPassword.Length > 0)
@@ -227,24 +246,7 @@ namespace Quizard
                 Console.WriteLine(exception.Message);
                 Toast.MakeText(this, "Unable to create a new user", ToastLength.Short).Show();
             }
-
-            mFragment.SetNewUserName("");
-            mFragment.SetNewPassword("");
-            mFragment.SetNewConfermPassword("");
-            #endregion
         }
-
-        private void ServerRequest()
-        {
-            // This code is temporary until a server can be implemented
-            Thread.Sleep(3000);
-
-            RunOnUiThread(() =>
-            {
-                mLoginProgressBar.Visibility = ViewStates.Invisible;
-            });
-        }
-        #region DataBase Funtions
         private void UserLogin()
         {
 
