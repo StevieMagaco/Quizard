@@ -542,6 +542,8 @@ namespace Quizard
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            // TODO: if there is no cards in deck if person clicks on quiz the 
+            // program crashes needs to be fixed
             FragmentManager.PopBackStack();
 
             base.OnCreateView(inflater, container, savedInstanceState);
