@@ -67,9 +67,11 @@
     <Compile Include="DataBase\Sets.cs" />
     <Compile Include="DataBase\User.cs" />
     <Compile Include="DataBase\UserInfo.cs" />
+    <Compile Include="DeckInterface\CardTab.cs" />
+    <Compile Include="DeckInterface\QuizTab.cs" />
     <Compile Include="HomeActivity.cs" />
     <Compile Include="LoginActivity.cs" />
-    <Compile Include="DeckActivity.cs" />
+    <Compile Include="DeckInterface\DeckActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
