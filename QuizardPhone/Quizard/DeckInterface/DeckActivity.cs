@@ -51,7 +51,7 @@ namespace Quizard
             // creates action bar, and Card and Quiz tabs to Deck homepage
             this.ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
             AddTab("CARDS", Resource.Drawable.cardIconSmall, new DeckCardTabFragment(mQuestions, mAnswers, UserSetname_Buffer, this));
-            AddTab("QUIZ", Resource.Drawable.quizIcon, new DeckQuizTabFragment(mQuestions, mQuizAnswers));
+            AddTab("QUIZ", Resource.Drawable.quizIcon, new DeckQuizTabFragment(mQuestions, mQuizAnswers, this, UserSetname_Buffer));
 
 
             if (bundle != null)
