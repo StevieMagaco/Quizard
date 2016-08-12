@@ -181,7 +181,6 @@ public class DeckQuizTabFragment : Fragment
                 int percentage = (rightAnswers / mQuiz.Count) * 100;
                 questionTextView.Text = "You finished with a " + percentage + "%";
                 mCurrPosition = 0;
-
                 answerListView.Visibility = ViewStates.Gone;
                 
             }
