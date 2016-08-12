@@ -144,6 +144,7 @@ namespace Quizard
             {
                 mUserLoginUsername.Text = mRemembermeInfo[0];
                 mUserLoginPassword.Text = mRemembermeInfo[1];
+                mRememberMe.Checked = true;
             }
 
             // If the "CreateAnAccount" dialog fragment is brought up by accident, the user may click the
@@ -283,7 +284,13 @@ namespace Quizard
                             if (!RememberMeSaveUser(mUserLoginUsername.Text, mUserLoginPassword.Text))
                                 Toast.MakeText(this, "Failed to Save RemeberMe", ToastLength.Short).Show();
                         }
-
+                        else
+                        {
+                            if(!db.DeleteRememberMe())
+                            {
+                                Toast.MakeText(this, "Failed to Delete RemeberMe", ToastLength.Short).Show();
+                            }
+                        }
                         mUserLoginUsername.Text = "";
                         mUserLoginPassword.Text = "";
 
