@@ -116,6 +116,7 @@ namespace Quizard
         #region Database Variables
         private string NewUsername, NewPassword;
         private DataBase.UserInfo UserInformation = new DataBase.UserInfo();
+        private bool mIsRememberMe = false;
         #endregion
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -141,6 +142,8 @@ namespace Quizard
             {
                 mUserLoginUsername.Text = mRemembermeInfo[0];
                 mUserLoginPassword.Text = mRemembermeInfo[1];
+                mIsRememberMe = true;
+                mRememberMe.Checked = true;
             }
             // If the "CreateAnAccount" dialog fragment is brought up by accident, the user may click the
             // layout around the dialog fragment to close it and bring them back to the main login layout
@@ -275,6 +278,11 @@ namespace Quizard
                         {
                             if (!RememberMeSaveUser(mUserLoginUsername.Text, mUserLoginPassword.Text))
                                 Toast.MakeText(this, "Failed to Save RemeberMe", ToastLength.Short).Show();
+                        }
+                        else
+                        {
+                            if(!db.DeleteRememberMe())
+                                Toast.MakeText(this, "Failed to Delete RemeberMe", ToastLength.Short).Show();
                         }
                         mUserLoginUsername.Text = "";
                         mUserLoginPassword.Text = "";

@@ -259,5 +259,19 @@ namespace Quizard.DataBase
             }
             return false;
         }
+        //Deletes the Remember Me User
+        public bool DeleteRememberMe()
+        {
+            try
+            {
+                mdb.Delete(Constants.RememberMe_TB_Name, null, null);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false;
+        }
     }
 }
