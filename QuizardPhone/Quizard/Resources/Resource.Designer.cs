@@ -228,14 +228,14 @@ namespace Quizard
 			// aapt resource value: 0x7f060020
 			public const int quizDialogRedoButton = 2131099680;
 			
-			// aapt resource value: 0x7f060024
-			public const int quizNextButtonID = 2131099684;
-			
 			// aapt resource value: 0x7f06001e
 			public const int quizRightWrongTextView = 2131099678;
 			
 			// aapt resource value: 0x7f060023
 			public const int quizTabAnswerListView = 2131099683;
+			
+			// aapt resource value: 0x7f060024
+			public const int quizTabNextButtonID = 2131099684;
 			
 			// aapt resource value: 0x7f060022
 			public const int quizTabQuestionTextView = 2131099682;
