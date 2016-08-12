@@ -101,6 +101,9 @@ namespace Quizard
                 mEnterIntoSelectedFlashSet.Visibility = ViewStates.Visible;
 
                 #region Toolbar Image Button Visibility Assignments
+                mCreateAFlashSet.Visibility = ViewStates.Invisible;
+                mCreateAFlashSetLabel.Visibility = ViewStates.Invisible;
+
                 mCancel.Visibility = ViewStates.Visible;
                 mCancelLabel.Visibility = ViewStates.Visible;
 
@@ -109,6 +112,9 @@ namespace Quizard
 
                 mDeleteAFlashSet.Visibility = ViewStates.Visible;
                 mDeleteAFlashSetLabel.Visibility = ViewStates.Visible;
+
+                mSettings.Visibility = ViewStates.Invisible;
+                mSettingsLabel.Visibility = ViewStates.Invisible;
                 #endregion
             };
 
@@ -190,34 +196,75 @@ namespace Quizard
             // If the user taps the delete image button on the toolbar...
             mDeleteAFlashSet.Click += delegate (object sender, EventArgs e)
             {
-                if (DeleteSet(mUserInformation.GetUser().GetUsername(), mSetNameList[mSelectedFlashSet].ToString()))
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+                alert.SetTitle("Delete the \"" + mFlashSetSubject.Text + "\" flash set?");
+
+                alert.SetPositiveButton("Yes", (senderAlert, args) =>
                 {
-                    mFlashSetSubject.Text = mEmptySubject;
+                    if (DeleteSet(mUserInformation.GetUser().GetUsername(), mSetNameList[mSelectedFlashSet].ToString()))
+                    {
+                        mFlashSetSubject.Text = mEmptySubject;
 
-                    mFlashSetSubject.Visibility = ViewStates.Invisible;
-                    mAddToFlashSetList.Visibility = ViewStates.Invisible;
-                    mEnterIntoSelectedFlashSet.Visibility = ViewStates.Invisible;
+                        mFlashSetSubject.Visibility = ViewStates.Invisible;
+                        mAddToFlashSetList.Visibility = ViewStates.Invisible;
+                        mEnterIntoSelectedFlashSet.Visibility = ViewStates.Invisible;
 
-                    #region Toolbar Image Button Visibility Assignments
-                    mCreateAFlashSet.Visibility = ViewStates.Visible;
-                    mCreateAFlashSetLabel.Visibility = ViewStates.Visible;
+                        #region Toolbar Image Button Visibility Assignments
+                        mCreateAFlashSet.Visibility = ViewStates.Visible;
+                        mCreateAFlashSetLabel.Visibility = ViewStates.Visible;
 
-                    mCancel.Visibility = ViewStates.Invisible;
-                    mCancelLabel.Visibility = ViewStates.Invisible;
+                        mCancel.Visibility = ViewStates.Invisible;
+                        mCancelLabel.Visibility = ViewStates.Invisible;
 
-                    mUpdateAFlashSet.Visibility = ViewStates.Invisible;
-                    mUpdateAFlashSetLabel.Visibility = ViewStates.Invisible;
+                        mUpdateAFlashSet.Visibility = ViewStates.Invisible;
+                        mUpdateAFlashSetLabel.Visibility = ViewStates.Invisible;
 
-                    mDeleteAFlashSet.Visibility = ViewStates.Invisible;
-                    mDeleteAFlashSetLabel.Visibility = ViewStates.Invisible;
+                        mDeleteAFlashSet.Visibility = ViewStates.Invisible;
+                        mDeleteAFlashSetLabel.Visibility = ViewStates.Invisible;
 
-                    mSettings.Visibility = ViewStates.Visible;
-                    mSettingsLabel.Visibility = ViewStates.Visible;
-                    #endregion
-                }
+                        mSettings.Visibility = ViewStates.Visible;
+                        mSettingsLabel.Visibility = ViewStates.Visible;
+                        #endregion
+                    }
+                });
+
+                alert.SetNegativeButton("Cancel", (senderAlert, args) =>
+                {
+                    return;
+                });
+
+                RunOnUiThread(() =>
+                {
+                    alert.Show();
+                });
+            };
+
+            mSettings.Click += delegate (object sender, EventArgs e)
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+                alert.SetTitle("Logout of Quizard?");
+
+                alert.SetPositiveButton("Continue", (senderAlert, args) =>
+                {
+                    Intent intent = new Intent(this, typeof(LoginActivity));
+                    this.StartActivity(intent);
+                });
+
+                alert.SetNegativeButton("Cancel", (senderAlert, args) =>
+                {
+                    return;
+                });
+
+                RunOnUiThread(() =>
+                {
+                    alert.Show();
+                });
             };
         }
 
+        #region DataBase Functions
         // Implementation to retrive a users flash sets
         private void RetreiveSet(ListView _FlashSet, string _Username)
         {
@@ -326,4 +373,5 @@ namespace Quizard
             }
         }
     }
+    #endregion
 }

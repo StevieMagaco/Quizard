@@ -113,6 +113,7 @@ namespace Quizard
         private ProgressBar mLoginProgressBar;
         private CreateAnAccountDialogFragment mFragment = new CreateAnAccountDialogFragment();
         private string[] mRemembermeInfo;
+
         #region Database Variables
         private string NewUsername, NewPassword;
         private DataBase.UserInfo UserInformation = new DataBase.UserInfo();
@@ -136,12 +137,15 @@ namespace Quizard
             mRememberMe = FindViewById<CheckBox>(Resource.Id.rememberMeCheckBoxID);
             mLoginProgressBar = FindViewById<ProgressBar>(Resource.Id.loginProgressBarID);
             #endregion
+
             mRemembermeInfo = GetRememberMe();
+
             if (!mRemembermeInfo[0].Contains("{..Failed..}"))
             {
                 mUserLoginUsername.Text = mRemembermeInfo[0];
                 mUserLoginPassword.Text = mRemembermeInfo[1];
             }
+
             // If the "CreateAnAccount" dialog fragment is brought up by accident, the user may click the
             // layout around the dialog fragment to close it and bring them back to the main login layout
             mLoginView.Click += delegate (object sender, EventArgs e)
@@ -156,8 +160,8 @@ namespace Quizard
 
                 Thread progressBarThread = new Thread(ServerRequest);
                 progressBarThread.Start();
+
                 UserLogin();
-               
             };
 
             mCreateAnAccount.Click += delegate (object sender, EventArgs e)
@@ -247,9 +251,9 @@ namespace Quizard
                 Toast.MakeText(this, "Unable to create a new user", ToastLength.Short).Show();
             }
         }
+
         private void UserLogin()
         {
-
             // This try catch will check to make sure
             // Username and password are greater than 0
             // & that the user actually exists in the database
@@ -267,15 +271,19 @@ namespace Quizard
                     {
                         DataBase.User NewUser = new DataBase.User(mUserLoginUsername.Text, mUserLoginPassword.Text);
                         UserInformation.SetUser(NewUser);
+
                         Toast.MakeText(this, "Welcome to Quizify!", ToastLength.Short).Show();
+
                         // Once the user has clicked the "Login" button, take them to the home screen
                         Intent intent = new Intent(this, typeof(HomeActivity));
                         intent.PutExtra("UserName", mUserLoginUsername.Text);
+
                         if (mRememberMe.Checked)
                         {
                             if (!RememberMeSaveUser(mUserLoginUsername.Text, mUserLoginPassword.Text))
                                 Toast.MakeText(this, "Failed to Save RemeberMe", ToastLength.Short).Show();
                         }
+
                         mUserLoginUsername.Text = "";
                         mUserLoginPassword.Text = "";
 
@@ -294,9 +302,8 @@ namespace Quizard
                 Console.WriteLine(exception.Message);
                 Toast.MakeText(this, "Username or Password is incorrect", ToastLength.Short).Show();
             }
-
         }
-       
+
         /*
          * if remeber me is Checked 
          * Saves users info to RemeberMe table 
@@ -305,6 +312,7 @@ namespace Quizard
         {
             DataBase.DBAdapter db = new DataBase.DBAdapter(this);
             db.openDB();
+
             if (db.AddRemeberMe_tb(_Username, _Password))
             {
                 db.CloseDB();
@@ -316,6 +324,7 @@ namespace Quizard
                 return false;
             }
         }
+
         /*
          * If user Checked Remeber me
          * Will retrieve last Username and Password 
@@ -325,8 +334,10 @@ namespace Quizard
         {
             DataBase.DBAdapter db = new DataBase.DBAdapter(this);
             db.openDB();
+
             ICursor RemeberInfo;
             RemeberInfo = db.GetRemeberMe();
+
             if (RemeberInfo.MoveToNext())
             {
                 string[] infoBuffer = { RemeberInfo.GetString(0), RemeberInfo.GetString(1) };
