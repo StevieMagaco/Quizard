@@ -103,18 +103,24 @@ public class DeckQuizTabFragment : Fragment
     ListView answerListView; // list view for answers
     Context mContext;
 
+        ArrayAdapter mAdapterQ;
+        string mUsername, mSetName;
+
         int rightAnswers = 0;
 
     Button nextButton;
 
     List<Question> mQuiz;
-    public DeckQuizTabFragment(List<string> _questionList, List<string> _answerList)
-    {
-        mQuestionList = _questionList;
-        mAnswerList = _answerList;
-    }
+        public DeckQuizTabFragment(List<string> _questionList, List<string> _answerList, Context _Context, string[] _UserSetName)
+        {
+            mQuestionList = _questionList;
+            mAnswerList = _answerList;
+            mContext = _Context;
+            mUsername = _UserSetName[0];
+            mSetName = _UserSetName[1];
+        }
 
-    public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle savedInstanceState)
     {
         base.OnCreate(savedInstanceState);
         // Create your fragment here
@@ -128,11 +134,11 @@ public class DeckQuizTabFragment : Fragment
 
          var view = inflater.Inflate(Resource.Layout.DeckQuizTab, container, false);
 
-         // TODO: Get cards from database to fill questionList and answerList
+            // TODO: Get cards from database to fill questionList and answerList
+            RetrieveCards(mUsername, mSetName);
 
-
-         // set question text view to a question
-         questionTextView = view.FindViewById<TextView>(Resource.Id.quizTabQuestionTextView);
+            // set question text view to a question
+            questionTextView = view.FindViewById<TextView>(Resource.Id.quizTabQuestionTextView);
          questionTextView.Text = mQuestionList[mCurrPosition];
 
          // set answer list view to display answerList.
@@ -209,6 +215,32 @@ public class DeckQuizTabFragment : Fragment
                 mQuiz.Add(tQuestion);
             }
              
+        }
+        private void RetrieveCards(string _Username, string _SetName)
+        {
+            try
+            {
+                DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
+                db.openDB();
+
+                ICursor CardsInfo = db.GetCards(_Username, _SetName);
+                mAnswerList.Clear();
+                mQuestionList.Clear();
+                while (CardsInfo.MoveToNext())
+                {
+                    string Question = CardsInfo.GetString(2);
+                    string Answer = CardsInfo.GetString(3);
+                    mAnswerList.Add(Answer);
+                    mQuestionList.Add(Question);
+                }
+                db.CloseDB();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                Toast.MakeText(mContext, "Failed to retrieve Cards", ToastLength.Short).Show();
+            }
+
         }
     }
 //public class DeckQuizDialogFragment : DialogFragment
