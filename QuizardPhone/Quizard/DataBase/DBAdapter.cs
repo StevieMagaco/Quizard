@@ -198,26 +198,10 @@ namespace Quizard.DataBase
         {
             String whereclause = Constants.Users_UserName + " = ? and " + Constants.Sets_SetName + " = ?";
             String[] Clause = { _Username, _SetName };
-            string[] columns = { Constants.Cards_UserName, Constants.Cards_SetName };
-            ICursor dataCount = mdb.Query(Constants.Cards_TB_Name, columns, null, null, null, null, null);
-            if (dataCount.Count <= 0)
-            {
-                if (mdb.Delete(Constants.Sets_TB_Name, whereclause, Clause) > 0)
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
+            if(mdb.Delete(Constants.Sets_TB_Name, whereclause, Clause) > 0)
+                return true;
             else
-            {
-                if (mdb.Delete(Constants.Sets_TB_Name, whereclause, Clause) > 0 && mdb.Delete(Constants.Cards_TB_Name, whereclause, Clause) > 0)
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
+            return false;
         }
         /*
          * Edits a previous Set in Sets table
@@ -258,6 +242,13 @@ namespace Quizard.DataBase
                 Console.WriteLine(ex.Message);
             }
             return false;
+        }
+        public bool DeleteRememberMe()
+        {
+            if (mdb.Delete(Constants.RememberMe_TB_Name, null, null) > 0)
+                return true;
+            else
+                return false;
         }
     }
 }

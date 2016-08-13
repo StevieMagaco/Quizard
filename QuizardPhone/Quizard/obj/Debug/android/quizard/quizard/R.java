@@ -72,9 +72,9 @@ public final class R {
         public static final int questionTextView=0x7f060016;
         public static final int quizDialobNextButton=0x7f060021;
         public static final int quizDialogRedoButton=0x7f060020;
-        public static final int quizNextButtonID=0x7f060024;
         public static final int quizRightWrongTextView=0x7f06001e;
         public static final int quizTabAnswerListView=0x7f060023;
+        public static final int quizTabNextButtonID=0x7f060024;
         public static final int quizTabQuestionTextView=0x7f060022;
         public static final int rememberMeCheckBoxID=0x7f060037;
         public static final int searchFlashSetsSearchViewID=0x7f060031;
