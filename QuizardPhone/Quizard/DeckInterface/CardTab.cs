@@ -217,7 +217,7 @@ public class DeckCardTabFragment : Fragment
                 }
                 db.CloseDB();
 
-                mCardTabListView.Adapter = ListAdapter;
+               // mCardTabListView.Adapter = ListAdapter;
 
             }
             catch (Exception exception)

@@ -141,6 +141,7 @@ namespace Quizard
             {
                 mUserLoginUsername.Text = mRemembermeInfo[0];
                 mUserLoginPassword.Text = mRemembermeInfo[1];
+                mRememberMe.Checked = true;
             }
             // If the "CreateAnAccount" dialog fragment is brought up by accident, the user may click the
             // layout around the dialog fragment to close it and bring them back to the main login layout
@@ -275,6 +276,10 @@ namespace Quizard
                         {
                             if (!RememberMeSaveUser(mUserLoginUsername.Text, mUserLoginPassword.Text))
                                 Toast.MakeText(this, "Failed to Save RemeberMe", ToastLength.Short).Show();
+                        }
+                        else
+                        {
+                            db.DeleteRememberMe();
                         }
                         mUserLoginUsername.Text = "";
                         mUserLoginPassword.Text = "";
