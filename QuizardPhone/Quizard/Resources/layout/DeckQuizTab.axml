@@ -5,15 +5,22 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-  <TextView
-      android:text="Text"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/quizTabQuestionTextView" />
-  <ListView
-      android:minWidth="25px"
-      android:minHeight="25px"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:id="@+id/quizTabAnswerListView" />
+    <TextView
+        android:text="Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/quizTabQuestionTextView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp" />
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/quizTabAnswerListView" />
+    <Button
+        android:text="next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/quizTabNextButtonID" />
 </LinearLayout>
