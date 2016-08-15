@@ -161,7 +161,6 @@ namespace Quizard
 
                 Thread progressBarThread = new Thread(ServerRequest);
                 progressBarThread.Start();
-
                 UserLogin();
             };
 
@@ -273,7 +272,7 @@ namespace Quizard
                         DataBase.User NewUser = new DataBase.User(mUserLoginUsername.Text, mUserLoginPassword.Text);
                         UserInformation.SetUser(NewUser);
 
-                        Toast.MakeText(this, "Welcome to Quizify!", ToastLength.Short).Show();
+                        Toast.MakeText(this, "Welcome to Quizard!", ToastLength.Short).Show();
 
                         // Once the user has clicked the "Login" button, take them to the home screen
                         Intent intent = new Intent(this, typeof(HomeActivity));
@@ -286,11 +285,9 @@ namespace Quizard
                         }
                         else
                         {
-                            if(!db.DeleteRememberMe())
-                            {
-                                Toast.MakeText(this, "Failed to Delete RemeberMe", ToastLength.Short).Show();
-                            }
+                            db.DeleteRememberMe();
                         }
+
                         mUserLoginUsername.Text = "";
                         mUserLoginPassword.Text = "";
 

@@ -147,7 +147,7 @@
     <AndroidResource Include="Resources\drawable\Settings.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Update.png" />
+    <AndroidResource Include="Resources\drawable\Edit.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\HomeICON.png" />
