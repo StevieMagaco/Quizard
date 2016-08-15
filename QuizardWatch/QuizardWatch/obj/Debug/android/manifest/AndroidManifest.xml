@@ -9,7 +9,9 @@
     <activity android:label="AnswerPage" android:name="md58199ef9d273f847f3625dda317da8c34.AnswerPage" />
     <activity android:icon="@drawable/icon" android:label="QuizardWatch" android:name="md58199ef9d273f847f3625dda317da8c34.MainActivity" />
     <activity android:label="QuestionPage" android:name="md58199ef9d273f847f3625dda317da8c34.QuestionPage" />
-    <activity android:icon="@drawable/icon" android:label="SetPage" android:name="md58199ef9d273f847f3625dda317da8c34.SetPage">
+    <activity android:label="ResultPage" android:name="md58199ef9d273f847f3625dda317da8c34.ResultPage" />
+    <activity android:label="SetPage" android:name="md58199ef9d273f847f3625dda317da8c34.SetPage" />
+    <activity android:icon="@drawable/icon" android:label="ToMenuSplashScreen" android:name="md58199ef9d273f847f3625dda317da8c34.ToMenuSplashScreen">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

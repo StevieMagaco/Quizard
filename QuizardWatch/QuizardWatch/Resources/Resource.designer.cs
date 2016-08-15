@@ -425,28 +425,76 @@ namespace QuizardWatch
 			public const int error = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int generic_confirmation = 2130837509;
+			public const int FIFTYP = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int generic_confirmation_animation = 2130837510;
+			public const int generic_confirmation = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int ic_full_cancel = 2130837511;
+			public const int generic_confirmation_animation = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int ic_full_sad = 2130837512;
+			public const int High80P = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int Icon = 2130837513;
+			public const int ic_full_cancel = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int open_on_phone = 2130837514;
+			public const int ic_full_sad = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int open_on_phone_animation = 2130837515;
+			public const int Icon = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int success = 2130837516;
+			public const int Low40P = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int Low50P = 2130837517;
+			
+			// aapt resource value: 0x7f02000e
+			public const int Low80P = 2130837518;
+			
+			// aapt resource value: 0x7f02000f
+			public const int open_on_phone = 2130837519;
+			
+			// aapt resource value: 0x7f020010
+			public const int open_on_phone_animation = 2130837520;
+			
+			// aapt resource value: 0x7f020011
+			public const int splashscreen512 = 2130837521;
+			
+			// aapt resource value: 0x7f020012
+			public const int splashScreenWatch = 2130837522;
+			
+			// aapt resource value: 0x7f020013
+			public const int success = 2130837523;
+			
+			// aapt resource value: 0x7f020014
+			public const int watchbackground = 2130837524;
+			
+			// aapt resource value: 0x7f020015
+			public const int WN1 = 2130837525;
+			
+			// aapt resource value: 0x7f020016
+			public const int WN2 = 2130837526;
+			
+			// aapt resource value: 0x7f020017
+			public const int WN3 = 2130837527;
+			
+			// aapt resource value: 0x7f020018
+			public const int WN4 = 2130837528;
+			
+			// aapt resource value: 0x7f020019
+			public const int WN5 = 2130837529;
+			
+			// aapt resource value: 0x7f02001a
+			public const int WN6 = 2130837530;
+			
+			// aapt resource value: 0x7f02001b
+			public const int WN7 = 2130837531;
+			
+			// aapt resource value: 0x7f02001c
+			public const int ZEROP = 2130837532;
 			
 			static Drawable()
 			{
@@ -484,6 +532,33 @@ namespace QuizardWatch
 			
 			// aapt resource value: 0x7f0c001a
 			public const int QuizList = 2131492890;
+			
+			// aapt resource value: 0x7f0c002a
+			public const int ResultAcceptButton = 2131492906;
+			
+			// aapt resource value: 0x7f0c0024
+			public const int ResultAverageTitle = 2131492900;
+			
+			// aapt resource value: 0x7f0c002b
+			public const int ResultBackGround = 2131492907;
+			
+			// aapt resource value: 0x7f0c0029
+			public const int ResultCancelButton = 2131492905;
+			
+			// aapt resource value: 0x7f0c0026
+			public const int ResultEmoji = 2131492902;
+			
+			// aapt resource value: 0x7f0c0023
+			public const int ResultPageTitle = 2131492899;
+			
+			// aapt resource value: 0x7f0c0025
+			public const int ResultPercentage = 2131492901;
+			
+			// aapt resource value: 0x7f0c0027
+			public const int ResultRetryTitle = 2131492903;
+			
+			// aapt resource value: 0x7f0c002d
+			public const int SplashScreenImage = 2131492909;
 			
 			// aapt resource value: 0x7f0c0013
 			public const int alertTitle = 2131492883;
@@ -545,6 +620,12 @@ namespace QuizardWatch
 			// aapt resource value: 0x7f0c0017
 			public const int linearLayout1 = 2131492887;
 			
+			// aapt resource value: 0x7f0c002c
+			public const int linearLayout2 = 2131492908;
+			
+			// aapt resource value: 0x7f0c0028
+			public const int linearLayout3 = 2131492904;
+			
 			// aapt resource value: 0x7f0c001d
 			public const int message = 2131492893;
 			
@@ -560,11 +641,11 @@ namespace QuizardWatch
 			// aapt resource value: 0x7f0c0010
 			public const int start = 2131492880;
 			
-			// aapt resource value: 0x7f0c0024
-			public const int text = 2131492900;
+			// aapt resource value: 0x7f0c002f
+			public const int text = 2131492911;
 			
-			// aapt resource value: 0x7f0c0023
-			public const int title = 2131492899;
+			// aapt resource value: 0x7f0c002e
+			public const int title = 2131492910;
 			
 			// aapt resource value: 0x7f0c0005
 			public const int top = 2131492869;
@@ -641,10 +722,16 @@ namespace QuizardWatch
 			public const int RectangleMain = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int RoundMain = 2130903048;
+			public const int ResultsFlashCard = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int watch_card_content = 2130903049;
+			public const int RoundMain = 2130903049;
+			
+			// aapt resource value: 0x7f03000a
+			public const int SplashScreen = 2130903050;
+			
+			// aapt resource value: 0x7f03000b
+			public const int watch_card_content = 2130903051;
 			
 			static Layout()
 			{

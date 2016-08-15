@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace QuizardWatch
 {
-    [Activity(Label = "SetPage", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "SetPage"/*, MainLauncher = false, Icon = "@drawable/icon"*/)]
     public class SetPage : Activity
     {
         private ListView QuizList;
@@ -30,6 +30,8 @@ namespace QuizardWatch
             tempList.Add("History");
             tempList.Add("Mathematics");
             tempList.Add("Literature");
+            tempList.Add("Chemistry");
+            tempList.Add("French");
 
             QuizList = FindViewById<ListView>(Resource.Id.QuizList);
 
@@ -41,7 +43,7 @@ namespace QuizardWatch
             
         }
 
-        private void QuizList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        private async void QuizList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             //Test for getting data of list
             String SelectedSet = tempList[e.Position];
