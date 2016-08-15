@@ -1,47 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/flashcard"
+    android:background="@null"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="350dp">
-    <TextView
-        android:textColor="#02243c"
-        android:text="Question would be here"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cardDialogQuestionTextViewID"
-        android:layout_weight="1"
-        android:background="@drawable/flashcard" />
-    <TextView
-        android:textColor="#02243c"
-        android:text="Answer would be here"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cardDialogAnswerTextViewID"
-        android:layout_weight="1"
-        android:background="@drawable/flashcard" />
-    <Toolbar
-        android:background="?android:attr/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/deckCardToolbarID">
-        <Button
-            android:background="#005db3"
-            android:text="EDIT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cardDialogEditButtonID"
-            android:layout_weight="0"
-            android:gravity="center"
-            android:width="150dp" />
-        <Button
-            android:background="#005db3"
-            android:text="EXIT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cardDialogExitButtonID"
-            android:layout_weight="0"
-            android:layout_marginLeft="30dp"
-            android:width="150dp" />
-    </Toolbar>
+    android:layout_height="250dp">
+  <TextView
+      android:text="Edit card information below"
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/editCardTextView" />
+  <EditText
+      android:layout_width="match_parent"
+      android:layout_height="200dp"
+      android:textColor="#000000"
+      android:id="@+id/cardDialogEditTextID"
+      android:background="#ffffff"
+      android:text="Text goes here"
+      android:textColorHighlight="#e6e6e6"
+      android:textAlignment="viewStart" />
+  <TextView
+      android:text="Tap card to flip! Anywhere else to exit. "
+      android:textAppearance="?android:attr/textAppearanceLarge"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/tapCardTextView" />
 </LinearLayout>

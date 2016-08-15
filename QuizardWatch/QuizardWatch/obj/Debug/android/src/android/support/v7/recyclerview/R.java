@@ -529,14 +529,30 @@ containing a value of this type.
         public static int card_frame_pressed=0x7f020002;
         public static int close_button=0x7f020003;
         public static int error=0x7f020004;
-        public static int generic_confirmation=0x7f020005;
-        public static int generic_confirmation_animation=0x7f020006;
-        public static int ic_full_cancel=0x7f020007;
-        public static int ic_full_sad=0x7f020008;
-        public static int icon=0x7f020009;
-        public static int open_on_phone=0x7f02000a;
-        public static int open_on_phone_animation=0x7f02000b;
-        public static int success=0x7f02000c;
+        public static int fiftyp=0x7f020005;
+        public static int generic_confirmation=0x7f020006;
+        public static int generic_confirmation_animation=0x7f020007;
+        public static int high80p=0x7f020008;
+        public static int ic_full_cancel=0x7f020009;
+        public static int ic_full_sad=0x7f02000a;
+        public static int icon=0x7f02000b;
+        public static int low40p=0x7f02000c;
+        public static int low50p=0x7f02000d;
+        public static int low80p=0x7f02000e;
+        public static int open_on_phone=0x7f02000f;
+        public static int open_on_phone_animation=0x7f020010;
+        public static int splashscreen512=0x7f020011;
+        public static int splashscreenwatch=0x7f020012;
+        public static int success=0x7f020013;
+        public static int watchbackground=0x7f020014;
+        public static int wn1=0x7f020015;
+        public static int wn2=0x7f020016;
+        public static int wn3=0x7f020017;
+        public static int wn4=0x7f020018;
+        public static int wn5=0x7f020019;
+        public static int wn6=0x7f02001a;
+        public static int wn7=0x7f02001b;
+        public static int zerop=0x7f02001c;
     }
     public static final class id {
         public static int AnswerCorrect=0x7f0c0018;
@@ -547,6 +563,15 @@ containing a value of this type.
         public static int QuestionTextBox=0x7f0c0020;
         public static int QuestionTitle=0x7f0c001f;
         public static int QuizList=0x7f0c001a;
+        public static int ResultAcceptButton=0x7f0c002a;
+        public static int ResultAverageTitle=0x7f0c0024;
+        public static int ResultBackGround=0x7f0c002b;
+        public static int ResultCancelButton=0x7f0c0029;
+        public static int ResultEmoji=0x7f0c0026;
+        public static int ResultPageTitle=0x7f0c0023;
+        public static int ResultPercentage=0x7f0c0025;
+        public static int ResultRetryTitle=0x7f0c0027;
+        public static int SplashScreenImage=0x7f0c002d;
         public static int alertTitle=0x7f0c0013;
         public static int all=0x7f0c0001;
         public static int animatedWrapperContainer=0x7f0c0012;
@@ -567,13 +592,15 @@ containing a value of this type.
         public static int item_touch_helper_previous_elevation=0x7f0c0000;
         public static int left=0x7f0c0003;
         public static int linearLayout1=0x7f0c0017;
+        public static int linearLayout2=0x7f0c002c;
+        public static int linearLayout3=0x7f0c0028;
         public static int message=0x7f0c001d;
         public static int myButton=0x7f0c0022;
         public static int parentPanel=0x7f0c0011;
         public static int right=0x7f0c0004;
         public static int start=0x7f0c0010;
-        public static int text=0x7f0c0024;
-        public static int title=0x7f0c0023;
+        public static int text=0x7f0c002f;
+        public static int title=0x7f0c002e;
         public static int top=0x7f0c0005;
         public static int watch_view_stub=0x7f0c001e;
     }
@@ -594,8 +621,10 @@ containing a value of this type.
         public static int main=0x7f030005;
         public static int questionflashcard=0x7f030006;
         public static int rectanglemain=0x7f030007;
-        public static int roundmain=0x7f030008;
-        public static int watch_card_content=0x7f030009;
+        public static int resultsflashcard=0x7f030008;
+        public static int roundmain=0x7f030009;
+        public static int splashscreen=0x7f03000a;
+        public static int watch_card_content=0x7f03000b;
     }
     public static final class string {
         public static int app_name=0x7f0a0001;

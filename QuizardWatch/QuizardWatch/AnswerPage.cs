@@ -50,23 +50,32 @@ namespace QuizardWatch
 
         private void CorrectButton_Click(object sender, EventArgs e)
         {
-            data.Correnct++;         
+            //Increment Question
+            data.Count++;
+            data.Correnct++;
             //Add true to correct bool
-            Transition_To_QuestionPage();
+
+            if (data.Count >= 10/*data.Answers.Count*/)
+                Transition_To_ResultPage();
+            else
+                Transition_To_QuestionPage();
         }
 
         private void IncorrectButton_Click(object sender, EventArgs e)
         {
+            //Increment Question
+            data.Count++;
             data.Incorrect++;
             //Add true to inccorrect bool
-            Transition_To_QuestionPage();
+
+            if (data.Count >= 10/*data.Answers.Count*/)
+                Transition_To_ResultPage();
+            else
+                Transition_To_QuestionPage();
         }
 
         private void Transition_To_QuestionPage()
         {
-            //Increment Question
-            data.Count++;
-
             //Sets Up an Intent For the Next Activity
             Intent intent = new Intent(this, typeof(QuestionPage));
 
@@ -80,6 +89,25 @@ namespace QuizardWatch
             this.StartActivity(intent);
             //Closes this Activity
             this.Finish();
+        }
+
+        private void Transition_To_ResultPage()
+        {
+
+            //Sets Up an Intent For the Next Activity
+            Intent intent = new Intent(this, typeof(ResultPage));
+
+            //Option A Serializing Individual basic type data sets
+            intent.PutExtra("Name Of Set", data.NameOfSet);
+            intent.PutExtra("Question Number", data.Count);
+            //Option B Serializing an Object using Json
+            intent.PutExtra("data", JsonConvert.SerializeObject(data));
+
+            //Starts the Next Activity
+            this.StartActivity(intent);
+            //Closes this Activity
+            this.Finish();
+
         }
     }
 }

@@ -243,5 +243,12 @@ namespace Quizard.DataBase
             }
             return false;
         }
+        public bool DeleteRememberMe()
+        {
+            if (mdb.Delete(Constants.RememberMe_TB_Name, null, null) > 0)
+                return true;
+            else
+                return false;
+        }
     }
 }
