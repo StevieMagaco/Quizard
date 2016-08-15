@@ -60,31 +60,31 @@ namespace Quizard
 			public const int Delete = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int EditTextStyle = 2130837509;
+			public const int Edit = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int flashcard = 2130837510;
+			public const int EditTextStyle = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int HomeICON = 2130837511;
+			public const int flashcard = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int homepageIcon_small = 2130837512;
+			public const int HomeICON = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int Plus_Icon = 2130837513;
+			public const int homepageIcon_small = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int quizIcon = 2130837514;
+			public const int Plus_Icon = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int Settings = 2130837515;
+			public const int quizIcon = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int StartIcon = 2130837516;
+			public const int Settings = 2130837516;
 			
 			// aapt resource value: 0x7f02000d
-			public const int Update = 2130837517;
+			public const int StartIcon = 2130837517;
 			
 			static Drawable()
 			{
@@ -114,8 +114,8 @@ namespace Quizard
 			// aapt resource value: 0x7f060005
 			public const int QuestionEditText = 2131099653;
 			
-			// aapt resource value: 0x7f060031
-			public const int addToFlashSetListButtonID = 2131099697;
+			// aapt resource value: 0x7f060030
+			public const int addToFlashSetListButtonID = 2131099696;
 			
 			// aapt resource value: 0x7f060019
 			public const int answerTextBox = 2131099673;
@@ -183,6 +183,12 @@ namespace Quizard
 			// aapt resource value: 0x7f06000a
 			public const int editCardTextView = 2131099658;
 			
+			// aapt resource value: 0x7f060029
+			public const int editFlashSetSubjectImageButtonID = 2131099689;
+			
+			// aapt resource value: 0x7f06002a
+			public const int editFlashSetSubjectTextViewID = 2131099690;
+			
 			// aapt resource value: 0x7f060007
 			public const int editText2 = 2131099655;
 			
@@ -192,8 +198,8 @@ namespace Quizard
 			// aapt resource value: 0x7f060032
 			public const int flashSetListViewID = 2131099698;
 			
-			// aapt resource value: 0x7f060030
-			public const int flashSetSubjectEditTextID = 2131099696;
+			// aapt resource value: 0x7f06002f
+			public const int flashSetSubjectEditTextID = 2131099695;
 			
 			// aapt resource value: 0x7f06001a
 			public const int fragmentContainer = 2131099674;
@@ -237,14 +243,14 @@ namespace Quizard
 			// aapt resource value: 0x7f060020
 			public const int quizDialogRedoButton = 2131099680;
 			
-			// aapt resource value: 0x7f060024
-			public const int quizNextButtonID = 2131099684;
-			
 			// aapt resource value: 0x7f06001e
 			public const int quizRightWrongTextView = 2131099678;
 			
 			// aapt resource value: 0x7f060023
 			public const int quizTabAnswerListView = 2131099683;
+			
+			// aapt resource value: 0x7f060024
+			public const int quizTabNextButtonID = 2131099684;
 			
 			// aapt resource value: 0x7f060022
 			public const int quizTabQuestionTextView = 2131099682;
@@ -252,8 +258,8 @@ namespace Quizard
 			// aapt resource value: 0x7f060037
 			public const int rememberMeCheckBoxID = 2131099703;
 			
-			// aapt resource value: 0x7f06002f
-			public const int searchFlashSetsSearchViewID = 2131099695;
+			// aapt resource value: 0x7f060031
+			public const int searchFlashSetsSearchViewID = 2131099697;
 			
 			// aapt resource value: 0x7f06002d
 			public const int settingsImageButtonID = 2131099693;
@@ -272,12 +278,6 @@ namespace Quizard
 			
 			// aapt resource value: 0x7f06001f
 			public const int toolbar1 = 2131099679;
-			
-			// aapt resource value: 0x7f060029
-			public const int updateFlashSetImageButtonID = 2131099689;
-			
-			// aapt resource value: 0x7f06002a
-			public const int updateFlashSetTextViewID = 2131099690;
 			
 			// aapt resource value: 0x7f060036
 			public const int userLoginPasswordEditTextID = 2131099702;
