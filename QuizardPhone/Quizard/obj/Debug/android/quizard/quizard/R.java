@@ -16,12 +16,12 @@ public final class R {
         public static final int cardiconsmall=0x7f020002;
         public static final int create=0x7f020003;
         public static final int delete=0x7f020004;
-        public static final int edittextstyle=0x7f020005;
-        public static final int flashcard=0x7f020006;
-        public static final int homepageicon_small=0x7f020007;
-        public static final int quizicon=0x7f020008;
-        public static final int settings=0x7f020009;
-        public static final int update=0x7f02000a;
+        public static final int edit=0x7f020005;
+        public static final int edittextstyle=0x7f020006;
+        public static final int flashcard=0x7f020007;
+        public static final int homepageicon_small=0x7f020008;
+        public static final int quizicon=0x7f020009;
+        public static final int settings=0x7f02000a;
     }
     public static final class id {
         public static final int DeckAddCardCancelButton=0x7f060009;
@@ -29,7 +29,7 @@ public final class R {
         public static final int PlaySetFront_ViewAnswerButton=0x7f06003e;
         public static final int PlaySetQuestionTextView=0x7f06003b;
         public static final int QuestionEditText=0x7f060005;
-        public static final int addToFlashSetListButtonID=0x7f060031;
+        public static final int addToFlashSetListButtonID=0x7f060030;
         public static final int answerTextBox=0x7f060019;
         public static final int answerTextView=0x7f060018;
         public static final int cancelImageButtonID=0x7f060027;
@@ -52,10 +52,12 @@ public final class R {
         public static final int deleteFlashSetImageButtonID=0x7f06002b;
         public static final int deleteFlashSetTextViewID=0x7f06002c;
         public static final int editCardTextView=0x7f06000a;
+        public static final int editFlashSetSubjectImageButtonID=0x7f060029;
+        public static final int editFlashSetSubjectTextViewID=0x7f06002a;
         public static final int editText2=0x7f060007;
         public static final int enterIntoSelectedFlashSetButtonID=0x7f060033;
         public static final int flashSetListViewID=0x7f060032;
-        public static final int flashSetSubjectEditTextID=0x7f060030;
+        public static final int flashSetSubjectEditTextID=0x7f06002f;
         public static final int fragmentContainer=0x7f06001a;
         public static final int loginButtonID=0x7f060038;
         public static final int loginProgressBarID=0x7f06003a;
@@ -75,15 +77,13 @@ public final class R {
         public static final int quizTabNextButtonID=0x7f060024;
         public static final int quizTabQuestionTextView=0x7f060022;
         public static final int rememberMeCheckBoxID=0x7f060037;
-        public static final int searchFlashSetsSearchViewID=0x7f06002f;
+        public static final int searchFlashSetsSearchViewID=0x7f060031;
         public static final int settingsImageButtonID=0x7f06002d;
         public static final int settingsTextViewID=0x7f06002e;
         public static final int tapCardTextView=0x7f06000c;
         public static final int textView1=0x7f060004;
         public static final int textView2=0x7f060006;
         public static final int toolbar1=0x7f06001f;
-        public static final int updateFlashSetImageButtonID=0x7f060029;
-        public static final int updateFlashSetTextViewID=0x7f06002a;
         public static final int userLoginPasswordEditTextID=0x7f060036;
         public static final int userLoginUsernameEditTextID=0x7f060035;
         public static final int viewAnswerButton=0x7f06001d;

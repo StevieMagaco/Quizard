@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--#FFFFFF = White
-    #5195CE = Light Blue-->
+    #5195CE = Green-->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:state_focused="true">
@@ -10,7 +10,7 @@
       <corners android:radius="2dp"/>
       <padding android:left="10dp"/>
       <stroke android:width="3dp"
-              android:color="#5195CE"/>
+              android:color="#71C42B"/>
     </shape>
   </item>
 

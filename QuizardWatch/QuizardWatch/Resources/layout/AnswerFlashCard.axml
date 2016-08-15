@@ -15,7 +15,7 @@
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
-        android:layout_height="90.0dp"
+        android:layout_height="99.0dp"
         android:id="@+id/AnswerTextBox" />
     <LinearLayout
         android:orientation="horizontal"

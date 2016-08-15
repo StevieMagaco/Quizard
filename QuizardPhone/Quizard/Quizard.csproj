@@ -147,7 +147,7 @@
     <AndroidResource Include="Resources\drawable\Settings.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Update.png" />
+    <AndroidResource Include="Resources\drawable\Edit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

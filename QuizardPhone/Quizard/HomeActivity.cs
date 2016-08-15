@@ -23,8 +23,8 @@ namespace Quizard
         private ArrayAdapter mAdapter;
         private ListView mFlashSetList;
         private EditText mFlashSetSubject;
-        private ImageButton mCreateAFlashSet, mCancel, mUpdateAFlashSet, mDeleteAFlashSet, mSettings;
-        private TextView mCreateAFlashSetLabel, mCancelLabel, mUpdateAFlashSetLabel, mDeleteAFlashSetLabel, mSettingsLabel;
+        private ImageButton mCreateAFlashSet, mCancel, mEditAFlashSetsSubject, mDeleteAFlashSet, mSettings;
+        private TextView mCreateAFlashSetLabel, mCancelLabel, mEditAFlashSetsSubjectLabel, mDeleteAFlashSetLabel, mSettingsLabel;
         private SearchView mSearchThroughFlashSets;
         private Button mAddToFlashSetList, mEnterIntoSelectedFlashSet;
         private int mSelectedFlashSet = -1;
@@ -49,12 +49,12 @@ namespace Quizard
             mFlashSetSubject = FindViewById<EditText>(Resource.Id.flashSetSubjectEditTextID);
             mCreateAFlashSet = FindViewById<ImageButton>(Resource.Id.createAFlashSetImageButtonID);
             mCancel = FindViewById<ImageButton>(Resource.Id.cancelImageButtonID);
-            mUpdateAFlashSet = FindViewById<ImageButton>(Resource.Id.updateFlashSetImageButtonID);
+            mEditAFlashSetsSubject = FindViewById<ImageButton>(Resource.Id.editFlashSetSubjectImageButtonID);
             mDeleteAFlashSet = FindViewById<ImageButton>(Resource.Id.deleteFlashSetImageButtonID);
             mSettings = FindViewById<ImageButton>(Resource.Id.settingsImageButtonID);
             mCreateAFlashSetLabel = FindViewById<TextView>(Resource.Id.createAFlashSetTextViewID);
             mCancelLabel = FindViewById<TextView>(Resource.Id.cancelTextViewID);
-            mUpdateAFlashSetLabel = FindViewById<TextView>(Resource.Id.updateFlashSetTextViewID);
+            mEditAFlashSetsSubjectLabel = FindViewById<TextView>(Resource.Id.editFlashSetSubjectTextViewID);
             mDeleteAFlashSetLabel = FindViewById<TextView>(Resource.Id.deleteFlashSetTextViewID);
             mSettingsLabel = FindViewById<TextView>(Resource.Id.settingsTextViewID);
             mSearchThroughFlashSets = FindViewById<SearchView>(Resource.Id.searchFlashSetsSearchViewID);
@@ -87,6 +87,8 @@ namespace Quizard
             // If the user taps the add button to add a new flash set into the list view...
             mAddToFlashSetList.Click += delegate (object sender, EventArgs e)
             {
+                mSearchThroughFlashSets.Visibility = ViewStates.Visible;
+
                 if (AddSet(mUserInformation.GetUser().GetUsername(), mFlashSetSubject.Text))
                     mFlashSetSubject.Text = mEmptySubject;
             };
@@ -101,14 +103,20 @@ namespace Quizard
                 mEnterIntoSelectedFlashSet.Visibility = ViewStates.Visible;
 
                 #region Toolbar Image Button Visibility Assignments
+                mCreateAFlashSet.Visibility = ViewStates.Invisible;
+                mCreateAFlashSetLabel.Visibility = ViewStates.Invisible;
+
                 mCancel.Visibility = ViewStates.Visible;
                 mCancelLabel.Visibility = ViewStates.Visible;
 
-                mUpdateAFlashSet.Visibility = ViewStates.Visible;
-                mUpdateAFlashSetLabel.Visibility = ViewStates.Visible;
+                mEditAFlashSetsSubject.Visibility = ViewStates.Visible;
+                mEditAFlashSetsSubjectLabel.Visibility = ViewStates.Visible;
 
                 mDeleteAFlashSet.Visibility = ViewStates.Visible;
                 mDeleteAFlashSetLabel.Visibility = ViewStates.Visible;
+
+                mSettings.Visibility = ViewStates.Invisible;
+                mSettingsLabel.Visibility = ViewStates.Invisible;
                 #endregion
             };
 
@@ -153,8 +161,8 @@ namespace Quizard
                 mCancel.Visibility = ViewStates.Invisible;
                 mCancelLabel.Visibility = ViewStates.Invisible;
 
-                mUpdateAFlashSet.Visibility = ViewStates.Invisible;
-                mUpdateAFlashSetLabel.Visibility = ViewStates.Invisible;
+                mEditAFlashSetsSubject.Visibility = ViewStates.Invisible;
+                mEditAFlashSetsSubjectLabel.Visibility = ViewStates.Invisible;
 
                 mDeleteAFlashSet.Visibility = ViewStates.Invisible;
                 mDeleteAFlashSetLabel.Visibility = ViewStates.Invisible;
@@ -167,7 +175,7 @@ namespace Quizard
             };
 
             // If the user taps the update image button on the toolbar...
-            mUpdateAFlashSet.Click += delegate (object sender, EventArgs e)
+            mEditAFlashSetsSubject.Click += delegate (object sender, EventArgs e)
             {
                 if (UpdateSet(mUserInformation.GetUser().GetUsername(), mSetNameList[mSelectedFlashSet], mFlashSetSubject.Text))
                 {
@@ -178,8 +186,8 @@ namespace Quizard
                     mCancel.Visibility = ViewStates.Invisible;
                     mCancelLabel.Visibility = ViewStates.Invisible;
 
-                    mUpdateAFlashSet.Visibility = ViewStates.Invisible;
-                    mUpdateAFlashSetLabel.Visibility = ViewStates.Invisible;
+                    mEditAFlashSetsSubject.Visibility = ViewStates.Invisible;
+                    mEditAFlashSetsSubjectLabel.Visibility = ViewStates.Invisible;
 
                     mDeleteAFlashSet.Visibility = ViewStates.Invisible;
                     mDeleteAFlashSetLabel.Visibility = ViewStates.Invisible;
@@ -190,34 +198,78 @@ namespace Quizard
             // If the user taps the delete image button on the toolbar...
             mDeleteAFlashSet.Click += delegate (object sender, EventArgs e)
             {
-                if (DeleteSet(mUserInformation.GetUser().GetUsername(), mSetNameList[mSelectedFlashSet].ToString()))
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+                alert.SetTitle("Delete the \"" + mFlashSetSubject.Text + "\" flash set?");
+
+                alert.SetPositiveButton("Yes", (senderAlert, args) =>
                 {
-                    mFlashSetSubject.Text = mEmptySubject;
+                    if (DeleteSet(mUserInformation.GetUser().GetUsername(), mSetNameList[mSelectedFlashSet].ToString()))
+                    {
+                        mFlashSetSubject.Text = mEmptySubject;
 
-                    mFlashSetSubject.Visibility = ViewStates.Invisible;
-                    mAddToFlashSetList.Visibility = ViewStates.Invisible;
-                    mEnterIntoSelectedFlashSet.Visibility = ViewStates.Invisible;
+                        mFlashSetSubject.Visibility = ViewStates.Invisible;
+                        mAddToFlashSetList.Visibility = ViewStates.Invisible;
+                        mEnterIntoSelectedFlashSet.Visibility = ViewStates.Invisible;
 
-                    #region Toolbar Image Button Visibility Assignments
-                    mCreateAFlashSet.Visibility = ViewStates.Visible;
-                    mCreateAFlashSetLabel.Visibility = ViewStates.Visible;
+                        if (mFlashSetList.Count == 0)
+                            mSearchThroughFlashSets.Visibility = ViewStates.Invisible;
 
-                    mCancel.Visibility = ViewStates.Invisible;
-                    mCancelLabel.Visibility = ViewStates.Invisible;
+                        #region Toolbar Image Button Visibility Assignments
+                        mCreateAFlashSet.Visibility = ViewStates.Visible;
+                        mCreateAFlashSetLabel.Visibility = ViewStates.Visible;
 
-                    mUpdateAFlashSet.Visibility = ViewStates.Invisible;
-                    mUpdateAFlashSetLabel.Visibility = ViewStates.Invisible;
+                        mCancel.Visibility = ViewStates.Invisible;
+                        mCancelLabel.Visibility = ViewStates.Invisible;
 
-                    mDeleteAFlashSet.Visibility = ViewStates.Invisible;
-                    mDeleteAFlashSetLabel.Visibility = ViewStates.Invisible;
+                        mEditAFlashSetsSubject.Visibility = ViewStates.Invisible;
+                        mEditAFlashSetsSubjectLabel.Visibility = ViewStates.Invisible;
 
-                    mSettings.Visibility = ViewStates.Visible;
-                    mSettingsLabel.Visibility = ViewStates.Visible;
-                    #endregion
-                }
+                        mDeleteAFlashSet.Visibility = ViewStates.Invisible;
+                        mDeleteAFlashSetLabel.Visibility = ViewStates.Invisible;
+
+                        mSettings.Visibility = ViewStates.Visible;
+                        mSettingsLabel.Visibility = ViewStates.Visible;
+                        #endregion
+                    }
+                });
+
+                alert.SetNegativeButton("Cancel", (senderAlert, args) =>
+                {
+                    return;
+                });
+
+                RunOnUiThread(() =>
+                {
+                    alert.Show();
+                });
+            };
+
+            mSettings.Click += delegate (object sender, EventArgs e)
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+                alert.SetTitle("Logout of Quizard?");
+
+                alert.SetPositiveButton("Continue", (senderAlert, args) =>
+                {
+                    Intent intent = new Intent(this, typeof(LoginActivity));
+                    this.StartActivity(intent);
+                });
+
+                alert.SetNegativeButton("Cancel", (senderAlert, args) =>
+                {
+                    return;
+                });
+
+                RunOnUiThread(() =>
+                {
+                    alert.Show();
+                });
             };
         }
 
+        #region DataBase Functions
         // Implementation to retrive a users flash sets
         private void RetreiveSet(ListView _FlashSet, string _Username)
         {
@@ -234,6 +286,9 @@ namespace Quizard
                     string name = SetInfo.GetString(1);
                     mSetNameList.Add(name);
                 }
+
+                if (mSetNameList.Count > 0)
+                    mSearchThroughFlashSets.Visibility = ViewStates.Visible;
 
                 db.CloseDB();
 
@@ -335,4 +390,5 @@ namespace Quizard
                
         }
     }
+    #endregion
 }
