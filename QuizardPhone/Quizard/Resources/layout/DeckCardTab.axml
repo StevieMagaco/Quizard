@@ -11,23 +11,24 @@
         android:id="@+id/cardTabToolbar">
         <ImageButton
             android:background="@null"
-            android:src="@drawable/homepageicon_small"
+            android:src="@drawable/homeicon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cardTabHomeButton" />
         <ImageButton
             android:background="@null"
-            android:src="@android:drawable/ic_input_add"
+            android:src="@drawable/plus_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cardTabAddButton"
-            android:layout_marginLeft="650dp" />
+            android:layout_marginLeft="540dp" />
         <ImageButton
             android:background="@null"
-            android:src="@android:drawable/ic_media_play"
+            android:src="@drawable/starticon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cardTabPlayButton" />
+            android:id="@+id/cardTabPlayButton"
+            android:layout_marginLeft="30dp" />
     </Toolbar>
     <EditText
         android:layout_width="match_parent"
