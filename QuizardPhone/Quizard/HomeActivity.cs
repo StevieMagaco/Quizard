@@ -97,7 +97,7 @@ namespace Quizard
             mFlashSetList.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs e)
             {
                 mSelectedFlashSet = e.Position;
-                mFlashSetSubject.Text = mSetNameList[mSelectedFlashSet].ToString();
+                mFlashSetSubject.Hint = "Edit Subject Name?"; //mSetNameList[mSelectedFlashSet].ToString();
 
                 mFlashSetSubject.Visibility = ViewStates.Visible;
                 mEnterIntoSelectedFlashSet.Visibility = ViewStates.Visible;
