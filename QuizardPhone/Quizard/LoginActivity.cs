@@ -115,7 +115,7 @@ namespace Quizard
         private string[] mRemembermeInfo;
 
         #region Database Variables
-        private string NewUsername, NewPassword;
+        private string NewUsername, NewPassword, NewConfirmPassword;
         private DataBase.UserInfo UserInformation = new DataBase.UserInfo();
         #endregion
 
@@ -185,6 +185,7 @@ namespace Quizard
             #region Database Create An Account Error Checking
             NewUsername = mFragment.GetNewUserName();
             NewPassword = mFragment.GetNewPassword();
+            
             CreateUser();
             mFragment.SetNewUserName("");
             mFragment.SetNewPassword("");
@@ -212,35 +213,42 @@ namespace Quizard
         {
             try
             {
-                if (NewUsername.Length > 0 && NewPassword.Length > 0)
+                if (NewUsername.Length >= 4 && NewPassword.Length >= 6 && NewConfirmPassword.Length >= 6 && NewPassword == NewConfirmPassword
+                   && NewPassword.Contains("0") || NewPassword.Contains("1") || NewPassword.Contains("2")
+                   || NewPassword.Contains("3") || NewPassword.Contains("4") || NewPassword.Contains("5")
+                   || NewPassword.Contains("6") || NewPassword.Contains("7") || NewPassword.Contains("8")
+                   || NewPassword.Contains("9") && !NewUsername.Contains(" "))
                 {
-                    DataBase.DBAdapter db = new DataBase.DBAdapter(this);
-                    db.openDB();
-
-                    ICursor UserInfo = db.GetUser(NewUsername, "");
-
-                    if (UserInfo.Count == 0)
+                    if (NewPassword == NewConfirmPassword)
                     {
-                        DataBase.DBFunction DataFunc = new DataBase.DBFunction();
+                        DataBase.DBAdapter db = new DataBase.DBAdapter(this);
+                        db.openDB();
 
-                        if (DataFunc.SaveUser(NewUsername, NewPassword, this))
+                        ICursor UserInfo = db.GetUser(NewUsername, "");
+
+                        if (UserInfo.Count == 0)
                         {
-                            DataBase.User NewUser = new DataBase.User(NewUsername, NewPassword);
+                            DataBase.DBFunction DataFunc = new DataBase.DBFunction();
 
-                            UserInformation.SetUser(NewUser);
+                            if (DataFunc.SaveUser(NewUsername, NewPassword, this))
+                            {
+                                DataBase.User NewUser = new DataBase.User(NewUsername, NewPassword);
 
-                            Toast.MakeText(this, "Welcome to Quizard!", ToastLength.Short).Show();
+                                UserInformation.SetUser(NewUser);
 
-                            // Once the user has clicked the "New to Quizard?" button, take them to the home screen
-                            Intent intent = new Intent(this, typeof(HomeActivity));
-                            intent.PutExtra("UserName", NewUsername);
-                            this.StartActivity(intent);
+                                Toast.MakeText(this, "Welcome to Quizard!", ToastLength.Short).Show();
+
+                                // Once the user has clicked the "New to Quizard?" button, take them to the home screen
+                                Intent intent = new Intent(this, typeof(HomeActivity));
+                                intent.PutExtra("UserName", NewUsername);
+                                this.StartActivity(intent);
+                            }
+                            else
+                                throw new System.ArgumentException("Failed to save new username", "SaveUser");
                         }
                         else
-                            throw new System.ArgumentException("Failed to save new username", "SaveUser");
+                            throw new System.ArgumentException("UserInfo is Size 0", "UserInfo");
                     }
-                    else
-                        throw new System.ArgumentException("UserInfo is Size 0", "UserInfo");
                 }
                 else
                     throw new System.ArgumentException("Username or Password is blank", "Username/Password");
