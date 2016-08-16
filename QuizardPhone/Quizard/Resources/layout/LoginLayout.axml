@@ -8,11 +8,14 @@
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
     android:id="@+id/loginViewLinearLayoutID">
-    <TextView
-        android:textAppearance="?android:attr/textAppearanceMedium"
+    <ImageView
+        android:background="@drawable/QuizardLogo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="30" />
+        android:layout_weight="30"
+        android:layout_marginRight="100dp"
+        android:layout_centerInParent="true"
+        />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="15dp"

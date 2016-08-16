@@ -14,7 +14,7 @@ using Android.Database;
 namespace Quizard.DeckInterface
 {
 
-public class DeckCardTabFragment : Fragment
+    public class DeckCardTabFragment : Fragment
     {
         List<string> mQuestions, mAnswers; // Lists to hold set questions and answers
         ListView mCardTabListView; // List of all card questions
@@ -51,7 +51,7 @@ public class DeckCardTabFragment : Fragment
             FragmentManager.PopBackStack();
             base.OnCreateView(inflater, container, savedInstanceState);
             mView = inflater.Inflate(Resource.Layout.DeckCardTab, container, false);
-           
+
 
             // Assign variables to the EditText widgets for the Add Card feature
             mAddCardQuestionText = mView.FindViewById<EditText>(Resource.Id.deckAddCardQuestionEditTextID);
@@ -64,7 +64,7 @@ public class DeckCardTabFragment : Fragment
             mDoneButton.Click += DoneButton_Click;
 
             // Set up all buttons on toolbar ( Play, Add, Home)
-            mPlayButton = mView.FindViewById<ImageButton>(Resource.Id.cardTabPlayButton); 
+            mPlayButton = mView.FindViewById<ImageButton>(Resource.Id.cardTabPlayButton);
             mPlayButton.Click += PlayButton_Click;
             mAddButton = mView.FindViewById<ImageButton>(Resource.Id.cardTabAddButton);
             mAddButton.Click += AddButton_Click;
@@ -94,24 +94,24 @@ public class DeckCardTabFragment : Fragment
             mDoneButton.Visibility = ViewStates.Gone;
             mAddCardNextButton.Visibility = ViewStates.Gone;
 
-            
+
             return mView;
         }
         // Function is called when Done button is clicked while adding cards. Takes in values from EditText widgets,
         // sets it to temp string variables (tempSubject, tempAnswer), and then adds the cards to list. 
         private void DoneButton_Click(object sender, EventArgs e)
         {
-            
+
             string tempSubject, tempAnswer; // temp variables to hold subject and answer
             tempSubject = mAddCardQuestionText.Text; // gets info from question EditText widget
             tempAnswer = mAddCardAnswerText.Text; // gets info from answer EditText widget
-            
+
 
             // adds subject and answer to list and database
-            mQuestions.Add(tempSubject); 
+            mQuestions.Add(tempSubject);
             mAnswers.Add(tempAnswer);
             AddCard_db(mUsername, mSetName, tempSubject, tempAnswer);
-            
+
 
             // Reset EdiText wdigets for new values
             mAddCardQuestionText.Text = "";
@@ -153,7 +153,7 @@ public class DeckCardTabFragment : Fragment
             // Reset EdiText wdigets for new values
             mAddCardQuestionText.Text = "";
             mAddCardAnswerText.Text = "";
-            
+
             // add to actual deck
             AddCard_db(mUsername, mSetName, tempSubject, tempAnswer);
 
@@ -231,7 +231,7 @@ public class DeckCardTabFragment : Fragment
                 }
                 db.CloseDB();
 
-               // mCardTabListView.Adapter = ListAdapter;
+                // mCardTabListView.Adapter = ListAdapter;
 
             }
             catch (Exception exception)
@@ -245,14 +245,12 @@ public class DeckCardTabFragment : Fragment
         {
             DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
             db.openDB();
-            if(db.UpdateCard(_Card, _NewQuestion, _NewAnswer))
-                Toast.MakeText(mContext, "Card was updated", ToastLength.Short).Show();
-            else
+            if (!db.UpdateCard(_Card, _NewQuestion, _NewAnswer))
                 Toast.MakeText(mContext, "Failed to Update Cards", ToastLength.Short).Show();
             db.CloseDB();
         }
     }
-public class DeckCardDialogFragment : DialogFragment, GestureDetector.IOnGestureListener
+    public class DeckCardDialogFragment : DialogFragment, GestureDetector.IOnGestureListener
     {
 
         enum cardState { QUESTION_STATE, ANSWER_STATE, ALL_STATES } // enum for card states
@@ -372,16 +370,16 @@ public class DeckCardDialogFragment : DialogFragment, GestureDetector.IOnGesture
 
         private void CardText_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
         {
-            if (currState == cardState.QUESTION_STATE) 
-            mDeck.AddCardToList(mCardText.Text, mAnswers[mPosition], mPosition);
+            if (currState == cardState.QUESTION_STATE)
+                mDeck.AddCardToList(mCardText.Text, mAnswers[mPosition], mPosition);
             else
-            mDeck.AddCardToList(mQuestions[mPosition], mCardText.Text, mPosition);
+                mDeck.AddCardToList(mQuestions[mPosition], mCardText.Text, mPosition);
         }
-       //public override Boolean OnTouchEvent(MotionEvent e)
-       //{
-       //    _gestureDetector.OnTouchEvent(e);
-       //    return false;
-       //}
+        //public override Boolean OnTouchEvent(MotionEvent e)
+        //{
+        //    _gestureDetector.OnTouchEvent(e);
+        //    return false;
+        //}
         public bool OnDown(MotionEvent e)
         {
             return true;
@@ -402,7 +400,7 @@ public class DeckCardDialogFragment : DialogFragment, GestureDetector.IOnGesture
         }
 
     }
-public class deckPlayFragment : DialogFragment
+    public class deckPlayFragment : DialogFragment
     {
         List<string> mQuestions, mAnswers; // list of questions and answers
         int mPosition; // position in List
@@ -481,62 +479,62 @@ public class deckPlayFragment : DialogFragment
     }
 
 
-//public class deckPlayDialogFragment : DialogFragment
-//  {
-//      List<string> mQuestions, mAnswers;
-//      int mPosition;
-//      Button mAnswerButton;
-//      View mView;
-//      ViewGroup mContainer;
-//      LayoutInflater mInflater;
-//
-//      public deckPlayDialogFragment(List<string> _questions, List<string> _answers)
-//      {
-//          mQuestions = new List<string>();
-//          mAnswers = new List<string>();
-//      }
-//
-//      public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-//      {
-//          mInflater = inflater;
-//          mContainer = container;
-//
-//
-//          mView = inflater.Inflate(Resource.Layout.PlaySetLayout_Front, container, false);
-//
-//
-//          // Set up a handler to dismiss this DialogFragment when this button is clicked.
-//          mAnswerButton = mView.FindViewById<Button>(Resource.Id.PlaySetFront_ViewAnswerButton);
-//          mAnswerButton.Click += AnswerButton_Click;
-//          return mView;
-//      }
-//
-//      private void AnswerButton_Click(object sender, EventArgs e)
-//      {
-//          FragmentTransaction fragmentTx = this.FragmentManager.BeginTransaction();
-//          deckPlayDialogFragment_Answer aDifferentDetailsFrag = new deckPlayDialogFragment_Answer(mAnswers[mPosition]);
-//          aDifferentDetailsFrag.Show(fragmentTx, "dialog_fragment");
-//
-//      }
-//  }
-//public class deckPlayDialogFragment_Answer : DialogFragment
-//  {
-//      TextView mAnswerTextView;
-//      string mAnswer;
-//      public deckPlayDialogFragment_Answer(string _answer)
-//      {
-//          mAnswer = _answer;
-//
-//      }
-//      public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-//      {
-//          var view = inflater.Inflate(Resource.Layout.PlaySetLayout_Front, container, false);
-//
-//          mAnswerTextView = view.FindViewById<TextView>(Resource.Id.answerTextView);
-//
-//          return view;
-//      }
-//  }
+    //public class deckPlayDialogFragment : DialogFragment
+    //  {
+    //      List<string> mQuestions, mAnswers;
+    //      int mPosition;
+    //      Button mAnswerButton;
+    //      View mView;
+    //      ViewGroup mContainer;
+    //      LayoutInflater mInflater;
+    //
+    //      public deckPlayDialogFragment(List<string> _questions, List<string> _answers)
+    //      {
+    //          mQuestions = new List<string>();
+    //          mAnswers = new List<string>();
+    //      }
+    //
+    //      public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    //      {
+    //          mInflater = inflater;
+    //          mContainer = container;
+    //
+    //
+    //          mView = inflater.Inflate(Resource.Layout.PlaySetLayout_Front, container, false);
+    //
+    //
+    //          // Set up a handler to dismiss this DialogFragment when this button is clicked.
+    //          mAnswerButton = mView.FindViewById<Button>(Resource.Id.PlaySetFront_ViewAnswerButton);
+    //          mAnswerButton.Click += AnswerButton_Click;
+    //          return mView;
+    //      }
+    //
+    //      private void AnswerButton_Click(object sender, EventArgs e)
+    //      {
+    //          FragmentTransaction fragmentTx = this.FragmentManager.BeginTransaction();
+    //          deckPlayDialogFragment_Answer aDifferentDetailsFrag = new deckPlayDialogFragment_Answer(mAnswers[mPosition]);
+    //          aDifferentDetailsFrag.Show(fragmentTx, "dialog_fragment");
+    //
+    //      }
+    //  }
+    //public class deckPlayDialogFragment_Answer : DialogFragment
+    //  {
+    //      TextView mAnswerTextView;
+    //      string mAnswer;
+    //      public deckPlayDialogFragment_Answer(string _answer)
+    //      {
+    //          mAnswer = _answer;
+    //
+    //      }
+    //      public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    //      {
+    //          var view = inflater.Inflate(Resource.Layout.PlaySetLayout_Front, container, false);
+    //
+    //          mAnswerTextView = view.FindViewById<TextView>(Resource.Id.answerTextView);
+    //
+    //          return view;
+    //      }
+    //  }
     //   public class DeckCardTabEditFragment : DialogFragment
     //   {
     //       EditText mQuestionText, mAnswerText;

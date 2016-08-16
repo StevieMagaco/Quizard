@@ -78,13 +78,16 @@ namespace Quizard
 			public const int Plus_Icon = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int quizIcon = 2130837515;
+			public const int QuizardLogo = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int Settings = 2130837516;
+			public const int quizIcon = 2130837516;
 			
 			// aapt resource value: 0x7f02000d
-			public const int StartIcon = 2130837517;
+			public const int Settings = 2130837517;
+			
+			// aapt resource value: 0x7f02000e
+			public const int StartIcon = 2130837518;
 			
 			static Drawable()
 			{
