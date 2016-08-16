@@ -246,7 +246,7 @@ public class DeckCardTabFragment : Fragment
         {
             DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
             db.openDB();
-            if(db.UpdateCard(_Card, _NewAnswer, _NewAnswer))
+            if(db.UpdateCard(_Card, _NewQuestion, _NewAnswer))
                 Toast.MakeText(mContext, "Card was updated", ToastLength.Short).Show();
             else
                 Toast.MakeText(mContext, "Failed to Update Cards", ToastLength.Short).Show();
