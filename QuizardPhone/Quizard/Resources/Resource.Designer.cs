@@ -200,7 +200,6 @@ namespace Quizard
 			public const int common_google_signin_btn_icon_light_disabled = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-<<<<<<< HEAD
 			public const int common_google_signin_btn_icon_light_focused = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
@@ -327,25 +326,16 @@ namespace Quizard
 			public const int Plus_Icon = 2130837556;
 			
 			// aapt resource value: 0x7f020035
-			public const int quizIcon = 2130837557;
+			public const int QuizardLogo = 2130837557;
 			
 			// aapt resource value: 0x7f020036
-			public const int Settings = 2130837558;
+			public const int quizIcon = 2130837558;
 			
 			// aapt resource value: 0x7f020037
-			public const int StartIcon = 2130837559;
-=======
-			public const int QuizardLogo = 2130837515;
+			public const int Settings = 2130837559;
 			
-			// aapt resource value: 0x7f02000c
-			public const int quizIcon = 2130837516;
-			
-			// aapt resource value: 0x7f02000d
-			public const int Settings = 2130837517;
-			
-			// aapt resource value: 0x7f02000e
-			public const int StartIcon = 2130837518;
->>>>>>> 692a8031e4400dbd2b61f35682282e662c4b3094
+			// aapt resource value: 0x7f020038
+			public const int StartIcon = 2130837560;
 			
 			static Drawable()
 			{
@@ -390,19 +380,8 @@ namespace Quizard
 			// aapt resource value: 0x7f080022
 			public const int answerTextView = 2131230754;
 			
-<<<<<<< HEAD
 			// aapt resource value: 0x7f080007
 			public const int auto = 2131230727;
-=======
-			// aapt resource value: 0x7f06000a
-			public const int cardDialogEditTextID = 2131099658;
-			
-			// aapt resource value: 0x7f06000b
-			public const int cardDialogTextViewID = 2131099659;
-			
-			// aapt resource value: 0x7f06000c
-			public const int cardFlipButtonID = 2131099660;
->>>>>>> 692a8031e4400dbd2b61f35682282e662c4b3094
 			
 			// aapt resource value: 0x7f080031
 			public const int cancelImageButtonID = 2131230769;
@@ -410,8 +389,14 @@ namespace Quizard
 			// aapt resource value: 0x7f080032
 			public const int cancelTextViewID = 2131230770;
 			
+			// aapt resource value: 0x7f080014
+			public const int cardDialogEditTextID = 2131230740;
+			
 			// aapt resource value: 0x7f080015
-			public const int cardDialogEditTextID = 2131230741;
+			public const int cardDialogTextViewID = 2131230741;
+			
+			// aapt resource value: 0x7f080016
+			public const int cardFlipButtonID = 2131230742;
 			
 			// aapt resource value: 0x7f080019
 			public const int cardTabAddButton = 2131230745;
@@ -452,25 +437,17 @@ namespace Quizard
 			// aapt resource value: 0x7f08001d
 			public const int deckAddToDeckButtonID = 2131230749;
 			
-<<<<<<< HEAD
 			// aapt resource value: 0x7f08001e
 			public const int deckDoneAddCardButtonID = 2131230750;
 			
 			// aapt resource value: 0x7f080025
 			public const int deckTextView = 2131230757;
-=======
-			// aapt resource value: 0x7f060029
-			public const int editFlashSetSubjectImageButtonID = 2131099689;
->>>>>>> 692a8031e4400dbd2b61f35682282e662c4b3094
 			
 			// aapt resource value: 0x7f080035
 			public const int deleteFlashSetImageButtonID = 2131230773;
 			
 			// aapt resource value: 0x7f080036
 			public const int deleteFlashSetTextViewID = 2131230774;
-			
-			// aapt resource value: 0x7f080014
-			public const int editCardTextView = 2131230740;
 			
 			// aapt resource value: 0x7f080033
 			public const int editFlashSetSubjectImageButtonID = 2131230771;
@@ -544,16 +521,11 @@ namespace Quizard
 			// aapt resource value: 0x7f08002a
 			public const int quizDialogRedoButton = 2131230762;
 			
-<<<<<<< HEAD
 			// aapt resource value: 0x7f080028
 			public const int quizRightWrongTextView = 2131230760;
 			
 			// aapt resource value: 0x7f08002d
 			public const int quizTabAnswerListView = 2131230765;
-=======
-			// aapt resource value: 0x7f060004
-			public const int textView1 = 2131099652;
->>>>>>> 692a8031e4400dbd2b61f35682282e662c4b3094
 			
 			// aapt resource value: 0x7f08002e
 			public const int quizTabNextButtonID = 2131230766;
@@ -575,9 +547,6 @@ namespace Quizard
 			
 			// aapt resource value: 0x7f080005
 			public const int standard = 2131230725;
-			
-			// aapt resource value: 0x7f080016
-			public const int tapCardTextView = 2131230742;
 			
 			// aapt resource value: 0x7f08000e
 			public const int textView1 = 2131230734;
