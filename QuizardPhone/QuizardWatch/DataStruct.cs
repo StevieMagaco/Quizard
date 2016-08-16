@@ -20,7 +20,6 @@ namespace Quizard
         public List<string> Questions { get; set; }
         public string NameOfSet { get; set; }
         public int Count { get; set; }
-        public int Correnct { get; set; }
-        public int Incorrect { get; set; }
+        public int Correct { get; set; }
     }
 }

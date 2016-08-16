@@ -15,10 +15,17 @@ using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
 
+using Android.Gms.Common.Apis;
+using Android.Gms.Wearable;
+using Android.Gms.Common;
+using Android.Support.V4.Content;
+
+using Newtonsoft.Json;
+
 namespace Quizard
 {
     [Activity(MainLauncher = false /* MainLauncher does NOT need to be changed unless another layout or diaglog fragment needs to be tested*/, Theme = "@style/CustomActionToolbarTheme")]
-    public class HomeActivity : Activity
+    public class HomeActivity : Activity, IDataApiDataListener, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
     {
         private ArrayAdapter mAdapter;
         private ListView mFlashSetList;
@@ -29,6 +36,11 @@ namespace Quizard
         private Button mAddToFlashSetList, mEnterIntoSelectedFlashSet;
         private int mSelectedFlashSet = -1;
         private const string mEmptySubject = "";
+
+        #region Sending Data Variables
+        private GoogleApiClient mGoogleClient;
+        private const string mCardSetPath = "/CardSets";
+        #endregion
 
         #region Database Variables
         private DataBase.UserInfo mUserInformation;
@@ -43,6 +55,12 @@ namespace Quizard
 
             // Set our view from the "HomeLayout" layout resource
             SetContentView(Resource.Layout.HomeLayout);
+
+            mGoogleClient = new GoogleApiClient.Builder(this, this, this).AddApi(WearableClass.API).Build();
+
+            string json = JsonConvert.SerializeObject(mSetNameList);
+            SendData(json);
+
 
             #region Class Variable FindViewById<> Assignments
             mFlashSetList = FindViewById<ListView>(Resource.Id.flashSetListViewID);
@@ -75,8 +93,9 @@ namespace Quizard
                 mUserInformation.SetUser(NewUser);
             }
             else
+            {
                 Toast.MakeText(this, "Unable to retrieve username", ToastLength.Short).Show();
-
+            }
             RetreiveSet(mFlashSetList, Username_Buffer);
 
             mSearchThroughFlashSets.QueryTextChange += delegate (object sender, SearchView.QueryTextChangeEventArgs e)
@@ -268,6 +287,58 @@ namespace Quizard
                 });
             };
         }
+
+        #region Data Sending Functions
+        public void OnDataChanged(DataEventBuffer dataEvents)
+        {
+            foreach (var dataEvent in dataEvents)
+            {
+                var dataItem = dataEvent.DataItem;
+                if (dataItem.Uri.Path == mCardSetPath)
+                {
+                    var dataMap = DataMapItem.FromDataItem(dataItem).DataMap;
+
+                }
+            }
+        }
+
+        public void SendData(string _jsonData)
+        {
+            try
+            {
+                var putDataMapRequest = PutDataMapRequest.Create(mCardSetPath);
+                putDataMapRequest.DataMap.PutString("Message", _jsonData);
+                putDataMapRequest.DataMap.PutLong("UpdatedAt", DateTime.UtcNow.Ticks);
+                var putDataRequest = putDataMapRequest.AsPutDataRequest();
+                putDataRequest.SetUrgent();
+
+                WearableClass.DataApi.PutDataItem(mGoogleClient, putDataRequest);
+            }
+            finally
+            {
+                // googleClient.Disconnect();
+            }
+
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            mGoogleClient.Connect();
+        }
+
+        public void OnConnected(Bundle connectionHint)
+        {
+        }
+
+        public void OnConnectionSuspended(int cause)
+        {
+        }
+
+        public void OnConnectionFailed(ConnectionResult result)
+        {
+        }
+        #endregion
 
         #region DataBase Functions
         // Implementation to retrive a users flash sets

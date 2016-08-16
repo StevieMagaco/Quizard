@@ -52,7 +52,7 @@ namespace Quizard
         {
             //Increment Question
             data.Count++;
-            data.Correnct++;
+            data.Correct++;
             //Add true to correct bool
 
             if (data.Count >= 10/*data.Answers.Count*/)
@@ -65,8 +65,7 @@ namespace Quizard
         {
             //Increment Question
             data.Count++;
-            data.Incorrect++;
-            //Add true to inccorrect bool
+            //Add true to incorrect bool
 
             if (data.Count >= 10/*data.Answers.Count*/)
                 Transition_To_ResultPage();

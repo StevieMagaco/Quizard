@@ -38,7 +38,7 @@ namespace Quizard
             AcceptButton = FindViewById<ImageButton>(Resource.Id.ResultAcceptButton);
             CancelButton = FindViewById<ImageButton>(Resource.Id.ResultCancelButton);
 
-            avg = (data.Correnct * 100) / data.Count /*data.Questions.Count*/;
+            avg = (data.Correct * 100) / data.Count /*data.Questions.Count*/;
             Average.Text = avg.ToString();
             Average.Text += "%";
 
@@ -71,8 +71,7 @@ namespace Quizard
         private void AcceptButton_Click(object sender, EventArgs e)
         {
             data.Count = 1;
-            data.Correnct = 0;
-            data.Incorrect = 0;
+            data.Correct = 0;
 
             //Sets Up an Intent For the Next Activity
             Intent intent = new Intent(this, typeof(QuestionPage));

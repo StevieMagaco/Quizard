@@ -10,6 +10,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
+using Android.Support.V4.Content;
 
 namespace Quizard
 {
@@ -18,7 +20,7 @@ namespace Quizard
     {
         private ListView QuizList;
         //Temporary List of Dummy data
-        private List<string> tempList;
+        private ObservableCollection<string> QuizListData;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -26,27 +28,25 @@ namespace Quizard
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.CardSets);
-            tempList = new List<string>();
-            tempList.Add("History");
-            tempList.Add("Mathematics");
-            tempList.Add("Literature");
-            tempList.Add("Chemistry");
-            tempList.Add("French");
+            QuizListData = new ObservableCollection<string>();
 
             QuizList = FindViewById<ListView>(Resource.Id.QuizList);
 
-            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleExpandableListItem1, tempList);
+            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleExpandableListItem1, QuizListData);
 
             QuizList.Adapter = adapter;
 
             QuizList.ItemClick += QuizList_ItemClick;
-            
+
+            IntentFilter filter = new IntentFilter(Intent.ActionSend);
+            MessageReciever receiver = new MessageReciever(this);
+            LocalBroadcastManager.GetInstance(this).RegisterReceiver(receiver, filter);
         }
 
-        private async void QuizList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        private void QuizList_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             //Test for getting data of list
-            String SelectedSet = tempList[e.Position];
+            string SelectedSet = QuizListData[e.Position];
             //Sets Up an Intent For the Next Activity
             Intent intent = new Intent(this, typeof(QuestionPage));
 
@@ -57,8 +57,7 @@ namespace Quizard
                 Questions = new List<string>(),//List Of Questios Obtained from the phone
                 NameOfSet = SelectedSet,
                 Count = 1,
-                Correnct = 0,
-                Incorrect = 0,
+                Correct = 0,
             };
             //Option A Serializing Individual basic type data sets
             intent.PutExtra("Name Of Set", SelectedSet);
@@ -66,7 +65,27 @@ namespace Quizard
             //Option B Serializing an Object using Json
             intent.PutExtra("data", JsonConvert.SerializeObject(data));
             //Starts the Next Activity
-            this.StartActivity(intent);
+            StartActivity(intent);
+        }
+
+        public void ProcessMessage(Intent intent)
+        {
+            JavaList<string> data = JsonConvert.DeserializeObject<JavaList<string>>(intent.GetStringExtra("WearMessage"));
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                QuizListData.Add(data.ElementAt(i));
+            }
+        }
+
+        internal class MessageReciever : BroadcastReceiver
+        {
+            SetPage _main;
+            public MessageReciever(SetPage owner) { this._main = owner; }
+            public override void OnReceive(Context context, Intent intent)
+            {
+                _main.ProcessMessage(intent);
+            }
         }
     }
 }

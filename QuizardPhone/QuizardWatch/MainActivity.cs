@@ -12,6 +12,7 @@ using Android.Support.V4.View;
 using Java.Interop;
 using Android.Views.Animations;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Quizard
 {
@@ -20,7 +21,7 @@ namespace Quizard
     {
         private ListView QuizList;
         //Temporary List of Dummy data
-        private List<string> tempList = new List<string>();
+        private ObservableCollection<string> QuizListData = new ObservableCollection<string>();
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -28,13 +29,13 @@ namespace Quizard
             //Set our view from the "main" layout resource
             SetContentView(Resource.Layout.CardSets);
 
-            tempList.Add("History");
-            tempList.Add("Mathematics");
-            tempList.Add("Literature");
+            QuizListData.Add("History");
+            QuizListData.Add("Mathematics");
+            QuizListData.Add("Literature");
 
             QuizList = FindViewById<ListView>(Resource.Id.QuizList);
 
-            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleExpandableListItem1, tempList);
+            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleExpandableListItem1, QuizListData);
 
             QuizList.Adapter = adapter;
 
