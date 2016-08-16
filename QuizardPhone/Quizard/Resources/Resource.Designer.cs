@@ -69,13 +69,22 @@ namespace Quizard
 			public const int flashcard = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int homepageIcon_small = 2130837512;
+			public const int HomeICON = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int quizIcon = 2130837513;
+			public const int homepageIcon_small = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int Settings = 2130837514;
+			public const int Plus_Icon = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public const int quizIcon = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public const int Settings = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int StartIcon = 2130837517;
 			
 			static Drawable()
 			{

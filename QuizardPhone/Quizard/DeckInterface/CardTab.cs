@@ -85,7 +85,7 @@ public class DeckCardTabFragment : Fragment
             {
                 string selectedFromList = (string)mCardTabListView.GetItemAtPosition(e.Position);
                 FragmentTransaction fragmentTx = this.FragmentManager.BeginTransaction();
-                DeckCardDialogFragment dialogFragment = new DeckCardDialogFragment(mQuestions, mAnswers, e.Position);
+                DeckCardDialogFragment dialogFragment = new DeckCardDialogFragment(mQuestions, mAnswers, e.Position, this);
                 dialogFragment.Show(fragmentTx, "Individual card dialog fragment");
             };
 
@@ -125,8 +125,18 @@ public class DeckCardTabFragment : Fragment
             mDoneButton.Visibility = ViewStates.Gone;
             mAddCardNextButton.Visibility = ViewStates.Gone;
 
+            // Set new ListView
+            ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
+            mCardTabListView.Adapter = ListAdapter;
         }
+        public void AddCardToList(string question, string answer, int pos)
+        {
+            mQuestions[pos] = question;
+            mAnswers[pos] = answer;
 
+            // TODO: UpdateCard instead of AddCard?
+            AddCard_db(mUsername, mSetName, mQuestions[pos], mAnswers[pos]);
+        }
         // Function is called when Add button is clicked while adding cards. Takes in values from EditText widgets,
         // sets it to temp string variables (tempSubject, tempAnswer), and then adds the cards to list and database.
         private void AddCardNextButton_Click(object sender, EventArgs e)
@@ -236,14 +246,17 @@ public class DeckCardDialogFragment : DialogFragment
         int mPosition; // current position in list of cards
         EditText mCardText; // widget used to display/edit text
         cardState currState = cardState.QUESTION_STATE; // current state of card on display
+        DeckCardTabFragment mDeck;
 
-        public DeckCardDialogFragment(List<string> _questions, List<string> _answers, int pos)
+        string mQuestionHolder, mAnswerHolder;
+        public DeckCardDialogFragment(List<string> _questions, List<string> _answers, int pos, DeckCardTabFragment deck)
         {
             mQuestions = new List<string>();
             mQuestions = _questions;
             mPosition = pos;
             mAnswers = new List<string>();
             mAnswers = _answers;
+            mDeck = deck;
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -256,7 +269,7 @@ public class DeckCardDialogFragment : DialogFragment
             mCardText = view.FindViewById<EditText>(Resource.Id.cardDialogEditTextID);
             mCardText.Text = mQuestions[mPosition];
             mCardText.Click += CardText_Click;
-
+            mCardText.AfterTextChanged += CardText_AfterTextChanged;
 
             return view;
         }
@@ -274,6 +287,14 @@ public class DeckCardDialogFragment : DialogFragment
                 currState = cardState.QUESTION_STATE;
                 mCardText.Text = mQuestions[mPosition];
             }
+        }
+
+        private void CardText_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
+        {
+            if (currState == cardState.QUESTION_STATE) 
+            mDeck.AddCardToList(mCardText.Text, mAnswers[mPosition], mPosition);
+            else
+            mDeck.AddCardToList(mQuestions[mPosition], mCardText.Text, mPosition);
         }
     }
 public class deckPlayFragment : DialogFragment
