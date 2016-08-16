@@ -17,7 +17,9 @@ using Android.Widget;
 
 namespace Quizard
 {
-    [Activity(MainLauncher = false /* MainLauncher does NOT need to be changed unless another layout or diaglog fragment needs to be tested*/, Theme = "@style/CustomActionToolbarTheme")]
+    [Activity(MainLauncher = false /* MainLauncher does NOT need to be changed unless another layout or diaglog fragment needs to be tested*/
+        , Theme = "@style/CustomActionToolbarTheme"
+       , ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
     public class HomeActivity : Activity
     {
         private ArrayAdapter mAdapter;

@@ -37,7 +37,9 @@ public final class R {
         public static final int answerTextView=0x7f060018;
         public static final int cancelImageButtonID=0x7f060027;
         public static final int cancelTextViewID=0x7f060028;
-        public static final int cardDialogEditTextID=0x7f06000b;
+        public static final int cardDialogEditTextID=0x7f06000a;
+        public static final int cardDialogTextViewID=0x7f06000b;
+        public static final int cardFlipButtonID=0x7f06000c;
         public static final int cardTabAddButton=0x7f06000f;
         public static final int cardTabHomeButton=0x7f06000e;
         public static final int cardTabListView=0x7f060015;
@@ -54,7 +56,6 @@ public final class R {
         public static final int deckTextView=0x7f06001b;
         public static final int deleteFlashSetImageButtonID=0x7f06002b;
         public static final int deleteFlashSetTextViewID=0x7f06002c;
-        public static final int editCardTextView=0x7f06000a;
         public static final int editFlashSetSubjectImageButtonID=0x7f060029;
         public static final int editFlashSetSubjectTextViewID=0x7f06002a;
         public static final int editText2=0x7f060007;
@@ -83,7 +84,6 @@ public final class R {
         public static final int searchFlashSetsSearchViewID=0x7f060031;
         public static final int settingsImageButtonID=0x7f06002d;
         public static final int settingsTextViewID=0x7f06002e;
-        public static final int tapCardTextView=0x7f06000c;
         public static final int textView1=0x7f060004;
         public static final int textView2=0x7f060006;
         public static final int toolbar1=0x7f06001f;
