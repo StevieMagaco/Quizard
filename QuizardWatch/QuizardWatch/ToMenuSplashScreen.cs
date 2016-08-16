@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace QuizardWatch
 {
-    [Activity(Label = "ToMenuSplashScreen", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Quizard"/*"ToMenuSplashScreen"*/, MainLauncher = true, Icon = "@drawable/splashscreen512")]
     public class ToMenuSplashScreen : Activity
     {
         private int coutDown = 0;

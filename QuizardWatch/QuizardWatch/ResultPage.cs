@@ -50,10 +50,11 @@ namespace QuizardWatch
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            data.Count = 0;
+            data.Count = 1;
 
             //Sets Up an Intent For the Next Activity
             Intent intent = new Intent(this, typeof(ToMenuSplashScreen));
+            intent.SetFlags(ActivityFlags.ClearTop);
 
             //Option A Serializing Individual basic type data sets
             intent.PutExtra("Name Of Set", data.NameOfSet);
@@ -69,12 +70,13 @@ namespace QuizardWatch
 
         private void AcceptButton_Click(object sender, EventArgs e)
         {
-            data.Count = 0;
+            data.Count = 1;
             data.Correnct = 0;
             data.Incorrect = 0;
 
             //Sets Up an Intent For the Next Activity
             Intent intent = new Intent(this, typeof(QuestionPage));
+            intent.SetFlags(ActivityFlags.ClearTop);
 
             //Option A Serializing Individual basic type data sets
             intent.PutExtra("Name Of Set", data.NameOfSet);
