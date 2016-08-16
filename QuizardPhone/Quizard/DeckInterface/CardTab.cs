@@ -52,7 +52,7 @@ public class DeckCardTabFragment : Fragment
             FragmentManager.PopBackStack();
             base.OnCreateView(inflater, container, savedInstanceState);
             mView = inflater.Inflate(Resource.Layout.DeckCardTab, container, false);
-            
+           
 
             // Assign variables to the EditText widgets for the Add Card feature
             mAddCardQuestionText = mView.FindViewById<EditText>(Resource.Id.deckAddCardQuestionEditTextID);
@@ -131,11 +131,16 @@ public class DeckCardTabFragment : Fragment
         }
         public void AddCardToList(string question, string answer, int pos)
         {
-            mQuestions[pos] = question;
-            mAnswers[pos] = answer;
+            //mQuestions[pos] = question;
+            //mAnswers[pos] = answer;
 
             // TODO: UpdateCard instead of AddCard?
-            AddCard_db(mUsername, mSetName, mQuestions[pos], mAnswers[pos]);
+            DataBase.Cards CardBuffer = new DataBase.Cards(mUsername, mSetName, mQuestions[pos], mAnswers[pos], "", "");
+            UpdateCard(CardBuffer, question, answer);
+            RetrieveCards(mUsername, mSetName);
+
+            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
+            mCardTabListView.Adapter = ListAdapter;
         }
         // Function is called when Add button is clicked while adding cards. Takes in values from EditText widgets,
         // sets it to temp string variables (tempSubject, tempAnswer), and then adds the cards to list and database.
@@ -236,6 +241,16 @@ public class DeckCardTabFragment : Fragment
                 Toast.MakeText(mContext, "Failed to retrieve Cards", ToastLength.Short).Show();
             }
 
+        }
+        private void UpdateCard(DataBase.Cards _Card, string _NewQuestion, string _NewAnswer)
+        {
+            DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
+            db.openDB();
+            if(db.UpdateCard(_Card, _NewAnswer, _NewAnswer))
+                Toast.MakeText(mContext, "Card was updated", ToastLength.Short).Show();
+            else
+                Toast.MakeText(mContext, "Failed to Update Cards", ToastLength.Short).Show();
+            db.CloseDB();
         }
     }
 public class DeckCardDialogFragment : DialogFragment

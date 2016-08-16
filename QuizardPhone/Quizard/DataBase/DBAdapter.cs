@@ -138,7 +138,7 @@ namespace Quizard.DataBase
         /*
          * Returns a Specific Set from tbale
          */
-       public ICursor GetSpecificSet(String _Username, String _SetName)
+        public ICursor GetSpecificSet(String _Username, String _SetName)
         {
             String whereclause;
             String[] Clause = { _Username, _SetName };
@@ -152,7 +152,7 @@ namespace Quizard.DataBase
          */
         public ICursor GetRemeberMe()
         {
-            String[] columns = {Constants.RememberMe_Username, Constants.RememberMe_Password };
+            String[] columns = { Constants.RememberMe_Username, Constants.RememberMe_Password };
             return mdb.Query(Constants.RememberMe_TB_Name, columns, null, null, null, null, null);
         }
         /*
@@ -164,7 +164,7 @@ namespace Quizard.DataBase
             String whereclause;
             String[] Clause = { _Username, _SetName };
             whereclause = Constants.Cards_UserName + " = ? and " + Constants.Cards_SetName + " = ?";
-            String[] columns = { Constants.Cards_UserName, Constants.Cards_SetName, Constants.Cards_Question, Constants.Cards_Answer, Constants.Cards_NumberBox, Constants.Cards_PreRun};
+            String[] columns = { Constants.Cards_UserName, Constants.Cards_SetName, Constants.Cards_Question, Constants.Cards_Answer, Constants.Cards_NumberBox, Constants.Cards_PreRun };
             return mdb.Query(Constants.Cards_TB_Name, columns, whereclause, Clause, null, null, null);
         }
         /*
@@ -178,9 +178,9 @@ namespace Quizard.DataBase
                 insertValues.Put(Constants.Cards_UserName, _Card.GetUserName());
                 insertValues.Put(Constants.Cards_SetName, _Card.GetSetName());
                 insertValues.Put(Constants.Cards_Answer, _Card.GetAnswer());
-                insertValues.Put(Constants.Cards_Question,_Card.GetQuestion());
-                insertValues.Put(Constants.Cards_NumberBox,_Card.GetNumberBox());
-                insertValues.Put(Constants.Cards_PreRun,_Card.GetPreRun());
+                insertValues.Put(Constants.Cards_Question, _Card.GetQuestion());
+                insertValues.Put(Constants.Cards_NumberBox, _Card.GetNumberBox());
+                insertValues.Put(Constants.Cards_PreRun, _Card.GetPreRun());
                 mdb.Insert(Constants.Cards_TB_Name, null, insertValues);
                 return true;
             }
@@ -194,14 +194,14 @@ namespace Quizard.DataBase
          * Removes a Existing Set in Set table 
          * Using the Username and Set name 
          */
-        public bool DeleteRowSet_tb(string _Username,string _SetName)
+        public bool DeleteRowSet_tb(string _Username, string _SetName)
         {
             String whereclause = Constants.Users_UserName + " = ? and " + Constants.Sets_SetName + " = ?";
             String[] Clause = { _Username, _SetName };
-            if(mdb.Delete(Constants.Sets_TB_Name, whereclause, Clause) > 0)
+            if (mdb.Delete(Constants.Sets_TB_Name, whereclause, Clause) > 0)
                 return true;
             else
-            return false;
+                return false;
         }
         /*
          * Edits a previous Set in Sets table
@@ -226,7 +226,7 @@ namespace Quizard.DataBase
          * First deletes Previous User 
          * then adds new user to table
          */
-        public bool AddRemeberMe_tb( string _Username, string _Password)
+        public bool AddRemeberMe_tb(string _Username, string _Password)
         {
             try
             {
@@ -246,6 +246,28 @@ namespace Quizard.DataBase
         public bool DeleteRememberMe()
         {
             if (mdb.Delete(Constants.RememberMe_TB_Name, null, null) > 0)
+                return true;
+            else
+                return false;
+        }
+        public bool UpdateCard(Cards _Card, string _NewQuestion, string _NewAnswer)
+        {
+            String whereclause = Constants.Users_UserName + " = ? and " + Constants.Cards_Question + " = ? and " + Constants.Cards_Answer + " = ? and " + Constants.Cards_SetName + " = ?";
+            String[] Clause = { _Card.GetUserName(), _Card.GetQuestion(), _Card.GetAnswer(), _Card.GetSetName() };
+            ContentValues insertValues = new ContentValues();
+            insertValues.Put(Constants.Cards_UserName, _Card.GetUserName());
+            insertValues.Put(Constants.Cards_SetName, _Card.GetSetName());
+            if(_NewQuestion.Length > 0)
+            insertValues.Put(Constants.Cards_Question, _NewQuestion);
+            else
+            insertValues.Put(Constants.Cards_Question, _Card.GetQuestion());
+            if (_NewAnswer.Length > 0)
+                insertValues.Put(Constants.Cards_Answer, _NewAnswer);
+            else
+                insertValues.Put(Constants.Cards_Answer, _Card.GetAnswer());
+            insertValues.Put(Constants.Cards_NumberBox, _Card.GetNumberBox());
+            insertValues.Put(Constants.Cards_PreRun, _Card.GetPreRun());
+            if (mdb.Update(Constants.Cards_TB_Name, insertValues, whereclause, Clause) > 0)
                 return true;
             else
                 return false;
