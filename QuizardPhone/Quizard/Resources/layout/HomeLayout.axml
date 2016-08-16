@@ -167,6 +167,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginBottom="10dp"
         android:textColor="#000000"
+        android:singleLine="true"
         android:textColorHint="#C5C5C5"
         android:hint="Subject"
         android:visibility="invisible"

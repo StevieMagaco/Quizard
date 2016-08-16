@@ -387,7 +387,7 @@ namespace Quizard
                 Toast.MakeText(this, "Unable to update " + _SetName, ToastLength.Short).Show();
                 return false;
             }
-               
+
         }
     }
     #endregion
