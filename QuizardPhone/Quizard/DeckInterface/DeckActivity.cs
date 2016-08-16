@@ -18,7 +18,8 @@ using Quizard.DeckInterface;
 
 namespace Quizard
 {
-    [Activity(Label = "DeckActivity", MainLauncher = false /*Keep the MainLauncher = false unless this dialog fragment needs to be tested*/)]
+    [Activity(Label = "DeckActivity", 
+    ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
     public class DeckActivity : Activity
     {
         List<string> mQuestions, mAnswers, mQuizAnswers;
@@ -34,6 +35,7 @@ namespace Quizard
         // Initializes list, and creates action bar
         protected override void OnCreate(Bundle bundle)
         {
+            
             base.OnCreate(bundle);
 
             mQuestions = new List<string>();
@@ -42,7 +44,7 @@ namespace Quizard
 
             // Set our view from the "DeckLayout" layout resource
             SetContentView(Resource.Layout.DeckLayout);
-
+            
 
             string[] UserSetname_Buffer = Intent.GetStringArrayExtra("Username/SetName");
             UserInformation.GetUser().SetUsername(UserSetname_Buffer[0]);
@@ -53,6 +55,8 @@ namespace Quizard
             AddTab("CARDS", Resource.Drawable.cardIconSmall, new DeckCardTabFragment(mQuestions, mAnswers, UserSetname_Buffer, this));
             AddTab("QUIZ", Resource.Drawable.quizIcon, new DeckQuizTabFragment(mQuestions, mQuizAnswers, this, UserSetname_Buffer));
 
+            ActionBar.SetDisplayShowTitleEnabled(false);
+            ActionBar.SetDisplayShowHomeEnabled(false);
 
             if (bundle != null)
                 this.ActionBar.SelectTab(this.ActionBar.GetTabAt(bundle.GetInt("tab")));

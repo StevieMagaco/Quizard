@@ -129,8 +129,14 @@ namespace Quizard
 			// aapt resource value: 0x7f060028
 			public const int cancelTextViewID = 2131099688;
 			
+			// aapt resource value: 0x7f06000a
+			public const int cardDialogEditTextID = 2131099658;
+			
 			// aapt resource value: 0x7f06000b
-			public const int cardDialogEditTextID = 2131099659;
+			public const int cardDialogTextViewID = 2131099659;
+			
+			// aapt resource value: 0x7f06000c
+			public const int cardFlipButtonID = 2131099660;
 			
 			// aapt resource value: 0x7f06000f
 			public const int cardTabAddButton = 2131099663;
@@ -179,9 +185,6 @@ namespace Quizard
 			
 			// aapt resource value: 0x7f06002c
 			public const int deleteFlashSetTextViewID = 2131099692;
-			
-			// aapt resource value: 0x7f06000a
-			public const int editCardTextView = 2131099658;
 			
 			// aapt resource value: 0x7f060029
 			public const int editFlashSetSubjectImageButtonID = 2131099689;
@@ -266,9 +269,6 @@ namespace Quizard
 			
 			// aapt resource value: 0x7f06002e
 			public const int settingsTextViewID = 2131099694;
-			
-			// aapt resource value: 0x7f06000c
-			public const int tapCardTextView = 2131099660;
 			
 			// aapt resource value: 0x7f060004
 			public const int textView1 = 2131099652;
