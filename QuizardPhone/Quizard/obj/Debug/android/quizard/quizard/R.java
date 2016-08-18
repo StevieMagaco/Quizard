@@ -8,6 +8,9 @@
 package quizard.quizard;
 
 public final class R {
+    public static final class array {
+        public static final int menuItems=0x7f090000;
+    }
     public static final class attr {
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -405,8 +408,8 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f04001e;
     }
     public static final class style {
-        public static final int CustomActionToolbarTheme=0x7f090000;
-        public static final int HomeActionBar=0x7f090001;
+        public static final int CustomActionToolbarTheme=0x7f0a0000;
+        public static final int HomeActionBar=0x7f0a0001;
     }
     public static final class styleable {
         /**  Attributes for LoadingImageView 
