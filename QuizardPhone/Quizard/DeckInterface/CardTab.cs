@@ -267,6 +267,7 @@ namespace Quizard.DeckInterface
         TextView mCardTextView;
         cardState currState = cardState.QUESTION_STATE; // current state of card on display
         DeckCardTabFragment mDeck;
+        TextView mInfoTextView;
         Button mFlipButton;
         //private GestureDetector _gestureDetector;
 
@@ -294,6 +295,9 @@ namespace Quizard.DeckInterface
             mCardText.Text = mQuestions[mPosition];
             mCardText.LongClick += CardText_LongClick;
             mCardText.AfterTextChanged += CardText_AfterTextChanged;
+
+            mInfoTextView = view.FindViewById<TextView>(Resource.Id.cardEditTextViewID);
+
 
             mFlipButton = view.FindViewById<Button>(Resource.Id.cardFlipButtonID);
             mFlipButton.Click += FlipButton_Click;
@@ -327,6 +331,7 @@ namespace Quizard.DeckInterface
         {
             if (mCardTextView.Visibility == ViewStates.Gone)
             {
+                mInfoTextView.Text = "Long tap to edit";
                 mCardTextView.Visibility = ViewStates.Visible;
                 mCardText.Visibility = ViewStates.Gone;
 
@@ -348,6 +353,7 @@ namespace Quizard.DeckInterface
 
             else
             {
+                mInfoTextView.Text = "Currently editing";
                 mCardText.Visibility = ViewStates.Visible;
                 mCardTextView.Visibility = ViewStates.Gone;
 

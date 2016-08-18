@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Security.Cryptography;
 
 using Android.App;
 using Android.Content;
@@ -52,6 +53,22 @@ namespace Quizard.DeckInterface
         {
             mCorrectAnswerIndex = index;
         }
+
+        // TODO: Fix shuffle
+         public List<string> Shuffle(List<string> array)
+        {
+            int n = array.Count;
+            Random rng = new Random();
+            while (n > 1)
+            {
+                int k = rng.Next(n--);
+                string temp = array[n];
+                array[n] = array[k];
+                array[k] = temp;
+            }
+        
+            return array;
+        }
         // Takes in full list of answers, and pulls out 4 for question
         // then sets correct answer index, and sets mChocies to tChoices
         public void CreateChoices(List<string> allAnswers)
@@ -62,9 +79,9 @@ namespace Quizard.DeckInterface
             else
                 mChoices = new List<string>();
 
+            Random tRand = new Random();
 
             int tIndex = 0;
-            Random tRand = new Random();
             List<string> bufferList = new List<string>();
             bufferList = allAnswers.ToList<string>();
             bufferList.Remove(GetCorrectAnswer()); // finds and removes correct answer
@@ -78,7 +95,7 @@ namespace Quizard.DeckInterface
                 bufferList.RemoveAt(temp);
 
             }
-            // check for correct answer in list, add if necessary  assign index
+            // check for correct answer in list, add if necessary, and assign index
             bool correctAdded = false;
             for (int i = 0; i < tChoices.Count; i++)
             {
@@ -91,16 +108,21 @@ namespace Quizard.DeckInterface
 
             if (!correctAdded)
             {
-                int temp = tRand.Next();
-                mCorrectAnswerIndex = temp % 4;
+                mCorrectAnswerIndex = tRand.Next(0, 3);
                 tChoices[mCorrectAnswerIndex] = GetCorrectAnswer();
             }
 
+            tChoices = Shuffle(tChoices);
+            
+            for (int i = 0; i < tChoices.Count; i++)
+            {
+                if (tChoices[i] == mCorrectAnswer)
+                    mCorrectAnswerIndex = i;
+            }
             // set mChoices equal to tChoices
             mChoices = tChoices;
         }
-
-    }
+  }
 
     public class DeckQuizTabFragment : Fragment
     {
@@ -192,16 +214,15 @@ namespace Quizard.DeckInterface
                         answerListView.Adapter = ListAdapter;
                         nextButton.Visibility = ViewStates.Gone;
                     }
-                    else // TODO: Insert actual score here
+                    else 
                     {
-                        int percentage = (rightAnswers / mQuiz.Count) * 100;
+                        int percentage = (int)Math.Round((double)(100 * rightAnswers) / mAnswerList.Count); ;
                         questionTextView.Text = "You finished with a " + percentage + "%";
+                        rightAnswers = 0;
                         mCurrPosition = 0;
                         answerListView.Visibility = ViewStates.Gone;
-
                     }
                 };
-
                 nextButton.Click += NextButton_Click;
 
             }
