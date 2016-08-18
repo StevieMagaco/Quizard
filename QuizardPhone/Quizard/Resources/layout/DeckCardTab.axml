@@ -72,10 +72,19 @@
         android:textSize="15sp"
         android:background="@drawable/ButtonStyle"
         android:id="@+id/deckDoneAddCardButtonID" />
+    <TextView
+        android:text="Questions:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textSize="20dp" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/cardTabListView" />
+        android:id="@+id/cardTabListView"
+        android:divider="#000000"
+        android:dividerHeight="5dp"
+        style="@style/ListViewStyle.Light" />
 </LinearLayout>

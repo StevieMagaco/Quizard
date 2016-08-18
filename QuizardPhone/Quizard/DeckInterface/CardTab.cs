@@ -108,10 +108,12 @@ namespace Quizard.DeckInterface
 
 
             // adds subject and answer to list and database
-            mQuestions.Add(tempSubject);
-            mAnswers.Add(tempAnswer);
-            AddCard_db(mUsername, mSetName, tempSubject, tempAnswer);
-
+            if (tempSubject.Length > 0 && tempAnswer.Length > 0)
+            {
+                mQuestions.Add(tempSubject);
+                mAnswers.Add(tempAnswer);
+                AddCard_db(mUsername, mSetName, tempSubject, tempAnswer);
+            }
 
             // Reset EdiText wdigets for new values
             mAddCardQuestionText.Text = "";
@@ -140,6 +142,7 @@ namespace Quizard.DeckInterface
 
             ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
             mCardTabListView.Adapter = ListAdapter;
+            
         }
         // Function is called when Add button is clicked while adding cards. Takes in values from EditText widgets,
         // sets it to temp string variables (tempSubject, tempAnswer), and then adds the cards to list and database.
@@ -155,12 +158,17 @@ namespace Quizard.DeckInterface
             mAddCardAnswerText.Text = "";
 
             // add to actual deck
-            AddCard_db(mUsername, mSetName, tempSubject, tempAnswer);
 
+            if (tempSubject.Length > 0 && tempAnswer.Length > 0)
+            {
+                AddCard_db(mUsername, mSetName, tempSubject, tempAnswer);
+            }
             // Set new ListView
             ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
             mCardTabListView.Adapter = ListAdapter;
 
+            // return to question text box
+            mAddCardQuestionText.RequestFocus();
         }
         // Opens new intent, and sends user to homepage
         private void HomeButton_Click(object sender, EventArgs e)
