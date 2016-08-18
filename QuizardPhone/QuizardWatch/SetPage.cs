@@ -32,10 +32,6 @@ namespace Quizard
 
             QuizList = FindViewById<ListView>(Resource.Id.QuizList);
 
-            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleExpandableListItem1, QuizListData);
-
-            QuizList.Adapter = adapter;
-
             QuizList.ItemClick += QuizList_ItemClick;
 
             IntentFilter filter = new IntentFilter(Intent.ActionSend);
@@ -71,11 +67,15 @@ namespace Quizard
         public void ProcessMessage(Intent intent)
         {
             JavaList<string> data = JsonConvert.DeserializeObject<JavaList<string>>(intent.GetStringExtra("WearMessage"));
+            QuizListData.Clear();
 
             for (int i = 0; i < data.Count; i++)
             {
                 QuizListData.Add(data.ElementAt(i));
             }
+            
+
+            QuizList.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleExpandableListItem1, QuizListData);
         }
 
         internal class MessageReciever : BroadcastReceiver

@@ -40,6 +40,7 @@ namespace Quizard
         #region Sending Data Variables
         private GoogleApiClient mGoogleClient;
         private const string mCardSetPath = "/CardSets";
+        private bool mDataSent = false;
         #endregion
 
         #region Database Variables
@@ -57,9 +58,6 @@ namespace Quizard
             SetContentView(Resource.Layout.HomeLayout);
 
             mGoogleClient = new GoogleApiClient.Builder(this, this, this).AddApi(WearableClass.API).Build();
-
-            string json = JsonConvert.SerializeObject(mSetNameList);
-            SendData(json);
 
 
             #region Class Variable FindViewById<> Assignments
@@ -96,7 +94,11 @@ namespace Quizard
             {
                 Toast.MakeText(this, "Unable to retrieve username", ToastLength.Short).Show();
             }
+
             RetreiveSet(mFlashSetList, Username_Buffer);
+
+            string json = JsonConvert.SerializeObject(mSetNameList);
+            SendData(json);
 
             mSearchThroughFlashSets.QueryTextChange += delegate (object sender, SearchView.QueryTextChangeEventArgs e)
             {
@@ -109,7 +111,12 @@ namespace Quizard
                 mSearchThroughFlashSets.Visibility = ViewStates.Visible;
 
                 if (AddSet(mUserInformation.GetUser().GetUsername(), mFlashSetSubject.Text))
+                {
                     mFlashSetSubject.Text = mEmptySubject;
+                    RetreiveSet(mFlashSetList, Username_Buffer);
+                    string newJson = JsonConvert.SerializeObject(mSetNameList);
+                    SendData(newJson);
+                }
             };
 
             // If the user taps an existing flash set item in the list view...
