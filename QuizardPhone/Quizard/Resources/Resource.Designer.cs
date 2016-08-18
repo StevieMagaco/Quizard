@@ -28,6 +28,22 @@ namespace Quizard
 		{
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f090000
+			public const int menuItems = 2131296256;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -759,11 +775,11 @@ namespace Quizard
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f090000
-			public const int CustomActionToolbarTheme = 2131296256;
+			// aapt resource value: 0x7f0a0000
+			public const int CustomActionToolbarTheme = 2131361792;
 			
-			// aapt resource value: 0x7f090001
-			public const int HomeActionBar = 2131296257;
+			// aapt resource value: 0x7f0a0001
+			public const int HomeActionBar = 2131361793;
 			
 			static Style()
 			{

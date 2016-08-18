@@ -1,1 +1,1 @@
-<resources><string name="ApplicationName">Quizard</string></resources>
+<resources><string name="ApplicationName">Quizard</string><string-array name="menuItems"><item>Update</item><item>Delete</item></string-array></resources>
