@@ -263,9 +263,9 @@ namespace Quizard.DeckInterface
         cardState currState = cardState.QUESTION_STATE; // current state of card on display
         DeckCardTabFragment mDeck;
         Button mFlipButton;
-        private GestureDetector _gestureDetector;
+        //private GestureDetector _gestureDetector;
 
-        string mQuestionHolder, mAnswerHolder;
+        //string mQuestionHolder, mAnswerHolder;
         public DeckCardDialogFragment(List<string> _questions, List<string> _answers, int pos, DeckCardTabFragment deck)
         {
             mQuestions = new List<string>();
