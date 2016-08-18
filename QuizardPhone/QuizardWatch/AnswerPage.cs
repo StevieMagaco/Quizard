@@ -17,7 +17,7 @@ namespace Quizard
     public class AnswerPage : Activity
     {
         DataStruct data;
-        private TextView Title;
+        private new TextView Title;
         private TextView Answer;
         private ImageButton CorrectButton;
         private ImageButton IncorrectButton;

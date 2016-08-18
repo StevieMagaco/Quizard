@@ -16,7 +16,7 @@ namespace Quizard
     [Activity(Label = "QuestionPage")]
     public class QuestionPage : Activity
     {
-        private TextView Title;
+        private new TextView Title;
         private TextView Question;
         private ImageButton nextPageButton;
         DataStruct data;
