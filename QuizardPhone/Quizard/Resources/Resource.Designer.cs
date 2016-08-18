@@ -153,6 +153,12 @@ namespace Quizard
 			// aapt resource value: 0x7f070000
 			public const int item_touch_helper_max_drag_scroll_per_frame = 2131165184;
 			
+			// aapt resource value: 0x7f070001
+			public const int item_touch_helper_swipe_escape_max_velocity = 2131165185;
+			
+			// aapt resource value: 0x7f070002
+			public const int item_touch_helper_swipe_escape_velocity = 2131165186;
+			
 			static Dimension()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

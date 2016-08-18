@@ -142,6 +142,8 @@ containing a value of this type.
     }
     public static final class dimen {
         public static final int item_touch_helper_max_drag_scroll_per_frame=0x7f070000;
+        public static final int item_touch_helper_swipe_escape_max_velocity=0x7f070001;
+        public static final int item_touch_helper_swipe_escape_velocity=0x7f070002;
     }
     public static final class drawable {
         public static final int buttonstyle=0x7f020000;
