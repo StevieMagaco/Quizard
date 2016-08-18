@@ -13,9 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="30"
-        android:layout_marginRight="100dp"
-        android:layout_centerInParent="true"
-        />
+        android:layout_marginRight="130dp"
+        android:layout_marginBottom="50dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="15dp"
@@ -23,6 +22,7 @@
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="200dp"
         android:layout_marginRight="200dp"
+        android:singleLine="true"
         android:textColor="#000000"
         android:textColorHint="#C5C5C5"
         android:hint="Username"
@@ -35,6 +35,7 @@
         android:layout_weight="5"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="200dp"
+        android:singleLine="true"
         android:layout_marginRight="200dp"
         android:textColor="#000000"
         android:textColorHint="#C5C5C5"

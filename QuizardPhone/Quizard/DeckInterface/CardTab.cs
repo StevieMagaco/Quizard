@@ -192,18 +192,23 @@ namespace Quizard.DeckInterface
         {
             try
             {
-                DataBase.Cards CardBuffer = new DataBase.Cards(_Username, _SetName, _Question, _Answer, "", "");
-                DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
-                db.openDB();
-                if (db.SetCard(CardBuffer))
+                if (_Question.Length > 0 || _Answer.Length > 0)
                 {
-                    RetrieveCards(_Username, _SetName);
+                    DataBase.Cards CardBuffer = new DataBase.Cards(_Username, _SetName, _Question, _Answer, "", "");
+                    DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
+                    db.openDB();
+                    if (db.SetCard(CardBuffer))
+                    {
+                        RetrieveCards(_Username, _SetName);
 
-                    db.CloseDB();
-                    return true;
+                        db.CloseDB();
+                        return true;
+                    }
+                    else
+                        throw new System.ArgumentException("Failed to save new Card", "CardSave");
                 }
                 else
-                    throw new System.ArgumentException("Failed to save new Card", "CardSave");
+                    throw new System.ArgumentException("Answer or Question is Blank", "CardSave");
             }
             catch (Exception exception)
             {
@@ -263,9 +268,9 @@ namespace Quizard.DeckInterface
         cardState currState = cardState.QUESTION_STATE; // current state of card on display
         DeckCardTabFragment mDeck;
         Button mFlipButton;
-        private GestureDetector _gestureDetector;
+        //private GestureDetector _gestureDetector;
 
-        string mQuestionHolder, mAnswerHolder;
+        //string mQuestionHolder, mAnswerHolder;
         public DeckCardDialogFragment(List<string> _questions, List<string> _answers, int pos, DeckCardTabFragment deck)
         {
             mQuestions = new List<string>();

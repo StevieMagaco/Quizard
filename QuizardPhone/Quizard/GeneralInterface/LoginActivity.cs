@@ -78,6 +78,10 @@ namespace Quizard
         {
             mNewUserConfirmPassword.Text = ConPassword;
         }
+        public string GetConfrimPassword()
+        {
+            return mNewUserConfirmPassword.Text;
+        }
         #endregion
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -185,7 +189,7 @@ namespace Quizard
             #region Database Create An Account Error Checking
             NewUsername = mFragment.GetNewUserName();
             NewPassword = mFragment.GetNewPassword();
-            
+            NewConfirmPassword = mFragment.GetConfrimPassword();
             CreateUser();
             mFragment.SetNewUserName("");
             mFragment.SetNewPassword("");
