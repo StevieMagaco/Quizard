@@ -95,8 +95,8 @@
     <Compile Include="DataBase\UserInfo.cs" />
     <Compile Include="DeckInterface\CardTab.cs" />
     <Compile Include="DeckInterface\QuizTab.cs" />
-    <Compile Include="GeneralInferface\HomeActivity.cs" />
-    <Compile Include="GeneralInferface\LoginActivity.cs" />
+    <Compile Include="GeneralInterface\HomeActivity.cs" />
+    <Compile Include="GeneralInterface\LoginActivity.cs" />
     <Compile Include="DeckInterface\DeckActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
