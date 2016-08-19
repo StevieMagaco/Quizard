@@ -11,4 +11,12 @@
     <item name="android:displayOptions"></item>
     <item name="android:background">#02243C</item>
   </style>
+
+  <style name="ListViewStyle.Light" parent="android:style/Widget.ListView">
+    <item name="android:background">#02243c</item>
+    <item name="android:divider">#71C42B</item>
+    <item name="android:dividerHeight">3dp</item>
+    <item name="android:listSelector">#71C42B</item>
+    <item name="android:textColor">#000000</item>
+  </style>
 </resources>
