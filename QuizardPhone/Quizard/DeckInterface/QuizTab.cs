@@ -225,6 +225,20 @@ namespace Quizard.DeckInterface
                 };
                 nextButton.Click += NextButton_Click;
 
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
+
+                alert.SetTitle("Quiz will now begin");
+
+                alert.SetPositiveButton("OK", (senderAlert, args) =>
+                {
+                    return;
+                });
+
+                this.Activity.RunOnUiThread(() =>
+                {
+                    alert.Show();
+                });
             }
             else
             {

@@ -130,6 +130,12 @@ namespace Quizard.DeckInterface
             ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
             mCardTabListView.Adapter = ListAdapter;
         }
+        void Remove(int pos)
+        {
+            //TODO: Remove from database
+            mQuestions.RemoveAt(pos);
+            mAnswers.RemoveAt(pos);
+        }
         public void AddCardToList(string question, string answer, int pos)
         {
             //mQuestions[pos] = question;
@@ -276,7 +282,7 @@ namespace Quizard.DeckInterface
         cardState currState = cardState.QUESTION_STATE; // current state of card on display
         DeckCardTabFragment mDeck;
         TextView mInfoTextView;
-        Button mFlipButton;
+        Button mFlipButton, mEditButton, mDeleteButton;
         //private GestureDetector _gestureDetector;
 
         //string mQuestionHolder, mAnswerHolder;
@@ -301,50 +307,38 @@ namespace Quizard.DeckInterface
             mCardText = view.FindViewById<EditText>(Resource.Id.cardDialogEditTextID);
             mCardText.Visibility = ViewStates.Gone;
             mCardText.Text = mQuestions[mPosition];
-            mCardText.LongClick += CardText_LongClick;
             mCardText.AfterTextChanged += CardText_AfterTextChanged;
 
-            mInfoTextView = view.FindViewById<TextView>(Resource.Id.cardEditTextViewID);
+            mInfoTextView = view.FindViewById<TextView>(Resource.Id.QuestionAnswerTextViewID);
 
+            mEditButton = view.FindViewById<Button>(Resource.Id.CardEditButtonID);
+            mEditButton.Click += EditButton_Click;
+
+            mDeleteButton = view.FindViewById<Button>(Resource.Id.CardDeleteButtonID);
+            mDeleteButton.Click += DeleteButton_Click;
 
             mFlipButton = view.FindViewById<Button>(Resource.Id.cardFlipButtonID);
             mFlipButton.Click += FlipButton_Click;
-
             mCardTextView = view.FindViewById<TextView>(Resource.Id.cardDialogTextViewID);
             mCardTextView.Text = mQuestions[mPosition];
-            mCardTextView.LongClick += CardText_LongClick;
             return view;
         }
-        // when flip button is tapped, switch state and text. 
-        // QUESTION_STATE displays question. ANSWER_STATE display answers
 
-
-        private void FlipButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
-
-            if (currState == cardState.QUESTION_STATE)
-            {
-                currState = cardState.ANSWER_STATE;
-                mCardText.Text = mAnswers[mPosition];
-                mCardTextView.Text = mAnswers[mPosition];
-            }
-            else
-            {
-                currState = cardState.QUESTION_STATE;
-                mCardText.Text = mQuestions[mPosition];
-                mCardTextView.Text = mQuestions[mPosition];
-            }
+            // remove card from mDeck
+            mDeck.Remove(mPosition) ;
         }
-        private void CardText_LongClick(object sender, View.LongClickEventArgs e)
+
+        private void EditButton_Click(object sender, EventArgs e)
         {
             if (mCardTextView.Visibility == ViewStates.Gone)
             {
-                mInfoTextView.Text = "Long tap to edit";
                 mCardTextView.Visibility = ViewStates.Visible;
                 mCardText.Visibility = ViewStates.Gone;
-
+                mFlipButton.Visibility = ViewStates.Visible;
                 AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
-
+                mEditButton.Text = "EDIT";
                 alert.SetTitle("Card edited");
 
                 alert.SetPositiveButton("OK", (senderAlert, args) =>
@@ -361,9 +355,13 @@ namespace Quizard.DeckInterface
 
             else
             {
+                mEditButton.Text = "DONE";
+
                 mInfoTextView.Text = "Currently editing";
                 mCardText.Visibility = ViewStates.Visible;
                 mCardTextView.Visibility = ViewStates.Gone;
+
+                mFlipButton.Visibility = ViewStates.Gone;
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
 
@@ -386,6 +384,79 @@ namespace Quizard.DeckInterface
                 mCardText.Text = mAnswers[mPosition];
         }
 
+        // when flip button is tapped, switch state and text. 
+        // QUESTION_STATE displays question. ANSWER_STATE display answers
+
+
+        private void FlipButton_Click(object sender, EventArgs e)
+        {
+
+            if (currState == cardState.QUESTION_STATE)
+            {
+                currState = cardState.ANSWER_STATE;
+                mCardText.Text = mAnswers[mPosition];
+                mCardTextView.Text = mAnswers[mPosition];
+                mInfoTextView.Text = "Answer";
+            }
+            else
+            {
+                currState = cardState.QUESTION_STATE;
+                mCardText.Text = mQuestions[mPosition];
+                mCardTextView.Text = mQuestions[mPosition];
+                mInfoTextView.Text = "Question";
+            }
+        }
+       // private void CardText_LongClick(object sender, View.LongClickEventArgs e)
+      //  {
+      //      if (mCardTextView.Visibility == ViewStates.Gone)
+      //      {
+      //          mInfoTextView.Text = "Long tap to edit";
+      //          mCardTextView.Visibility = ViewStates.Visible;
+      //          mCardText.Visibility = ViewStates.Gone;
+      //
+      //          AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
+      //
+      //          alert.SetTitle("Card edited");
+      //
+      //          alert.SetPositiveButton("OK", (senderAlert, args) =>
+      //          {
+      //              return;
+      //          });
+      //
+      //          this.Activity.RunOnUiThread(() =>
+      //          {
+      //              alert.Show();
+      //          });
+      //
+      //      }
+      //
+      //      else
+      //      {
+      //          mInfoTextView.Text = "Currently editing";
+      //          mCardText.Visibility = ViewStates.Visible;
+      //          mCardTextView.Visibility = ViewStates.Gone;
+      //
+      //          AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
+      //
+      //          alert.SetTitle("You can now edit");
+      //
+      //          alert.SetPositiveButton("OK", (senderAlert, args) =>
+      //          {
+      //              return;
+      //          });
+      //
+      //          this.Activity.RunOnUiThread(() =>
+      //          {
+      //              alert.Show();
+      //          });
+      //      }
+      //
+      //      if (currState == cardState.QUESTION_STATE)
+      //          mCardText.Text = mQuestions[mPosition];
+      //      else
+      //          mCardText.Text = mAnswers[mPosition];
+      //  }
+      //
 
         private void CardText_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
         {
