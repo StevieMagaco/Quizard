@@ -130,7 +130,7 @@ namespace Quizard.DeckInterface
             ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
             mCardTabListView.Adapter = ListAdapter;
         }
-        void Remove(int pos)
+        public void Remove(int pos)
         {
             //TODO: Remove from database
             mQuestions.RemoveAt(pos);
@@ -140,8 +140,7 @@ namespace Quizard.DeckInterface
         {
             //mQuestions[pos] = question;
             //mAnswers[pos] = answer;
-
-            // TODO: UpdateCard instead of AddCard?
+            
             DataBase.Cards CardBuffer = new DataBase.Cards(mUsername, mSetName, mQuestions[pos], mAnswers[pos], "", "");
             UpdateCard(CardBuffer, question, answer);
             RetrieveCards(mUsername, mSetName);
@@ -273,7 +272,6 @@ namespace Quizard.DeckInterface
     {
 
         enum cardState { QUESTION_STATE, ANSWER_STATE, ALL_STATES } // enum for card states
-        enum mode { EDIT_MODE, REGULAR_MODE, ALL_MODES }
 
         List<string> mQuestions, mAnswers; // lists to hold questions and answers for each card
         int mPosition; // current position in list of cards
