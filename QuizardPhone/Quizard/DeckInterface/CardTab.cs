@@ -306,13 +306,17 @@ namespace Quizard.DeckInterface
             mAnswers = _answers;
             mDeck = deck;
         }
-
+        public override Dialog OnCreateDialog(Bundle savedInstanceState)
+        {
+            Dialog d = base.OnCreateDialog(savedInstanceState);
+            d.Window.RequestFeature(WindowFeatures.NoTitle);
+            return d;
+        }
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             var view = inflater.Inflate(Resource.Layout.DeckCardDialogBox, container, false);
-
 
             // set up EditText widget for card 
             mCardText = view.FindViewById<EditText>(Resource.Id.cardDialogEditTextID);
@@ -352,7 +356,12 @@ namespace Quizard.DeckInterface
                 mFlipButton.Visibility = ViewStates.Visible;
                 AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
                 mEditButton.Text = "EDIT";
-                
+
+                if (currState == cardState.QUESTION_STATE)
+                    mCardTextView.Text = mQuestions[mPosition];
+                else
+                    mCardTextView.Text = mAnswers[mPosition];
+
                 alert.SetTitle("Card edited");
 
                 alert.SetPositiveButton("OK", (senderAlert, args) =>
@@ -502,7 +511,12 @@ namespace Quizard.DeckInterface
             mAnswers = _answers;
             mPosition = 0;
         }
-
+        public override Dialog OnCreateDialog(Bundle savedInstanceState)
+        {
+            Dialog d = base.OnCreateDialog(savedInstanceState);
+            d.Window.RequestFeature(WindowFeatures.NoTitle);
+            return d;
+        }
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -567,8 +581,8 @@ namespace Quizard.DeckInterface
 
             // set TextView text to current question
             mTxtView.Text = mQuestions[mPosition];
+            mNextButton.Enabled = false;
         }
-
     }
 
 
