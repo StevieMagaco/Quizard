@@ -20,7 +20,8 @@
             android:layout_weight="10"
             android:gravity="center"
             android:id="@+id/QuestionTitle"
-            android:textColor="@android:color/holo_orange_light" />
+            android:textColor="@android:color/holo_orange_light"
+            android:layout_marginTop="4.0dp" />
         <TextView
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium"

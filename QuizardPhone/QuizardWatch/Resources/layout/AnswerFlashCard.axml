@@ -14,7 +14,8 @@
         android:layout_height="28.0dp"
         android:gravity="center"
         android:id="@+id/AnswerTitle"
-        android:textColor="@android:color/holo_orange_light" />
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_marginTop="4.0dp" />
     <TextView
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"

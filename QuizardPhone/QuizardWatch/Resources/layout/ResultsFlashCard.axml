@@ -11,11 +11,12 @@
         android:text="Study Set Complete!"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="49.3dp"
+        android:layout_height="24.0dp"
         android:background="@android:color/transparent"
         android:id="@+id/ResultPageTitle"
         android:gravity="center"
-        android:textColor="@android:color/holo_orange_light" />
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_marginTop="16.0dp" />
     <TextView
         android:text="Your average was:"
         android:textAppearance="?android:attr/textAppearanceSmall"
