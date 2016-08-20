@@ -5,6 +5,18 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
+    <Toolbar
+        android:background="#71C42B"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardTabToolbar">
+        <ImageButton
+            android:background="@null"
+            android:src="@drawable/home_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/QuizTabHomeButtonID" />
+    </Toolbar>
     <TextView
         android:text="Text"
         android:layout_width="match_parent"

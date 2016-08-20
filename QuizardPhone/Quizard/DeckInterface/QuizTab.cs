@@ -137,7 +137,8 @@ namespace Quizard.DeckInterface
 
         int rightAnswers = 0;
 
-        Button nextButton;
+        Button mNextButton;
+        ImageButton mHomeButton;
 
         List<Question> mQuiz;
         public DeckQuizTabFragment(List<string> _questionList, List<string> _answerList, Context _Context, string[] _UserSetName)
@@ -169,6 +170,10 @@ namespace Quizard.DeckInterface
                 // TODO: Get cards from database to fill questionList and answerList
                 RetrieveCards(mUsername, mSetName);
 
+
+                mHomeButton = view.FindViewById<ImageButton>(Resource.Id.QuizTabHomeButtonID);
+                mHomeButton.Click += HomeButton_Click;
+
                 // set question text view to a question
                 questionTextView = view.FindViewById<TextView>(Resource.Id.quizTabQuestionTextView);
                 questionTextView.Text = mQuestionList[mCurrPosition];
@@ -189,8 +194,8 @@ namespace Quizard.DeckInterface
                 ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuiz[0].GetChoices());
                 answerListView.Adapter = ListAdapter;
 
-                nextButton = view.FindViewById<Button>(Resource.Id.quizTabNextButtonID);
-                nextButton.Visibility = ViewStates.Gone;
+                mNextButton = view.FindViewById<Button>(Resource.Id.quizTabNextButtonID);
+                mNextButton.Visibility = ViewStates.Gone;
 
                 // answer list view click event. Changes quiz to next question. 
                 // TODO: Needs to check for actual correct answer
@@ -212,7 +217,7 @@ namespace Quizard.DeckInterface
                         questionTextView.Text = mQuiz[mCurrPosition].GetQuestion();
                         ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuiz[mCurrPosition].GetChoices());
                         answerListView.Adapter = ListAdapter;
-                        nextButton.Visibility = ViewStates.Gone;
+                        mNextButton.Visibility = ViewStates.Gone;
                     }
                     else 
                     {
@@ -223,7 +228,7 @@ namespace Quizard.DeckInterface
                         answerListView.Visibility = ViewStates.Gone;
                     }
                 };
-                nextButton.Click += NextButton_Click;
+                mNextButton.Click += NextButton_Click;
 
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
@@ -262,12 +267,19 @@ namespace Quizard.DeckInterface
             return view;
         }
 
+        private void HomeButton_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this.Activity, typeof(HomeActivity));
+            intent.PutExtra("UserName", mUsername);
+            StartActivity(intent);
+        }
+
         private void NextButton_Click(object sender, EventArgs e)
         {
             questionTextView.Text = mQuiz[mCurrPosition].GetQuestion();
             ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuiz[mCurrPosition].GetChoices());
             answerListView.Adapter = ListAdapter;
-            nextButton.Visibility = ViewStates.Gone;
+            mNextButton.Visibility = ViewStates.Gone;
         }
         // 
         void InitQuiz(List<string> questions, List<string> answers)
