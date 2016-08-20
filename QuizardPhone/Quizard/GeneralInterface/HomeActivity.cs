@@ -40,6 +40,7 @@ namespace Quizard
         #region Sending Data Variables
         private GoogleApiClient mGoogleClient;
         private const string mCardSetPath = "/CardSets";
+        private bool mDataSent = false;
         #endregion
 
         #region Database Variables
@@ -57,9 +58,6 @@ namespace Quizard
             SetContentView(Resource.Layout.HomeLayout);
 
             mGoogleClient = new GoogleApiClient.Builder(this, this, this).AddApi(WearableClass.API).Build();
-
-            string json = JsonConvert.SerializeObject(mSetNameList);
-            SendData(json);
 
 
             #region Class Variable FindViewById<> Assignments
@@ -96,7 +94,11 @@ namespace Quizard
             {
                 Toast.MakeText(this, "Unable to retrieve username", ToastLength.Short).Show();
             }
+
             RetreiveSet(mFlashSetList, Username_Buffer);
+            RetrieveCards();
+            string json = JsonConvert.SerializeObject(mSetNameList);
+            SendData(json);
 
             mSearchThroughFlashSets.QueryTextChange += delegate (object sender, SearchView.QueryTextChangeEventArgs e)
             {
@@ -109,7 +111,12 @@ namespace Quizard
                 mSearchThroughFlashSets.Visibility = ViewStates.Visible;
 
                 if (AddSet(mUserInformation.GetUser().GetUsername(), mFlashSetSubject.Text))
+                {
                     mFlashSetSubject.Text = mEmptySubject;
+                    RetreiveSet(mFlashSetList, Username_Buffer);
+                    string newJson = JsonConvert.SerializeObject(mSetNameList);
+                    SendData(newJson);
+                }
             };
 
             // If the user taps an existing flash set item in the list view...
@@ -351,11 +358,17 @@ namespace Quizard
 
                 ICursor SetInfo = db.GetSets(_Username);
                 mSetNameList.Clear();
-
+                DataBase.Sets BufferSet = new DataBase.Sets();
                 while (SetInfo.MoveToNext())
                 {
                     string name = SetInfo.GetString(1);
                     mSetNameList.Add(name);
+                    BufferSet.SetUsername(_Username);
+                    BufferSet.SetSetName(SetInfo.GetString(1));
+                    BufferSet.SetNotify(SetInfo.GetString(2));
+                    BufferSet.SetCorrect(SetInfo.GetString(3));
+                    BufferSet.SetIncorrect(SetInfo.GetString(4));
+                    mUserInformation.AddSet(BufferSet);
                 }
 
                 if (mSetNameList.Count > 0)
@@ -371,7 +384,39 @@ namespace Quizard
                 Toast.MakeText(this, "Failed to retrieve flash sets from the database", ToastLength.Short).Show();
             }
         }
+        private void RetrieveCards()
+        {
+            for (int loop = 0; loop < mSetNameList.Count; loop++)
+            {
+                try
+                {
+                    DataBase.DBAdapter db = new DataBase.DBAdapter(this);
+                    db.openDB();
 
+                    ICursor CardsInfo = db.GetCards(mUserInformation.GetUser().GetUsername(), mSetNameList[loop]);
+                    DataBase.Cards BufferCard = new DataBase.Cards();
+                    while (CardsInfo.MoveToNext())
+                    {
+                        BufferCard.SetUserName(CardsInfo.GetString(0));
+                        BufferCard.SetSetName(CardsInfo.GetString(1));
+                        BufferCard.SetQuestion(CardsInfo.GetString(2));
+                        BufferCard.SetAnswer(CardsInfo.GetString(3));
+                        BufferCard.SetNumberBox(CardsInfo.GetString(4));
+                        BufferCard.SetPreRun(CardsInfo.GetString(5));
+                        mUserInformation.AddCard(BufferCard);
+                    }
+                    db.CloseDB();
+
+                    // mCardTabListView.Adapter = ListAdapter;
+
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+                    Toast.MakeText(this, "Failed to retrieve Cards", ToastLength.Short).Show();
+                }
+            }
+        }
         private bool AddSet(string _Username, string _SetName)
         {
             try
@@ -458,7 +503,7 @@ namespace Quizard
                 Toast.MakeText(this, "Unable to update " + _SetName, ToastLength.Short).Show();
                 return false;
             }
-               
+
         }
     }
     #endregion
