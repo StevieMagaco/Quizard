@@ -173,7 +173,7 @@ namespace Quizard.DeckInterface
 
             if (mQuestionList.Count > 4)
             {
-
+                
                 // TODO: Get cards from database to fill questionList and answerList
                 RetrieveCards(mUsername, mSetName);
 
@@ -190,7 +190,7 @@ namespace Quizard.DeckInterface
                     mAnswerList.Add("answe1r"); mAnswerList.Add("an2swer"); mAnswerList.Add("an3swer"); mAnswerList.Add("an4swer");
                     mAnswerList.Add("an5swer"); mAnswerList.Add("ans6wer"); mAnswerList.Add("an7swer");
                 }
-
+                
 
 
                 InitQuiz(mQuestionList, mAnswerList);
@@ -207,7 +207,13 @@ namespace Quizard.DeckInterface
                     int temp = mQuiz[mCurrPosition].GetCorrectIndex();
                     if (e.Position == mQuiz[mCurrPosition].GetCorrectIndex())
                     {
+                        // TODO: Add update function for Correct or Incorrect
                         rightAnswers++;
+                        UpdateCardNumberBox(mUsername, mSetName, mQuestionList[mCurrPosition], mAnswerList[mCurrPosition], true);
+                    }
+                    else
+                    {
+                        UpdateCardNumberBox(mUsername, mSetName, mQuestionList[mCurrPosition], mAnswerList[mCurrPosition], false);
                     }
                     if (mCurrPosition + 1 < mQuestionList.Count)
                     {
@@ -317,6 +323,24 @@ namespace Quizard.DeckInterface
                 Toast.MakeText(mContext, "Failed to retrieve Cards", ToastLength.Short).Show();
             }
 
+        }
+
+        public void UpdateCardNumberBox(string _Username, string _Setname, string _Question, string _Answer, bool _Correct)
+        {
+            DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
+            DataBase.Cards BufferCard = new DataBase.Cards(_Username, _Setname, _Question, _Answer, "", "");
+            db.openDB();
+            BufferCard = db.GetSpecificCard(BufferCard);
+            if(_Correct)
+            {
+                int NuberBoxBuffer = Convert.ToInt32(BufferCard.GetNumberBox()) + 1;
+                BufferCard.SetNumberBox(NuberBoxBuffer.ToString());
+            }
+            else
+                BufferCard.SetNumberBox("0");
+
+            db.UpdateCard(BufferCard, "", "");
+            db.CloseDB();
         }
     }
     //public class DeckQuizDialogFragment : DialogFragment
