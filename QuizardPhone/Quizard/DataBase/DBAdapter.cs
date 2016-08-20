@@ -167,6 +167,26 @@ namespace Quizard.DataBase
             String[] columns = { Constants.Cards_UserName, Constants.Cards_SetName, Constants.Cards_Question, Constants.Cards_Answer, Constants.Cards_NumberBox, Constants.Cards_PreRun };
             return mdb.Query(Constants.Cards_TB_Name, columns, whereclause, Clause, null, null, null);
         }
+        public Cards GetSpecificCard(Cards _Card)
+        {
+            try
+            {
+                String whereclause;
+                String[] Clause = { _Card.GetUserName(), _Card.GetSetName(), _Card.GetQuestion(), _Card.GetAnswer() };
+                whereclause = Constants.Cards_UserName + " = ? and " + Constants.Cards_SetName + " = ? and " + Constants.Cards_Question + " = ? and " + Constants.Cards_Answer + " = ?";
+                String[] columns = { Constants.Cards_UserName, Constants.Cards_SetName, Constants.Cards_Question, Constants.Cards_Answer, Constants.Cards_NumberBox, Constants.Cards_PreRun };
+                ICursor ICursorBuffer =  mdb.Query(Constants.Cards_TB_Name, columns, whereclause, Clause, null, null, null);
+                ICursorBuffer.MoveToNext();
+                Cards BufferCard = new Cards(ICursorBuffer.GetString(0), ICursorBuffer.GetString(1), ICursorBuffer.GetString(2), ICursorBuffer.GetString(3), ICursorBuffer.GetString(4), ICursorBuffer.GetString(5));
+                return BufferCard;
+            }
+            catch (Exception _E)
+            {
+                Toast.MakeText(mContext, "Cared does not exist", ToastLength.Short).Show();
+                Console.WriteLine(_E.Message);
+                return null;
+            }
+        }
         /*
          * Adds a Card to the Cards table
          */
@@ -243,6 +263,7 @@ namespace Quizard.DataBase
             }
             return false;
         }
+        //This function will delete the Remember me User
         public bool DeleteRememberMe()
         {
             if (mdb.Delete(Constants.RememberMe_TB_Name, null, null) > 0)
@@ -250,6 +271,10 @@ namespace Quizard.DataBase
             else
                 return false;
         }
+        /*
+         * this Function will update a Specific Card in the 
+         * Database 
+         */
         public bool UpdateCard(Cards _Card, string _NewQuestion, string _NewAnswer)
         {
             String whereclause = Constants.Users_UserName + " = ? and " + Constants.Cards_Question + " = ? and " + Constants.Cards_Answer + " = ? and " + Constants.Cards_SetName + " = ?";
@@ -257,10 +282,10 @@ namespace Quizard.DataBase
             ContentValues insertValues = new ContentValues();
             insertValues.Put(Constants.Cards_UserName, _Card.GetUserName());
             insertValues.Put(Constants.Cards_SetName, _Card.GetSetName());
-            if(_NewQuestion.Length > 0)
-            insertValues.Put(Constants.Cards_Question, _NewQuestion);
+            if (_NewQuestion.Length > 0)
+                insertValues.Put(Constants.Cards_Question, _NewQuestion);
             else
-            insertValues.Put(Constants.Cards_Question, _Card.GetQuestion());
+                insertValues.Put(Constants.Cards_Question, _Card.GetQuestion());
             if (_NewAnswer.Length > 0)
                 insertValues.Put(Constants.Cards_Answer, _NewAnswer);
             else
@@ -278,7 +303,7 @@ namespace Quizard.DataBase
          */
         public bool DeleteCard(string _Username, string _SetName, string _Question, string _Answer)
         {
-            String whereclause = Constants.Cards_UserName + " = ? and " + Constants.Cards_SetName + " = ? and " + Constants.Cards_Question + " = ? and " + Constants.Cards_Answer + " = ?" ;
+            String whereclause = Constants.Cards_UserName + " = ? and " + Constants.Cards_SetName + " = ? and " + Constants.Cards_Question + " = ? and " + Constants.Cards_Answer + " = ?";
             String[] Clause = { _Username, _SetName, _Question, _Answer };
             if (mdb.Delete(Constants.Cards_TB_Name, whereclause, Clause) > 0)
                 return true;

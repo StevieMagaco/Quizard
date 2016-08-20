@@ -282,7 +282,7 @@ namespace Quizard.DeckInterface
             db.CloseDB();
         }
     }
-    public class DeckCardDialogFragment : DialogFragment, GestureDetector.IOnGestureListener
+    public class DeckCardDialogFragment : DialogFragment
     {
 
         enum cardState { QUESTION_STATE, ANSWER_STATE, ALL_STATES } // enum for card states
@@ -290,10 +290,9 @@ namespace Quizard.DeckInterface
         List<string> mQuestions, mAnswers; // lists to hold questions and answers for each card
         int mPosition; // current position in list of cards
         EditText mCardText; // widget used to display/edit text
-        TextView mCardTextView;
+        TextView mCardTextView, mInfoTextView;
         cardState currState = cardState.QUESTION_STATE; // current state of card on display
         DeckCardTabFragment mDeck;
-        TextView mInfoTextView;
         Button mFlipButton, mEditButton, mDeleteButton;
         //private GestureDetector _gestureDetector;
 
@@ -307,13 +306,17 @@ namespace Quizard.DeckInterface
             mAnswers = _answers;
             mDeck = deck;
         }
-
+        public override Dialog OnCreateDialog(Bundle savedInstanceState)
+        {
+            Dialog d = base.OnCreateDialog(savedInstanceState);
+            d.Window.RequestFeature(WindowFeatures.NoTitle);
+            return d;
+        }
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             var view = inflater.Inflate(Resource.Layout.DeckCardDialogBox, container, false);
-
 
             // set up EditText widget for card 
             mCardText = view.FindViewById<EditText>(Resource.Id.cardDialogEditTextID);
@@ -322,6 +325,7 @@ namespace Quizard.DeckInterface
             mCardText.AfterTextChanged += CardText_AfterTextChanged;
 
             mInfoTextView = view.FindViewById<TextView>(Resource.Id.QuestionAnswerTextViewID);
+            mInfoTextView.Text = "Question:";
 
             mEditButton = view.FindViewById<Button>(Resource.Id.CardEditButtonID);
             mEditButton.Click += EditButton_Click;
@@ -352,6 +356,12 @@ namespace Quizard.DeckInterface
                 mFlipButton.Visibility = ViewStates.Visible;
                 AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
                 mEditButton.Text = "EDIT";
+
+                if (currState == cardState.QUESTION_STATE)
+                    mCardTextView.Text = mQuestions[mPosition];
+                else
+                    mCardTextView.Text = mAnswers[mPosition];
+
                 alert.SetTitle("Card edited");
 
                 alert.SetPositiveButton("OK", (senderAlert, args) =>
@@ -483,24 +493,6 @@ namespace Quizard.DeckInterface
         //    _gestureDetector.OnTouchEvent(e);
         //    return false;
         //}
-        public bool OnDown(MotionEvent e)
-        {
-            return true;
-        }
-        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
-        {
-            return true;
-        }
-        public void OnLongPress(MotionEvent e) { }
-        public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
-        {
-            return true;
-        }
-        public void OnShowPress(MotionEvent e) { }
-        public bool OnSingleTapUp(MotionEvent e)
-        {
-            return false;
-        }
 
     }
     public class deckPlayFragment : DialogFragment
@@ -508,7 +500,7 @@ namespace Quizard.DeckInterface
         List<string> mQuestions, mAnswers; // list of questions and answers
         int mPosition; // position in List
         Button mNextButton, mAnswerButton; // buttons to navigate dialog interface 
-        TextView mTxtView; // text view to display question/answer 
+        TextView mTxtView, mInfoTxtView; // text view to display question/answer 
 
         public deckPlayFragment(List<string> _questions, List<string> _answers)
         {
@@ -519,7 +511,12 @@ namespace Quizard.DeckInterface
             mAnswers = _answers;
             mPosition = 0;
         }
-
+        public override Dialog OnCreateDialog(Bundle savedInstanceState)
+        {
+            Dialog d = base.OnCreateDialog(savedInstanceState);
+            d.Window.RequestFeature(WindowFeatures.NoTitle);
+            return d;
+        }
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -545,21 +542,31 @@ namespace Quizard.DeckInterface
             mTxtView.Text = mQuestions[mPosition];
             // turn off next button while not necessary
             mNextButton.Enabled = false;
-
             // click events for next and answer button
             mNextButton.Click += NextButton_Click;
             mAnswerButton.Click += AnswerButton_Click;
 
-
+            mInfoTxtView = view.FindViewById<TextView>(Resource.Id.PlayInfoTextViewID);
+            mInfoTxtView.Text = "Question:";
             return view;
         }
         // click event for answer button. turns next button on, and view answer button off. 
         // also changes text view to the current answer
         private void AnswerButton_Click(object sender, EventArgs e)
         {
-            mNextButton.Enabled = true;
-            mAnswerButton.Enabled = false;
-            mTxtView.Text = mAnswers[mPosition];
+            if (mTxtView.Text == mQuestions[mPosition])
+            {
+                mInfoTxtView.Text = "Answer:";
+                mTxtView.Text = mAnswers[mPosition];
+                mNextButton.Enabled = true; 
+            }
+            else
+            {
+                mInfoTxtView.Text = "Question:";
+                mTxtView.Text = mQuestions[mPosition];
+                mNextButton.Enabled = false;
+            }
+
         }
         // click event for next button while viewing answer. increments position. if at end of list, dismiss fragment.
         // if not at end, set the textview to the next question. turn off next button, enable the view answer button. 
@@ -574,11 +581,8 @@ namespace Quizard.DeckInterface
 
             // set TextView text to current question
             mTxtView.Text = mQuestions[mPosition];
-            // set buttons to correct state
             mNextButton.Enabled = false;
-            mAnswerButton.Enabled = true;
         }
-
     }
 
 
