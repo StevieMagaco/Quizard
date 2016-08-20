@@ -76,5 +76,18 @@ namespace Quizard.DataBase
         {
             QuizCards.Remove(m_Card);
         }
+        public List<Cards> RetrivesCardsFromSpecificSet(string _SetName)
+        {
+            Cards BufferCard = new Cards();
+            List<Cards> BufferList = new List<Cards>();
+            for(int loop = 0; loop < QuizCards.Count; loop++)
+            {
+
+                BufferCard = QuizCards[loop];
+                if (BufferCard.GetSetName() == _SetName)
+                    BufferList.Add(BufferCard);
+            }
+            return BufferList;
+        }
     }
 }

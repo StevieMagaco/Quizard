@@ -96,7 +96,7 @@ namespace Quizard
             }
 
             RetreiveSet(mFlashSetList, Username_Buffer);
-
+            RetrieveCards();
             string json = JsonConvert.SerializeObject(mSetNameList);
             SendData(json);
 
@@ -358,11 +358,17 @@ namespace Quizard
 
                 ICursor SetInfo = db.GetSets(_Username);
                 mSetNameList.Clear();
-
+                DataBase.Sets BufferSet = new DataBase.Sets();
                 while (SetInfo.MoveToNext())
                 {
                     string name = SetInfo.GetString(1);
                     mSetNameList.Add(name);
+                    BufferSet.SetUsername(_Username);
+                    BufferSet.SetSetName(SetInfo.GetString(1));
+                    BufferSet.SetNotify(SetInfo.GetString(2));
+                    BufferSet.SetCorrect(SetInfo.GetString(3));
+                    BufferSet.SetIncorrect(SetInfo.GetString(4));
+                    mUserInformation.AddSet(BufferSet);
                 }
 
                 if (mSetNameList.Count > 0)
@@ -378,7 +384,39 @@ namespace Quizard
                 Toast.MakeText(this, "Failed to retrieve flash sets from the database", ToastLength.Short).Show();
             }
         }
+        private void RetrieveCards()
+        {
+            for (int loop = 0; loop < mSetNameList.Count; loop++)
+            {
+                try
+                {
+                    DataBase.DBAdapter db = new DataBase.DBAdapter(this);
+                    db.openDB();
 
+                    ICursor CardsInfo = db.GetCards(mUserInformation.GetUser().GetUsername(), mSetNameList[loop]);
+                    DataBase.Cards BufferCard = new DataBase.Cards();
+                    while (CardsInfo.MoveToNext())
+                    {
+                        BufferCard.SetUserName(CardsInfo.GetString(0));
+                        BufferCard.SetSetName(CardsInfo.GetString(1));
+                        BufferCard.SetQuestion(CardsInfo.GetString(2));
+                        BufferCard.SetAnswer(CardsInfo.GetString(3));
+                        BufferCard.SetNumberBox(CardsInfo.GetString(4));
+                        BufferCard.SetPreRun(CardsInfo.GetString(5));
+                        mUserInformation.AddCard(BufferCard);
+                    }
+                    db.CloseDB();
+
+                    // mCardTabListView.Adapter = ListAdapter;
+
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+                    Toast.MakeText(this, "Failed to retrieve Cards", ToastLength.Short).Show();
+                }
+            }
+        }
         private bool AddSet(string _Username, string _SetName)
         {
             try
@@ -465,7 +503,7 @@ namespace Quizard
                 Toast.MakeText(this, "Unable to update " + _SetName, ToastLength.Short).Show();
                 return false;
             }
-               
+
         }
     }
     #endregion

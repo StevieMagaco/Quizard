@@ -132,9 +132,14 @@ namespace Quizard.DeckInterface
         }
         public void Remove(int pos)
         {
+
             //TODO: Remove from database
-            mQuestions.RemoveAt(pos);
-            mAnswers.RemoveAt(pos);
+            DeleteCard(mUsername, mSetName, mQuestions[pos], mAnswers[pos]);
+            RetrieveCards(mUsername, mSetName);
+
+            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
+            mCardTabListView.Adapter = ListAdapter;
+
         }
         public void AddCardToList(string question, string answer, int pos)
         {
@@ -147,6 +152,7 @@ namespace Quizard.DeckInterface
 
             ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
             mCardTabListView.Adapter = ListAdapter;
+            
             
         }
         // Function is called when Add button is clicked while adding cards. Takes in values from EditText widgets,
@@ -267,6 +273,14 @@ namespace Quizard.DeckInterface
                 Toast.MakeText(mContext, "Failed to Update Cards", ToastLength.Short).Show();
             db.CloseDB();
         }
+        private void DeleteCard(string _Username, string _SetName, string _Question, string _Answer)
+        {
+            DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
+            db.openDB();
+            if (!db.DeleteCard(_Username, _SetName, _Question, _Answer))
+                Toast.MakeText(mContext, "Failed to Delete Cards", ToastLength.Short).Show();
+            db.CloseDB();
+        }
     }
     public class DeckCardDialogFragment : DialogFragment
     {
@@ -326,6 +340,7 @@ namespace Quizard.DeckInterface
         {
             // remove card from mDeck
             mDeck.Remove(mPosition) ;
+            Dismiss();
         }
 
         private void EditButton_Click(object sender, EventArgs e)

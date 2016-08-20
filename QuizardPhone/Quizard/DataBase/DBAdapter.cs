@@ -272,5 +272,18 @@ namespace Quizard.DataBase
             else
                 return false;
         }
+        /*
+         * Removes a Existing Card in Card table 
+         * Using the Username , Set name, Question, Answer
+         */
+        public bool DeleteCard(string _Username, string _SetName, string _Question, string _Answer)
+        {
+            String whereclause = Constants.Cards_UserName + " = ? and " + Constants.Cards_SetName + " = ? and " + Constants.Cards_Question + " = ? and " + Constants.Cards_Answer + " = ?" ;
+            String[] Clause = { _Username, _SetName, _Question, _Answer };
+            if (mdb.Delete(Constants.Cards_TB_Name, whereclause, Clause) > 0)
+                return true;
+            else
+                return false;
+        }
     }
 }
