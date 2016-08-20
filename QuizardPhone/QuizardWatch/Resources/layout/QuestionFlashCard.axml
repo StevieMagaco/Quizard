@@ -3,6 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:background="@drawable/watchbackground"
     android:minWidth="25px"
     android:minHeight="25px">
     <LinearLayout
@@ -14,15 +16,18 @@
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="28.0dp"
             android:layout_weight="10"
-            android:id="@+id/QuestionTitle" />
+            android:gravity="center"
+            android:id="@+id/QuestionTitle"
+            android:textColor="@android:color/holo_orange_light" />
         <TextView
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="119.3dp"
             android:layout_weight="80"
+            android:gravity="center"
             android:id="@+id/QuestionTextBox" />
         <ImageButton
             android:src="@drawable/success"
@@ -30,6 +35,7 @@
             android:layout_height="45.5dp"
             android:layout_weight="10"
             android:id="@+id/QuestionNext"
+            android:background="@android:color/transparent"
             android:scaleType="fitCenter" />
     </LinearLayout>
 </LinearLayout>
