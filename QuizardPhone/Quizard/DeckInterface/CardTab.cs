@@ -213,7 +213,7 @@ namespace Quizard.DeckInterface
             {
                 if (_Question.Length > 0 || _Answer.Length > 0)
                 {
-                    DataBase.Cards CardBuffer = new DataBase.Cards(_Username, _SetName, _Question, _Answer, "", "");
+                    DataBase.Cards CardBuffer = new DataBase.Cards(_Username, _SetName, _Question, _Answer, "0", "0");
                     DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
                     db.openDB();
                     if (db.SetCard(CardBuffer))
