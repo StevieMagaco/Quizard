@@ -36,10 +36,13 @@ namespace Quizard.DataBase
             db.CloseDB();
             return false;
         }
+        /*
+         * This function will Save a set in the database 
+         */
         public bool SaveSet(string Username, string SetName, Context c)
         {
             DBAdapter db = new DBAdapter(c);
-            DataBase.Sets Set_buffer = new DataBase.Sets(Username, SetName, "", "", "");
+            DataBase.Sets Set_buffer = new DataBase.Sets(Username, SetName, "0", "0", "0");
             db.openDB();
 
             if (db.SaveSet(Set_buffer))

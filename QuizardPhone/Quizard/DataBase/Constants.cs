@@ -80,5 +80,6 @@ namespace Quizard.DataBase
         public static String Drop_Sets_tb = "drop table if exists " + Sets_TB_Name;
         public static String Drop_Cards_tb = "drop table if exists " + Cards_TB_Name;
         public static String Drop_RemeberMe_tb = "drop table if exists " + RememberMe_TB_Name;
+        
     }
 }
