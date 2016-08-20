@@ -57,17 +57,25 @@ namespace Quizard.DeckInterface
         // TODO: Fix shuffle
          public List<string> Shuffle(List<string> array)
         {
-            int n = array.Count;
+            //int n = array.Count;
+            //Random rng = new Random();
+            //while (n > 1)
+            //{
+            //    int k = rng.Next(n--);
+            //    string temp = array[n];
+            //    array[n] = array[k];
+            //    array[k] = temp;
+            //}
+            List<string> BufferList = new List<string>();
             Random rng = new Random();
-            while (n > 1)
+            for (int loop = 0; loop < 4; loop++)
             {
-                int k = rng.Next(n--);
-                string temp = array[n];
-                array[n] = array[k];
-                array[k] = temp;
+               int Range = rng.Next(1, 5000 + loop);
+                int index = Range % array.Count;
+                BufferList.Add(array[index]);
+                array.Remove(array[index]);
             }
-        
-            return array;
+            return BufferList;
         }
         // Takes in full list of answers, and pulls out 4 for question
         // then sets correct answer index, and sets mChocies to tChoices
@@ -78,9 +86,9 @@ namespace Quizard.DeckInterface
                 mChoices.Clear();
             else
                 mChoices = new List<string>();
-
+            
             Random tRand = new Random();
-
+            
             int tIndex = 0;
             List<string> bufferList = new List<string>();
             bufferList = allAnswers.ToList<string>();
@@ -90,10 +98,10 @@ namespace Quizard.DeckInterface
             // pull out 4 answers
             for (int i = 0; i < 4; i++)
             {
-                int temp = tRand.Next() % bufferList.Count;
-                tChoices.Add(bufferList[temp]);
-                bufferList.RemoveAt(temp);
-
+                int range = tRand.Next(1,7000+i);
+                int index = range % bufferList.Count;
+                tChoices.Add(bufferList[index]);
+                bufferList.RemoveAt(index);
             }
             // check for correct answer in list, add if necessary, and assign index
             bool correctAdded = false;
