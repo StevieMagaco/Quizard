@@ -24,6 +24,48 @@ using Newtonsoft.Json;
 
 namespace Quizard
 {
+    // TODO: Implement updated menu system for the HomeLayout using this Dialog Fragment
+    public class HomeMenuDialogFragment : DialogFragment
+    {
+        private Button mMenuEnter, mMenuEdit, mMenuDelete;
+        HomeActivity mActivityReference; // To reference public data in HomeActivity
+
+        public override Dialog OnCreateDialog(Bundle savedInstanceState)
+        {
+            Dialog d = base.OnCreateDialog(savedInstanceState);
+            d.Window.RequestFeature(WindowFeatures.NoTitle);
+            return d;
+        }
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            base.OnCreateView(inflater, container, savedInstanceState);
+
+            var view = inflater.Inflate(Resource.Layout.HomeMenuDialogLayout, container, false);
+
+            mMenuEnter = view.FindViewById<Button>(Resource.Id.EnterIntoFlashSetMenuButtonID);
+            mMenuEdit = view.FindViewById<Button>(Resource.Id.EditFlashSetMenuButtonID);
+            mMenuDelete = view.FindViewById<Button>(Resource.Id.DeleteFlashSetMenuButtonID);
+
+            mMenuEnter.Click += delegate (object sender, EventArgs e)
+            {
+                // Enter the flash set
+            };
+
+            mMenuEdit.Click += delegate (object sender, EventArgs e)
+            {
+                // Edit selected flash set
+            };
+
+            mMenuDelete.Click += delegate (object sender, EventArgs e)
+            {
+                // Delete selected flash set
+            };
+
+            return view;
+        }
+    }
+
     [Activity(MainLauncher = false /* MainLauncher does NOT need to be changed unless another layout or diaglog fragment needs to be tested*/, Theme = "@style/CustomActionToolbarTheme")]
     public class HomeActivity : Activity, IDataApiDataListener, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
     {
@@ -58,7 +100,6 @@ namespace Quizard
             SetContentView(Resource.Layout.HomeLayout);
 
             mGoogleClient = new GoogleApiClient.Builder(this, this, this).AddApi(WearableClass.API).Build();
-
 
             #region Class Variable FindViewById<> Assignments
             mFlashSetList = FindViewById<ListView>(Resource.Id.flashSetListViewID);
@@ -123,7 +164,7 @@ namespace Quizard
             mFlashSetList.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs e)
             {
                 mSelectedFlashSet = e.Position;
-                mFlashSetSubject.Hint = "Edit Subject Name?"; //mSetNameList[mSelectedFlashSet].ToString();
+                mFlashSetSubject.Hint = "Edit " + mSetNameList[mSelectedFlashSet].ToString() + "?";
 
                 mFlashSetSubject.Visibility = ViewStates.Visible;
                 mEnterIntoSelectedFlashSet.Visibility = ViewStates.Visible;
@@ -143,6 +184,14 @@ namespace Quizard
 
                 mSettings.Visibility = ViewStates.Invisible;
                 mSettingsLabel.Visibility = ViewStates.Invisible;
+                #endregion
+
+                #region Fragment Code
+                //HomeMenuDialogFragment fragment = new HomeMenuDialogFragment();
+                //FragmentTransaction transaction = FragmentManager.BeginTransaction();
+
+                //// When a "mFlasSetList" ListView item is clicked, bring up the assigned dialog fragment
+                //fragment.Show(transaction, "dialog fragment");
                 #endregion
             };
 

@@ -214,9 +214,12 @@ containing a value of this type.
         public static final int CardEditButtonID=0x7f080016;
         public static final int DeckAddCardCancelButton=0x7f080013;
         public static final int DeckAddCardSaveButton=0x7f080012;
+        public static final int DeleteFlashSetMenuButtonID=0x7f080045;
+        public static final int EditFlashSetMenuButtonID=0x7f080044;
+        public static final int EnterIntoFlashSetMenuButtonID=0x7f080043;
         public static final int PlayInfoTextViewID=0x7f080029;
-        public static final int PlaySetFront_ViewAnswerButton=0x7f08004d;
-        public static final int PlaySetQuestionTextView=0x7f08004a;
+        public static final int PlaySetFront_ViewAnswerButton=0x7f080050;
+        public static final int PlaySetQuestionTextView=0x7f08004d;
         public static final int QuestionAnswerTextViewID=0x7f080015;
         public static final int QuestionEditText=0x7f08000f;
         public static final int QuizTabHomeButtonID=0x7f080030;
@@ -238,7 +241,7 @@ containing a value of this type.
         public static final int cardTabToolbar=0x7f08001b;
         public static final int createAFlashSetImageButtonID=0x7f080034;
         public static final int createAFlashSetTextViewID=0x7f080035;
-        public static final int createAnAccountButtonID=0x7f080048;
+        public static final int createAnAccountButtonID=0x7f08004b;
         public static final int createNewAccountButtonID=0x7f08000d;
         public static final int dark=0x7f080008;
         public static final int deckAddCardAnswerEditTextID=0x7f080020;
@@ -258,16 +261,19 @@ containing a value of this type.
         public static final int icon_only=0x7f080004;
         public static final int item_touch_helper_previous_elevation=0x7f080000;
         public static final int light=0x7f080009;
-        public static final int loginButtonID=0x7f080047;
-        public static final int loginProgressBarID=0x7f080049;
-        public static final int loginViewLinearLayoutID=0x7f080043;
+        public static final int loginButtonID=0x7f08004a;
+        public static final int loginProgressBarID=0x7f08004c;
+        public static final int loginViewLinearLayoutID=0x7f080046;
+        public static final int menuDeleteFlashSetId=0x7f080053;
+        public static final int menuEditFlashSetId=0x7f080052;
+        public static final int menuEnterFlashSetId=0x7f080051;
         public static final int newUserConfirmPasswordEditTextID=0x7f08000c;
         public static final int newUserPasswordEditTextID=0x7f08000b;
         public static final int newUserUsernameEditTextID=0x7f08000a;
         public static final int nextCardButton=0x7f08002b;
         public static final int none=0x7f080003;
-        public static final int playSetNoButton=0x7f08004c;
-        public static final int playSetYesButton=0x7f08004b;
+        public static final int playSetNoButton=0x7f08004f;
+        public static final int playSetYesButton=0x7f08004e;
         public static final int questionTextBox=0x7f080025;
         public static final int questionTextView=0x7f080024;
         public static final int quizDialobNextButton=0x7f08002f;
@@ -276,7 +282,7 @@ containing a value of this type.
         public static final int quizTabAnswerListView=0x7f080032;
         public static final int quizTabNextButtonID=0x7f080033;
         public static final int quizTabQuestionTextView=0x7f080031;
-        public static final int rememberMeCheckBoxID=0x7f080046;
+        public static final int rememberMeCheckBoxID=0x7f080049;
         public static final int searchFlashSetsSearchViewID=0x7f080040;
         public static final int settingsImageButtonID=0x7f08003c;
         public static final int settingsTextViewID=0x7f08003d;
@@ -284,8 +290,8 @@ containing a value of this type.
         public static final int textView1=0x7f08000e;
         public static final int textView2=0x7f080010;
         public static final int toolbar1=0x7f080014;
-        public static final int userLoginPasswordEditTextID=0x7f080045;
-        public static final int userLoginUsernameEditTextID=0x7f080044;
+        public static final int userLoginPasswordEditTextID=0x7f080048;
+        public static final int userLoginUsernameEditTextID=0x7f080047;
         public static final int viewAnswerButton=0x7f08002c;
         public static final int wide=0x7f080006;
     }
@@ -303,9 +309,13 @@ containing a value of this type.
         public static final int deckquizdialogbox=0x7f030007;
         public static final int deckquiztab=0x7f030008;
         public static final int homelayout=0x7f030009;
-        public static final int loginlayout=0x7f03000a;
-        public static final int playsetlayout_back=0x7f03000b;
-        public static final int playsetlayout_front=0x7f03000c;
+        public static final int homemenudialoglayout=0x7f03000a;
+        public static final int loginlayout=0x7f03000b;
+        public static final int playsetlayout_back=0x7f03000c;
+        public static final int playsetlayout_front=0x7f03000d;
+    }
+    public static final class menu {
+        public static final int menuitems=0x7f0b0000;
     }
     public static final class string {
         public static final int ApplicationName=0x7f04001f;

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#02243C"
+    android:minHeight="800px"
+    android:gravity="center"
+    android:minWidth="800px"
+    android:layout_height="match_parent">
+  <TextView
+      android:text="What would you like to do?"
+      android:layout_width="match_parent"
+      android:gravity="center"
+      android:textSize="25dp"
+      android:textColor="#ffffff"
+      android:layout_marginTop="20dp"
+      android:layout_marginBottom="20dp"
+      android:textStyle="bold"
+      android:layout_height="wrap_content" />
+  <Button
+      android:text="Go Into Flash Set"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="60dp"
+      android:layout_marginRight="60dp"
+      android:layout_marginBottom="10dp"
+      android:background="@drawable/ButtonStyle"
+      android:id="@+id/EnterIntoFlashSetMenuButtonID" />
+  <Button
+      android:text="Edit Flash Set"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="60dp"
+      android:layout_marginRight="60dp"
+      android:layout_marginBottom="10dp"
+      android:background="@drawable/ButtonStyle"
+      android:id="@+id/EditFlashSetMenuButtonID" />
+  <Button
+      android:text="Delete Flash Set"
+      android:layout_width="match_parent"
+      android:layout_marginLeft="60dp"
+      android:layout_marginRight="60dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10dp"
+      android:background="@drawable/ButtonStyle"
+      android:id="@+id/DeleteFlashSetMenuButtonID" />
+</LinearLayout>
