@@ -164,7 +164,7 @@ namespace Quizard
             mFlashSetList.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs e)
             {
                 mSelectedFlashSet = e.Position;
-                mFlashSetSubject.Hint = "Edit " + mSetNameList[mSelectedFlashSet].ToString() + "?";
+                mFlashSetSubject.Hint = "Edit " + ReturnRealSetName(mSetNameList[mSelectedFlashSet].ToString()) + "?";
 
                 mFlashSetSubject.Visibility = ViewStates.Visible;
                 mEnterIntoSelectedFlashSet.Visibility = ViewStates.Visible;
@@ -199,7 +199,7 @@ namespace Quizard
             mEnterIntoSelectedFlashSet.Click += delegate (object sender, EventArgs e)
             {
                 Intent intent = new Intent(this, typeof(DeckActivity));
-                string[] UserSetName = { mUserInformation.GetUser().GetUsername(), mSetNameList[mSelectedFlashSet].ToString() };
+                string[] UserSetName = { mUserInformation.GetUser().GetUsername(),ReturnRealSetName( mSetNameList[mSelectedFlashSet].ToString()) };
                 intent.PutExtra("Username/SetName", UserSetName);
                 this.StartActivity(intent);
             };
@@ -411,8 +411,11 @@ namespace Quizard
                 while (SetInfo.MoveToNext())
                 {
                     string name = SetInfo.GetString(1);
-                    mSetNameList.Add(name);
-                    BufferSet.SetUsername(_Username);
+                   int CardCount = GetCardCount(mUserInformation.GetUser().GetUsername(), name);
+                    mSetNameList.Add(name + "\n" + CardCount.ToString());
+                   // mSetNameList.Add(name);
+
+                   BufferSet.SetUsername(_Username);
                     BufferSet.SetSetName(SetInfo.GetString(1));
                     BufferSet.SetNotify(SetInfo.GetString(2));
                     BufferSet.SetCorrect(SetInfo.GetString(3));
@@ -442,7 +445,7 @@ namespace Quizard
                     DataBase.DBAdapter db = new DataBase.DBAdapter(this);
                     db.openDB();
 
-                    ICursor CardsInfo = db.GetCards(mUserInformation.GetUser().GetUsername(), mSetNameList[loop]);
+                    ICursor CardsInfo = db.GetCards(mUserInformation.GetUser().GetUsername(),ReturnRealSetName( mSetNameList[loop]));
                     DataBase.Cards BufferCard = new DataBase.Cards();
                     while (CardsInfo.MoveToNext())
                     {
@@ -470,6 +473,7 @@ namespace Quizard
         {
             try
             {
+                _SetName = ReturnRealSetName(_SetName);
                 DataBase.DBFunction DataFunc = new DataBase.DBFunction();
                 DataBase.DBAdapter db = new DataBase.DBAdapter(this);
                 db.openDB();
@@ -507,7 +511,7 @@ namespace Quizard
         {
             DataBase.DBAdapter db = new DataBase.DBAdapter(this);
             db.openDB();
-
+           _SetName = ReturnRealSetName(_SetName);
             if (db.DeleteRowSet_tb(_Username, _SetName))
             {
                 RetreiveSet(mFlashSetList, _Username);
@@ -527,6 +531,7 @@ namespace Quizard
         {
             if (_Username.Length > 0 && _NewSetName.Length > 0)
             {
+                _SetName = ReturnRealSetName(_SetName);
                 DataBase.DBAdapter db = new DataBase.DBAdapter(this);
                 db.openDB();
 
@@ -534,6 +539,7 @@ namespace Quizard
 
                 if (db.UpdateRowSets(SetBuffer, _NewSetName))
                 {
+                    UpdateCardSetName(_Username, _SetName, _NewSetName);
                     RetreiveSet(mFlashSetList, _Username);
                     Toast.MakeText(this, _SetName + " was updated to " + _NewSetName, ToastLength.Short).Show();
                     db.CloseDB();
@@ -553,6 +559,58 @@ namespace Quizard
                 return false;
             }
 
+        }
+        public int GetCardCount(string _Username, string _SetName)
+        {
+            try
+            {
+                DataBase.DBAdapter db = new DataBase.DBAdapter(this);
+                db.openDB();
+                ICursor CardsInfo = db.GetCards(_Username, _SetName);
+                int CardCountBuffer = CardsInfo.Count;
+                db.CloseDB();
+                return CardCountBuffer;
+                // mCardTabListView.Adapter = ListAdapter;
+
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                Toast.MakeText(this, "Failed to retrieve Cards", ToastLength.Short).Show();
+                return 0;
+            }
+        }
+        public string ReturnRealSetName(string _Setname)
+        {
+            string SetNameBuffer = "";
+            for(int loop = 0; loop < _Setname.Length; loop++)
+            {
+                if (_Setname[loop] != '\n')
+                {
+                    SetNameBuffer += _Setname[loop];
+                }
+                else
+                    break;
+            }
+            return SetNameBuffer;
+        }
+        public void UpdateCardSetName(string _Username, string _Setname, string _NewSetname)
+        {
+            DataBase.DBAdapter db = new DataBase.DBAdapter(this);
+            DataBase.Cards CardBuffer = new DataBase.Cards();
+            db.openDB();
+            ICursor Cards = db.GetCards(_Username, _Setname);
+            while(Cards.MoveToNext())
+            {
+                CardBuffer.SetUserName(_Username);
+                CardBuffer.SetSetName(_Setname);
+                CardBuffer.SetQuestion(Cards.GetString(2));
+                CardBuffer.SetAnswer(Cards.GetString(3));
+                CardBuffer.SetNumberBox(Cards.GetString(4));
+                CardBuffer.SetPreRun(Cards.GetString(5));
+                db.UpdateCardsSetName(CardBuffer, _NewSetname);
+            }
+            db.CloseDB();
         }
     }
     #endregion

@@ -297,6 +297,22 @@ namespace Quizard.DataBase
             else
                 return false;
         }
+        public bool UpdateCardsSetName(Cards _Card, string _NewSetname)
+        {
+            String whereclause = Constants.Users_UserName + " = ? and " + Constants.Cards_SetName + " = ?";
+            String[] Clause = { _Card.GetUserName(), _Card.GetSetName() };
+            ContentValues insertValues = new ContentValues();
+            insertValues.Put(Constants.Cards_UserName, _Card.GetUserName());
+            insertValues.Put(Constants.Cards_SetName, _NewSetname);
+            insertValues.Put(Constants.Cards_Question, _Card.GetQuestion());
+            insertValues.Put(Constants.Cards_Answer, _Card.GetAnswer());
+            insertValues.Put(Constants.Cards_NumberBox, _Card.GetNumberBox());
+            insertValues.Put(Constants.Cards_PreRun, _Card.GetPreRun());
+            if (mdb.Update(Constants.Cards_TB_Name, insertValues, whereclause, Clause) > 0)
+                return true;
+            else
+                return false;
+        }
         /*
          * Removes a Existing Card in Card table 
          * Using the Username , Set name, Question, Answer
