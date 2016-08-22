@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 
 namespace Quizard
 {
-    [Activity(Label = "Quizard"/*"ToMenuSplashScreen"*/, MainLauncher = true, Icon = "@drawable/splashscreen512")]
+    [Activity(Label = "Quizard"/*"ToMenuSplashScreen"*/, MainLauncher = true, Icon = "@drawable/LogoBackground512")]
     public class ToMenuSplashScreen : Activity
     {
         private int countDown = 0;

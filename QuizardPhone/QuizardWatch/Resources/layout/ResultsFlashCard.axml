@@ -3,17 +3,20 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:background="@drawable/watchbackground"
     android:minWidth="25px"
     android:minHeight="25px">
     <TextView
         android:text="Study Set Complete!"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="24.0dp"
         android:background="@android:color/transparent"
         android:id="@+id/ResultPageTitle"
         android:gravity="center"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_marginTop="16.0dp" />
     <TextView
         android:text="Your average was:"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -29,7 +32,7 @@
         android:id="@+id/linearLayout1">
         <TextView
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_width="75.5dp"
+            android:layout_width="111.3dp"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="center"
@@ -58,11 +61,11 @@
         android:id="@+id/linearLayout3">
         <ImageButton
             android:src="@drawable/error"
-            android:layout_width="79.0dp"
+            android:layout_width="106.0dp"
             android:layout_height="match_parent"
             android:id="@+id/ResultCancelButton"
             android:background="@android:color/transparent"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitEnd" />
         <ImageButton
             android:src="@drawable/success"
             android:layout_width="match_parent"
@@ -70,7 +73,7 @@
             android:id="@+id/ResultAcceptButton"
             android:background="@android:color/transparent"
             android:layout_weight="50"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitStart" />
     </LinearLayout>
     <ImageView
         android:src="@drawable/watchbackground"

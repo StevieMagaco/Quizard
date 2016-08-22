@@ -16,56 +16,53 @@ namespace Quizard.DeckInterface
 {
     public class Question
     {
-        string mQuestion, mCorrectAnswer;
-        List<string> mChoices;
-        int mCorrectAnswerIndex;
-
+        string mQuestion, mCorrectAnswer; // holds string values for correct answer an the question
+        List<string> mChoices; // holds the 4 possible answers
+        int mCorrectAnswerIndex; // the index of the correct answer in mChoices
+        // initialize variables
         public Question(string question, string answer)
         {
             mQuestion = question;
             mCorrectAnswer = answer;
-        }
+        } 
+        // returns question string
         public string GetQuestion()
         {
             return mQuestion;
         }
+        // returns answer string
         public string GetCorrectAnswer()
         {
             return mCorrectAnswer;
         }
+        // returns list of multiple choice answers
         public List<string> GetChoices()
         {
             return mChoices;
         }
+        // returns correct answer index from mChoices
         public int GetCorrectIndex()
         {
             return mCorrectAnswerIndex;
         }
+        // sets the question string
         public void SetQuestion(string _question)
         {
             mQuestion = _question;
         }
+        // sets the answer string
         public void SetCorrectAnswer(string _answer)
         {
             mCorrectAnswer = _answer;
         }
+        // set the index for the correct answer
         void SetCorrectAnswerIndex(int index)
         {
             mCorrectAnswerIndex = index;
         }
-
-        // TODO: Fix shuffle
+        //shuffles mChoices
          public List<string> Shuffle(List<string> array)
         {
-            //int n = array.Count;
-            //Random rng = new Random();
-            //while (n > 1)
-            //{
-            //    int k = rng.Next(n--);
-            //    string temp = array[n];
-            //    array[n] = array[k];
-            //    array[k] = temp;
-            //}
             List<string> BufferList = new List<string>();
             Random rng = new Random();
             for (int loop = 0; loop < 4; loop++)
@@ -140,14 +137,16 @@ namespace Quizard.DeckInterface
         ListView answerListView; // list view for answers
         Context mContext;
 
-        ArrayAdapter mAdapterQ;
-        string mUsername, mSetName;
+        ArrayAdapter mAdapterQ; // database adapter
+        string mUsername, mSetName; // database strings
+         
+        int mRightAnswers = 0; // count of correct answers
 
-        int rightAnswers = 0;
+        Button mNextButton; // next button
+        ImageButton mHomeButton; // home button
 
-        Button nextButton;
-
-        List<Question> mQuiz;
+        List<Question> mQuiz; // list containing all of the questions
+        // initialize all variables
         public DeckQuizTabFragment(List<string> _questionList, List<string> _answerList, Context _Context, string[] _UserSetName)
         {
             mQuestionList = _questionList;
@@ -162,7 +161,7 @@ namespace Quizard.DeckInterface
             base.OnCreate(savedInstanceState);
             // Create your fragment here
         }
-
+        // creates view, checks for a minimum of 4 cards && sets up all widgets
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             FragmentManager.PopBackStack();
@@ -171,11 +170,15 @@ namespace Quizard.DeckInterface
 
             var view = inflater.Inflate(Resource.Layout.DeckQuizTab, container, false);
 
-            if (mQuestionList.Count > 4)
+            if (mQuestionList.Count >= 4)
             {
                 
                 // TODO: Get cards from database to fill questionList and answerList
                 RetrieveCards(mUsername, mSetName);
+
+
+                mHomeButton = view.FindViewById<ImageButton>(Resource.Id.QuizTabHomeButtonID);
+                mHomeButton.Click += HomeButton_Click;
 
                 // set question text view to a question
                 questionTextView = view.FindViewById<TextView>(Resource.Id.quizTabQuestionTextView);
@@ -197,18 +200,16 @@ namespace Quizard.DeckInterface
                 ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuiz[0].GetChoices());
                 answerListView.Adapter = ListAdapter;
 
-                nextButton = view.FindViewById<Button>(Resource.Id.quizTabNextButtonID);
-                nextButton.Visibility = ViewStates.Gone;
+                mNextButton = view.FindViewById<Button>(Resource.Id.quizTabNextButtonID);
+                mNextButton.Visibility = ViewStates.Gone;
 
                 // answer list view click event. Changes quiz to next question. 
-                // TODO: Needs to check for actual correct answer
                 answerListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) =>
                 {
                     int temp = mQuiz[mCurrPosition].GetCorrectIndex();
                     if (e.Position == mQuiz[mCurrPosition].GetCorrectIndex())
                     {
-                        // TODO: Add update function for Correct or Incorrect
-                        rightAnswers++;
+                        mRightAnswers++;
                         UpdateCardNumberBox(mUsername, mSetName, mQuestionList[mCurrPosition], mAnswerList[mCurrPosition], true);
                     }
                     else
@@ -226,18 +227,18 @@ namespace Quizard.DeckInterface
                         questionTextView.Text = mQuiz[mCurrPosition].GetQuestion();
                         ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuiz[mCurrPosition].GetChoices());
                         answerListView.Adapter = ListAdapter;
-                        nextButton.Visibility = ViewStates.Gone;
+                        mNextButton.Visibility = ViewStates.Gone;
                     }
                     else 
                     {
-                        int percentage = (int)Math.Round((double)(100 * rightAnswers) / mAnswerList.Count); ;
+                        int percentage = (int)Math.Round((double)(100 * mRightAnswers) / mAnswerList.Count); ;
                         questionTextView.Text = "You finished with a " + percentage + "%";
-                        rightAnswers = 0;
+                        mRightAnswers = 0;
                         mCurrPosition = 0;
                         answerListView.Visibility = ViewStates.Gone;
                     }
                 };
-                nextButton.Click += NextButton_Click;
+                mNextButton.Click += NextButton_Click;
 
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
@@ -275,15 +276,23 @@ namespace Quizard.DeckInterface
             }
             return view;
         }
-
-        private void NextButton_Click(object sender, EventArgs e)
+        // handles click event for homepage button
+        private void HomeButton_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this.Activity, typeof(HomeActivity));
+            intent.PutExtra("UserName", mUsername);
+            StartActivity(intent);
+        }
+        // handles next button for going through quiz
+        // ** not implemented **
+         private void NextButton_Click(object sender, EventArgs e)
         {
             questionTextView.Text = mQuiz[mCurrPosition].GetQuestion();
             ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuiz[mCurrPosition].GetChoices());
             answerListView.Adapter = ListAdapter;
-            nextButton.Visibility = ViewStates.Gone;
+            mNextButton.Visibility = ViewStates.Gone;
         }
-        // 
+        // creates the list of questions and then sets mQuiz 
         void InitQuiz(List<string> questions, List<string> answers)
         {
             mQuiz = new List<Question>();
@@ -298,6 +307,7 @@ namespace Quizard.DeckInterface
             }
 
         }
+        // database function for getting list of cards
         private void RetrieveCards(string _Username, string _SetName)
         {
             try
@@ -324,7 +334,7 @@ namespace Quizard.DeckInterface
             }
 
         }
-
+        // database function for leitner system
         public void UpdateCardNumberBox(string _Username, string _Setname, string _Question, string _Answer, bool _Correct)
         {
             DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
@@ -343,45 +353,4 @@ namespace Quizard.DeckInterface
             db.CloseDB();
         }
     }
-    //public class DeckQuizDialogFragment : DialogFragment
-    //{
-    //    List<string> mAnswers, mQuestions;
-    //    int mPosition, correctPosition;
-    //    Button mNextButton;
-    //    View mView;
-    //    public DeckQuizDialogFragment(List<string> _list, int pos)
-    //    {
-    //        mAnswers = new List<string>();
-    //        mAnswers = _list;
-    //        mPosition = pos;
-    //    }
-    //
-    //    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    //    {
-    //        base.OnCreate(savedInstanceState);
-    //
-    //        mView = inflater.Inflate(Resource.Layout.DeckQuizDialogBox, container, false);
-    //        var textView = mView.FindViewById<TextView>(Resource.Id.quizRightWrongTextView);
-    //
-    //        if (mPosition == 2)
-    //            textView.Text = "CORRECT!";
-    //        else
-    //            textView.Text = "WRONG! You chose " + mAnswers[mPosition] + ", Answer was " + mAnswers[2];
-    //
-    //        mNextButton = mView.FindViewById<Button>(Resource.Id.quizDialobNextButton);
-    //
-    //        mNextButton.Click += NextButton_Click;
-    //
-    //            // Set up a handler to dismiss this DialogFragment when this button is clicked.
-    //            mView.FindViewById<Button>(Resource.Id.quizDialogRedoButton).Click += (sender, args) => Dismiss();
-    //
-    //        return mView;
-    //    }
-    //
-    //    private void NextButton_Click(object sender, EventArgs e)
-    //    {
-    //        mPosition++;
-    //        Dismiss();
-    //    }
-    //}
 }

@@ -24,7 +24,8 @@ namespace Quizard.DeckInterface
         string mUsername, mSetName; // Database information
         Context mContext; // Current activity
         ArrayAdapter<string> ListAdapter; // ListAdapter for changing ListView values
-        View mView;
+        View mView; // this fragments view
+
         // Initialize all variables. 
         public DeckCardTabFragment(List<string> _questions, List<string> _answers, string[] UserSetName, Context _Context)
         {
@@ -130,10 +131,10 @@ namespace Quizard.DeckInterface
             ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
             mCardTabListView.Adapter = ListAdapter;
         }
+        // takes in card position, and then removes that card from database
         public void Remove(int pos)
         {
-
-            //TODO: Remove from database
+            
             DeleteCard(mUsername, mSetName, mQuestions[pos], mAnswers[pos]);
             RetrieveCards(mUsername, mSetName);
 
@@ -141,19 +142,15 @@ namespace Quizard.DeckInterface
             mCardTabListView.Adapter = ListAdapter;
 
         }
+        // Changes cards with updated strings question/answer, and sets the list to carry new cards
         public void AddCardToList(string question, string answer, int pos)
         {
-            //mQuestions[pos] = question;
-            //mAnswers[pos] = answer;
-            
             DataBase.Cards CardBuffer = new DataBase.Cards(mUsername, mSetName, mQuestions[pos], mAnswers[pos], "", "");
             UpdateCard(CardBuffer, question, answer);
             RetrieveCards(mUsername, mSetName);
 
             ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
             mCardTabListView.Adapter = ListAdapter;
-            
-            
         }
         // Function is called when Add button is clicked while adding cards. Takes in values from EditText widgets,
         // sets it to temp string variables (tempSubject, tempAnswer), and then adds the cards to list and database.
@@ -206,7 +203,7 @@ namespace Quizard.DeckInterface
             fragment.Show(fragmentTx, "Play through deck fragment");
         }
 
-
+        // database function, adds cards to list
         private bool AddCard_db(string _Username, string _SetName, string _Question, string _Answer)
         {
             try
@@ -236,6 +233,7 @@ namespace Quizard.DeckInterface
                 return false;
             }
         }
+        // database function for getting cards frm list
         private void RetrieveCards(string _Username, string _SetName)
         {
             try
@@ -265,6 +263,7 @@ namespace Quizard.DeckInterface
             }
 
         }
+        // database function. updates cards
         private void UpdateCard(DataBase.Cards _Card, string _NewQuestion, string _NewAnswer)
         {
             DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
@@ -273,6 +272,7 @@ namespace Quizard.DeckInterface
                 Toast.MakeText(mContext, "Failed to Update Cards", ToastLength.Short).Show();
             db.CloseDB();
         }
+        // database function for removing card
         private void DeleteCard(string _Username, string _SetName, string _Question, string _Answer)
         {
             DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
@@ -282,7 +282,7 @@ namespace Quizard.DeckInterface
             db.CloseDB();
         }
     }
-    public class DeckCardDialogFragment : DialogFragment, GestureDetector.IOnGestureListener
+    public class DeckCardDialogFragment : DialogFragment
     {
 
         enum cardState { QUESTION_STATE, ANSWER_STATE, ALL_STATES } // enum for card states
@@ -290,10 +290,9 @@ namespace Quizard.DeckInterface
         List<string> mQuestions, mAnswers; // lists to hold questions and answers for each card
         int mPosition; // current position in list of cards
         EditText mCardText; // widget used to display/edit text
-        TextView mCardTextView;
-        cardState currState = cardState.QUESTION_STATE; // current state of card on display
+        TextView mCardTextView, mInfoTextView;
+        cardState mCurrState = cardState.QUESTION_STATE; // current state of card on display
         DeckCardTabFragment mDeck;
-        TextView mInfoTextView;
         Button mFlipButton, mEditButton, mDeleteButton;
         //private GestureDetector _gestureDetector;
 
@@ -307,13 +306,19 @@ namespace Quizard.DeckInterface
             mAnswers = _answers;
             mDeck = deck;
         }
-
+        // takes off title bar on creation
+        public override Dialog OnCreateDialog(Bundle savedInstanceState)
+        {
+            Dialog d = base.OnCreateDialog(savedInstanceState);
+            d.Window.RequestFeature(WindowFeatures.NoTitle);
+            return d;
+        }
+        // creates view and sets up all widgets
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             var view = inflater.Inflate(Resource.Layout.DeckCardDialogBox, container, false);
-
 
             // set up EditText widget for card 
             mCardText = view.FindViewById<EditText>(Resource.Id.cardDialogEditTextID);
@@ -322,6 +327,7 @@ namespace Quizard.DeckInterface
             mCardText.AfterTextChanged += CardText_AfterTextChanged;
 
             mInfoTextView = view.FindViewById<TextView>(Resource.Id.QuestionAnswerTextViewID);
+            mInfoTextView.Text = "Question:";
 
             mEditButton = view.FindViewById<Button>(Resource.Id.CardEditButtonID);
             mEditButton.Click += EditButton_Click;
@@ -335,14 +341,14 @@ namespace Quizard.DeckInterface
             mCardTextView.Text = mQuestions[mPosition];
             return view;
         }
-
+        // handles click event for delete
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             // remove card from mDeck
             mDeck.Remove(mPosition) ;
             Dismiss();
         }
-
+        // handles click event for edit button
         private void EditButton_Click(object sender, EventArgs e)
         {
             if (mCardTextView.Visibility == ViewStates.Gone)
@@ -352,6 +358,12 @@ namespace Quizard.DeckInterface
                 mFlipButton.Visibility = ViewStates.Visible;
                 AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
                 mEditButton.Text = "EDIT";
+
+                if (mCurrState == cardState.QUESTION_STATE)
+                    mCardTextView.Text = mQuestions[mPosition];
+                else
+                    mCardTextView.Text = mAnswers[mPosition];
+
                 alert.SetTitle("Card edited");
 
                 alert.SetPositiveButton("OK", (senderAlert, args) =>
@@ -391,7 +403,7 @@ namespace Quizard.DeckInterface
                 });
             }
 
-            if (currState == cardState.QUESTION_STATE)
+            if (mCurrState == cardState.QUESTION_STATE)
                 mCardText.Text = mQuestions[mPosition];
             else
                 mCardText.Text = mAnswers[mPosition];
@@ -399,107 +411,32 @@ namespace Quizard.DeckInterface
 
         // when flip button is tapped, switch state and text. 
         // QUESTION_STATE displays question. ANSWER_STATE display answers
-
-
         private void FlipButton_Click(object sender, EventArgs e)
         {
 
-            if (currState == cardState.QUESTION_STATE)
+            if (mCurrState == cardState.QUESTION_STATE)
             {
-                currState = cardState.ANSWER_STATE;
+                mCurrState = cardState.ANSWER_STATE;
                 mCardText.Text = mAnswers[mPosition];
                 mCardTextView.Text = mAnswers[mPosition];
                 mInfoTextView.Text = "Answer";
             }
             else
             {
-                currState = cardState.QUESTION_STATE;
+                mCurrState = cardState.QUESTION_STATE;
                 mCardText.Text = mQuestions[mPosition];
                 mCardTextView.Text = mQuestions[mPosition];
                 mInfoTextView.Text = "Question";
             }
         }
-       // private void CardText_LongClick(object sender, View.LongClickEventArgs e)
-      //  {
-      //      if (mCardTextView.Visibility == ViewStates.Gone)
-      //      {
-      //          mInfoTextView.Text = "Long tap to edit";
-      //          mCardTextView.Visibility = ViewStates.Visible;
-      //          mCardText.Visibility = ViewStates.Gone;
-      //
-      //          AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
-      //
-      //          alert.SetTitle("Card edited");
-      //
-      //          alert.SetPositiveButton("OK", (senderAlert, args) =>
-      //          {
-      //              return;
-      //          });
-      //
-      //          this.Activity.RunOnUiThread(() =>
-      //          {
-      //              alert.Show();
-      //          });
-      //
-      //      }
-      //
-      //      else
-      //      {
-      //          mInfoTextView.Text = "Currently editing";
-      //          mCardText.Visibility = ViewStates.Visible;
-      //          mCardTextView.Visibility = ViewStates.Gone;
-      //
-      //          AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
-      //
-      //          alert.SetTitle("You can now edit");
-      //
-      //          alert.SetPositiveButton("OK", (senderAlert, args) =>
-      //          {
-      //              return;
-      //          });
-      //
-      //          this.Activity.RunOnUiThread(() =>
-      //          {
-      //              alert.Show();
-      //          });
-      //      }
-      //
-      //      if (currState == cardState.QUESTION_STATE)
-      //          mCardText.Text = mQuestions[mPosition];
-      //      else
-      //          mCardText.Text = mAnswers[mPosition];
-      //  }
-      //
 
+        // deals with card as its being edited
         private void CardText_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
         {
-            if (currState == cardState.QUESTION_STATE)
+            if (mCurrState == cardState.QUESTION_STATE)
                 mDeck.AddCardToList(mCardText.Text, mAnswers[mPosition], mPosition);
             else
                 mDeck.AddCardToList(mQuestions[mPosition], mCardText.Text, mPosition);
-        }
-        //public override Boolean OnTouchEvent(MotionEvent e)
-        //{
-        //    _gestureDetector.OnTouchEvent(e);
-        //    return false;
-        //}
-        public bool OnDown(MotionEvent e)
-        {
-            return true;
-        }
-        public bool OnFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
-        {
-            return true;
-        }
-        public void OnLongPress(MotionEvent e) { }
-        public bool OnScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
-        {
-            return true;
-        }
-        public void OnShowPress(MotionEvent e) { }
-        public bool OnSingleTapUp(MotionEvent e)
-        {
-            return false;
         }
 
     }
@@ -508,8 +445,9 @@ namespace Quizard.DeckInterface
         List<string> mQuestions, mAnswers; // list of questions and answers
         int mPosition; // position in List
         Button mNextButton, mAnswerButton; // buttons to navigate dialog interface 
-        TextView mTxtView; // text view to display question/answer 
+        TextView mTxtView, mInfoTxtView; // text view to display question/answer 
 
+        // initialize all variables
         public deckPlayFragment(List<string> _questions, List<string> _answers)
         {
             mQuestions = new List<string>();
@@ -519,14 +457,20 @@ namespace Quizard.DeckInterface
             mAnswers = _answers;
             mPosition = 0;
         }
-
+        // removes title bar from dialogfragment on creation
+        public override Dialog OnCreateDialog(Bundle savedInstanceState)
+        {
+            Dialog d = base.OnCreateDialog(savedInstanceState);
+            d.Window.RequestFeature(WindowFeatures.NoTitle);
+            return d;
+        }
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             // Create your fragment here
         }
-
+        // creates view and sets up all widgets
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Use this to return your custom view for this Fragment
@@ -545,21 +489,31 @@ namespace Quizard.DeckInterface
             mTxtView.Text = mQuestions[mPosition];
             // turn off next button while not necessary
             mNextButton.Enabled = false;
-
             // click events for next and answer button
             mNextButton.Click += NextButton_Click;
             mAnswerButton.Click += AnswerButton_Click;
 
-
+            mInfoTxtView = view.FindViewById<TextView>(Resource.Id.PlayInfoTextViewID);
+            mInfoTxtView.Text = "Question:";
             return view;
         }
         // click event for answer button. turns next button on, and view answer button off. 
         // also changes text view to the current answer
         private void AnswerButton_Click(object sender, EventArgs e)
         {
-            mNextButton.Enabled = true;
-            mAnswerButton.Enabled = false;
-            mTxtView.Text = mAnswers[mPosition];
+            if (mTxtView.Text == mQuestions[mPosition])
+            {
+                mInfoTxtView.Text = "Answer:";
+                mTxtView.Text = mAnswers[mPosition];
+                mNextButton.Enabled = true; 
+            }
+            else
+            {
+                mInfoTxtView.Text = "Question:";
+                mTxtView.Text = mQuestions[mPosition];
+                mNextButton.Enabled = false;
+            }
+
         }
         // click event for next button while viewing answer. increments position. if at end of list, dismiss fragment.
         // if not at end, set the textview to the next question. turn off next button, enable the view answer button. 
@@ -574,99 +528,7 @@ namespace Quizard.DeckInterface
 
             // set TextView text to current question
             mTxtView.Text = mQuestions[mPosition];
-            // set buttons to correct state
             mNextButton.Enabled = false;
-            mAnswerButton.Enabled = true;
         }
-
     }
-
-
-    //public class deckPlayDialogFragment : DialogFragment
-    //  {
-    //      List<string> mQuestions, mAnswers;
-    //      int mPosition;
-    //      Button mAnswerButton;
-    //      View mView;
-    //      ViewGroup mContainer;
-    //      LayoutInflater mInflater;
-    //
-    //      public deckPlayDialogFragment(List<string> _questions, List<string> _answers)
-    //      {
-    //          mQuestions = new List<string>();
-    //          mAnswers = new List<string>();
-    //      }
-    //
-    //      public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    //      {
-    //          mInflater = inflater;
-    //          mContainer = container;
-    //
-    //
-    //          mView = inflater.Inflate(Resource.Layout.PlaySetLayout_Front, container, false);
-    //
-    //
-    //          // Set up a handler to dismiss this DialogFragment when this button is clicked.
-    //          mAnswerButton = mView.FindViewById<Button>(Resource.Id.PlaySetFront_ViewAnswerButton);
-    //          mAnswerButton.Click += AnswerButton_Click;
-    //          return mView;
-    //      }
-    //
-    //      private void AnswerButton_Click(object sender, EventArgs e)
-    //      {
-    //          FragmentTransaction fragmentTx = this.FragmentManager.BeginTransaction();
-    //          deckPlayDialogFragment_Answer aDifferentDetailsFrag = new deckPlayDialogFragment_Answer(mAnswers[mPosition]);
-    //          aDifferentDetailsFrag.Show(fragmentTx, "dialog_fragment");
-    //
-    //      }
-    //  }
-    //public class deckPlayDialogFragment_Answer : DialogFragment
-    //  {
-    //      TextView mAnswerTextView;
-    //      string mAnswer;
-    //      public deckPlayDialogFragment_Answer(string _answer)
-    //      {
-    //          mAnswer = _answer;
-    //
-    //      }
-    //      public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    //      {
-    //          var view = inflater.Inflate(Resource.Layout.PlaySetLayout_Front, container, false);
-    //
-    //          mAnswerTextView = view.FindViewById<TextView>(Resource.Id.answerTextView);
-    //
-    //          return view;
-    //      }
-    //  }
-    //   public class DeckCardTabEditFragment : DialogFragment
-    //   {
-    //       EditText mQuestionText, mAnswerText;
-    //
-    //       public DeckCardTabEditFragment(string question, string answer)
-    //       {
-    //           mQuestionText = new EditText(this.Activity);
-    //           mAnswerText = new EditText(this.Activity);
-    //           mQuestionText.FindViewById<EditText>(Resource.Id.questionTextBox);
-    //           mAnswerText.FindViewById<EditText>(Resource.Id.answerTextBox);
-    //           mQuestionText.Text = question;
-    //           mAnswerText.Text = answer;
-    //       }
-    //
-    //       public override void OnCreate(Bundle savedInstanceState)
-    //       {
-    //           base.OnCreate(savedInstanceState);
-    //
-    //           // Create your fragment here
-    //       }
-    //
-    //       public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    //       {
-    //           // Use this to return your custom view for this Fragment
-    //           // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-    //
-    //           var view = inflater.Inflate(Resource.Layout.DeckCardTab, container, false);
-    //
-    //           return base.OnCreateView(inflater, container, savedInstanceState);
-    //       }
-    //   }
 }

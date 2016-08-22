@@ -3,19 +3,25 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:background="@drawable/watchbackground"
     android:minWidth="25px"
     android:minHeight="25px">
     <TextView
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/AnswerTitle" />
+        android:layout_height="28.0dp"
+        android:gravity="center"
+        android:id="@+id/AnswerTitle"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_marginTop="4.0dp" />
     <TextView
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
-        android:layout_height="99.0dp"
+        android:layout_height="127.3dp"
+        android:gravity="center"
         android:id="@+id/AnswerTextBox" />
     <LinearLayout
         android:orientation="horizontal"
@@ -29,13 +35,15 @@
             android:layout_weight="50"
             android:layout_height="match_parent"
             android:id="@+id/AnswerCorrect"
-            android:scaleType="fitCenter" />
+            android:background="@android:color/transparent"
+            android:scaleType="fitEnd" />
         <ImageButton
             android:src="@drawable/error"
             android:layout_width="match_parent"
             android:layout_weight="50"
             android:layout_height="match_parent"
             android:id="@+id/AnswerIncorrect"
-            android:scaleType="fitCenter" />
+            android:background="@android:color/transparent"
+            android:scaleType="fitStart" />
     </LinearLayout>
 </LinearLayout>
