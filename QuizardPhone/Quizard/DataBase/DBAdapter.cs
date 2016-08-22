@@ -299,8 +299,8 @@ namespace Quizard.DataBase
         }
         public bool UpdateCardsSetName(Cards _Card, string _NewSetname)
         {
-            String whereclause = Constants.Users_UserName + " = ? and " + Constants.Cards_SetName + " = ?";
-            String[] Clause = { _Card.GetUserName(), _Card.GetSetName() };
+            String whereclause = Constants.Users_UserName + " = ? and " + Constants.Cards_SetName + " = ? and " + Constants.Cards_Question + " = ? and " + Constants.Cards_Answer + " = ?";
+            String[] Clause = { _Card.GetUserName(), _Card.GetSetName(), _Card.GetQuestion(), _Card.GetAnswer() };
             ContentValues insertValues = new ContentValues();
             insertValues.Put(Constants.Cards_UserName, _Card.GetUserName());
             insertValues.Put(Constants.Cards_SetName, _NewSetname);

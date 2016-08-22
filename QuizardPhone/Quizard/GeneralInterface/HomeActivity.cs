@@ -413,9 +413,9 @@ namespace Quizard
                     string name = SetInfo.GetString(1);
                    int CardCount = GetCardCount(mUserInformation.GetUser().GetUsername(), name);
                     mSetNameList.Add(name + "\n" + CardCount.ToString());
-                   // mSetNameList.Add(name);
-
-                   BufferSet.SetUsername(_Username);
+                    // mSetNameList.Add(name);
+                    BufferSet = new DataBase.Sets();
+                    BufferSet.SetUsername(_Username);
                     BufferSet.SetSetName(SetInfo.GetString(1));
                     BufferSet.SetNotify(SetInfo.GetString(2));
                     BufferSet.SetCorrect(SetInfo.GetString(3));
