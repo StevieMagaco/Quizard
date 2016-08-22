@@ -653,55 +653,58 @@ namespace Quizard
 			public const int Icon = 2130837557;
 			
 			// aapt resource value: 0x7f020036
-			public const int Low40P = 2130837558;
+			public const int LogoBackground512 = 2130837558;
 			
 			// aapt resource value: 0x7f020037
-			public const int Low50P = 2130837559;
+			public const int Low40P = 2130837559;
 			
 			// aapt resource value: 0x7f020038
-			public const int Low80P = 2130837560;
+			public const int Low50P = 2130837560;
 			
 			// aapt resource value: 0x7f020039
-			public const int open_on_phone = 2130837561;
+			public const int Low80P = 2130837561;
 			
 			// aapt resource value: 0x7f02003a
-			public const int open_on_phone_animation = 2130837562;
+			public const int open_on_phone = 2130837562;
 			
 			// aapt resource value: 0x7f02003b
-			public const int splashscreen512 = 2130837563;
+			public const int open_on_phone_animation = 2130837563;
 			
 			// aapt resource value: 0x7f02003c
-			public const int splashScreenWatch = 2130837564;
+			public const int splashscreen512 = 2130837564;
 			
 			// aapt resource value: 0x7f02003d
-			public const int success = 2130837565;
+			public const int splashScreenWatch = 2130837565;
 			
 			// aapt resource value: 0x7f02003e
-			public const int watchbackground = 2130837566;
+			public const int success = 2130837566;
 			
 			// aapt resource value: 0x7f02003f
-			public const int WN1 = 2130837567;
+			public const int watchbackground = 2130837567;
 			
 			// aapt resource value: 0x7f020040
-			public const int WN2 = 2130837568;
+			public const int WN1 = 2130837568;
 			
 			// aapt resource value: 0x7f020041
-			public const int WN3 = 2130837569;
+			public const int WN2 = 2130837569;
 			
 			// aapt resource value: 0x7f020042
-			public const int WN4 = 2130837570;
+			public const int WN3 = 2130837570;
 			
 			// aapt resource value: 0x7f020043
-			public const int WN5 = 2130837571;
+			public const int WN4 = 2130837571;
 			
 			// aapt resource value: 0x7f020044
-			public const int WN6 = 2130837572;
+			public const int WN5 = 2130837572;
 			
 			// aapt resource value: 0x7f020045
-			public const int WN7 = 2130837573;
+			public const int WN6 = 2130837573;
 			
 			// aapt resource value: 0x7f020046
-			public const int ZEROP = 2130837574;
+			public const int WN7 = 2130837574;
+			
+			// aapt resource value: 0x7f020047
+			public const int ZEROP = 2130837575;
 			
 			static Drawable()
 			{
