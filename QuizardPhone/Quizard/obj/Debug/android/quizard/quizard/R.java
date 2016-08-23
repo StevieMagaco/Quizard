@@ -204,10 +204,11 @@ containing a value of this type.
         public static final int homepageicon_small=0x7f020034;
         public static final int play_icon=0x7f020035;
         public static final int plusicon=0x7f020036;
-        public static final int quizardlogo=0x7f020037;
-        public static final int quizicon=0x7f020038;
-        public static final int settings=0x7f020039;
-        public static final int starticon=0x7f02003a;
+        public static final int quizardicon=0x7f020037;
+        public static final int quizardlogo=0x7f020038;
+        public static final int quizicon=0x7f020039;
+        public static final int settings=0x7f02003a;
+        public static final int starticon=0x7f02003b;
     }
     public static final class id {
         public static final int CardDeleteButtonID=0x7f080017;
