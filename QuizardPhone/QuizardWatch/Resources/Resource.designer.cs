@@ -653,58 +653,61 @@ namespace Quizard
 			public const int Icon = 2130837557;
 			
 			// aapt resource value: 0x7f020036
-			public const int LogoBackground512 = 2130837558;
+			public const int Logo = 2130837558;
 			
 			// aapt resource value: 0x7f020037
-			public const int Low40P = 2130837559;
+			public const int LogoBackground512 = 2130837559;
 			
 			// aapt resource value: 0x7f020038
-			public const int Low50P = 2130837560;
+			public const int Low40P = 2130837560;
 			
 			// aapt resource value: 0x7f020039
-			public const int Low80P = 2130837561;
+			public const int Low50P = 2130837561;
 			
 			// aapt resource value: 0x7f02003a
-			public const int open_on_phone = 2130837562;
+			public const int Low80P = 2130837562;
 			
 			// aapt resource value: 0x7f02003b
-			public const int open_on_phone_animation = 2130837563;
+			public const int open_on_phone = 2130837563;
 			
 			// aapt resource value: 0x7f02003c
-			public const int splashscreen512 = 2130837564;
+			public const int open_on_phone_animation = 2130837564;
 			
 			// aapt resource value: 0x7f02003d
-			public const int splashScreenWatch = 2130837565;
+			public const int splashscreen512 = 2130837565;
 			
 			// aapt resource value: 0x7f02003e
-			public const int success = 2130837566;
+			public const int splashScreenWatch = 2130837566;
 			
 			// aapt resource value: 0x7f02003f
-			public const int watchbackground = 2130837567;
+			public const int success = 2130837567;
 			
 			// aapt resource value: 0x7f020040
-			public const int WN1 = 2130837568;
+			public const int watchbackground = 2130837568;
 			
 			// aapt resource value: 0x7f020041
-			public const int WN2 = 2130837569;
+			public const int WN1 = 2130837569;
 			
 			// aapt resource value: 0x7f020042
-			public const int WN3 = 2130837570;
+			public const int WN2 = 2130837570;
 			
 			// aapt resource value: 0x7f020043
-			public const int WN4 = 2130837571;
+			public const int WN3 = 2130837571;
 			
 			// aapt resource value: 0x7f020044
-			public const int WN5 = 2130837572;
+			public const int WN4 = 2130837572;
 			
 			// aapt resource value: 0x7f020045
-			public const int WN6 = 2130837573;
+			public const int WN5 = 2130837573;
 			
 			// aapt resource value: 0x7f020046
-			public const int WN7 = 2130837574;
+			public const int WN6 = 2130837574;
 			
 			// aapt resource value: 0x7f020047
-			public const int ZEROP = 2130837575;
+			public const int WN7 = 2130837575;
+			
+			// aapt resource value: 0x7f020048
+			public const int ZEROP = 2130837576;
 			
 			static Drawable()
 			{
@@ -731,44 +734,50 @@ namespace Quizard
 			// aapt resource value: 0x7f0d001e
 			public const int AnswerTitle = 2131558430;
 			
+			// aapt resource value: 0x7f0d0025
+			public const int CardSetRowLabel = 2131558437;
+			
+			// aapt resource value: 0x7f0d0024
+			public const int CardSetRowLogo = 2131558436;
+			
+			// aapt resource value: 0x7f0d002b
+			public const int QuestionNext = 2131558443;
+			
+			// aapt resource value: 0x7f0d002a
+			public const int QuestionTextBox = 2131558442;
+			
 			// aapt resource value: 0x7f0d0029
-			public const int QuestionNext = 2131558441;
-			
-			// aapt resource value: 0x7f0d0028
-			public const int QuestionTextBox = 2131558440;
-			
-			// aapt resource value: 0x7f0d0027
-			public const int QuestionTitle = 2131558439;
+			public const int QuestionTitle = 2131558441;
 			
 			// aapt resource value: 0x7f0d0023
 			public const int QuizList = 2131558435;
 			
-			// aapt resource value: 0x7f0d0032
-			public const int ResultAcceptButton = 2131558450;
-			
-			// aapt resource value: 0x7f0d002c
-			public const int ResultAverageTitle = 2131558444;
-			
-			// aapt resource value: 0x7f0d0033
-			public const int ResultBackGround = 2131558451;
-			
-			// aapt resource value: 0x7f0d0031
-			public const int ResultCancelButton = 2131558449;
+			// aapt resource value: 0x7f0d0034
+			public const int ResultAcceptButton = 2131558452;
 			
 			// aapt resource value: 0x7f0d002e
-			public const int ResultEmoji = 2131558446;
-			
-			// aapt resource value: 0x7f0d002b
-			public const int ResultPageTitle = 2131558443;
-			
-			// aapt resource value: 0x7f0d002d
-			public const int ResultPercentage = 2131558445;
-			
-			// aapt resource value: 0x7f0d002f
-			public const int ResultRetryTitle = 2131558447;
+			public const int ResultAverageTitle = 2131558446;
 			
 			// aapt resource value: 0x7f0d0035
-			public const int SplashScreenImage = 2131558453;
+			public const int ResultBackGround = 2131558453;
+			
+			// aapt resource value: 0x7f0d0033
+			public const int ResultCancelButton = 2131558451;
+			
+			// aapt resource value: 0x7f0d0030
+			public const int ResultEmoji = 2131558448;
+			
+			// aapt resource value: 0x7f0d002d
+			public const int ResultPageTitle = 2131558445;
+			
+			// aapt resource value: 0x7f0d002f
+			public const int ResultPercentage = 2131558447;
+			
+			// aapt resource value: 0x7f0d0031
+			public const int ResultRetryTitle = 2131558449;
+			
+			// aapt resource value: 0x7f0d0037
+			public const int SplashScreenImage = 2131558455;
 			
 			// aapt resource value: 0x7f0d0001
 			public const int adjust_height = 2131558401;
@@ -812,11 +821,11 @@ namespace Quizard
 			// aapt resource value: 0x7f0d0008
 			public const int dark = 2131558408;
 			
-			// aapt resource value: 0x7f0d0025
-			public const int dismiss_overlay_button = 2131558437;
+			// aapt resource value: 0x7f0d0027
+			public const int dismiss_overlay_button = 2131558439;
 			
-			// aapt resource value: 0x7f0d0024
-			public const int dismiss_overlay_explain = 2131558436;
+			// aapt resource value: 0x7f0d0026
+			public const int dismiss_overlay_explain = 2131558438;
 			
 			// aapt resource value: 0x7f0d0015
 			public const int end = 2131558421;
@@ -848,17 +857,17 @@ namespace Quizard
 			// aapt resource value: 0x7f0d0020
 			public const int linearLayout1 = 2131558432;
 			
-			// aapt resource value: 0x7f0d0034
-			public const int linearLayout2 = 2131558452;
+			// aapt resource value: 0x7f0d0036
+			public const int linearLayout2 = 2131558454;
 			
-			// aapt resource value: 0x7f0d0030
-			public const int linearLayout3 = 2131558448;
+			// aapt resource value: 0x7f0d0032
+			public const int linearLayout3 = 2131558450;
 			
-			// aapt resource value: 0x7f0d0026
-			public const int message = 2131558438;
+			// aapt resource value: 0x7f0d0028
+			public const int message = 2131558440;
 			
-			// aapt resource value: 0x7f0d002a
-			public const int myButton = 2131558442;
+			// aapt resource value: 0x7f0d002c
+			public const int myButton = 2131558444;
 			
 			// aapt resource value: 0x7f0d0003
 			public const int none = 2131558403;
@@ -875,11 +884,11 @@ namespace Quizard
 			// aapt resource value: 0x7f0d0019
 			public const int start = 2131558425;
 			
-			// aapt resource value: 0x7f0d0037
-			public const int text = 2131558455;
+			// aapt resource value: 0x7f0d0039
+			public const int text = 2131558457;
 			
-			// aapt resource value: 0x7f0d0036
-			public const int title = 2131558454;
+			// aapt resource value: 0x7f0d0038
+			public const int title = 2131558456;
 			
 			// aapt resource value: 0x7f0d000e
 			public const int top = 2131558414;
@@ -957,31 +966,34 @@ namespace Quizard
 			public const int CardSets = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int dismiss_overlay = 2130903043;
+			public const int CardSetsRow = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int error_layout = 2130903044;
+			public const int dismiss_overlay = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int Main = 2130903045;
+			public const int error_layout = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int QuestionFlashCard = 2130903046;
+			public const int Main = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int RectangleMain = 2130903047;
+			public const int QuestionFlashCard = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int ResultsFlashCard = 2130903048;
+			public const int RectangleMain = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int RoundMain = 2130903049;
+			public const int ResultsFlashCard = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
-			public const int SplashScreen = 2130903050;
+			public const int RoundMain = 2130903050;
 			
 			// aapt resource value: 0x7f03000b
-			public const int watch_card_content = 2130903051;
+			public const int SplashScreen = 2130903051;
+			
+			// aapt resource value: 0x7f03000c
+			public const int watch_card_content = 2130903052;
 			
 			static Layout()
 			{
