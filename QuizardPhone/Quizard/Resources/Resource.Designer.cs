@@ -531,10 +531,8 @@ namespace Quizard
 			// aapt resource value: 0x7f080043
 			public const int flashSetListViewID = 2131230787;
 			
-			// aapt resource value: 0x7f08003e
 			// aapt resource value: 0x7f080040
-			public const int flashSetSubjectAutoCompleteTextViewID = 2131230782;
-			public const int flashSetSubjectEditTextID = 2131230784;
+			public const int flashSetSubjectAutoCompleteTextViewID = 2131230784;
 			
 			// aapt resource value: 0x7f080029
 			public const int fragmentContainer = 2131230761;
