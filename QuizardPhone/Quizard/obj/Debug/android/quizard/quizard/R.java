@@ -256,7 +256,7 @@ containing a value of this type.
         public static final int editText2=0x7f080011;
         public static final int enterIntoSelectedFlashSetButtonID=0x7f080042;
         public static final int flashSetListViewID=0x7f080041;
-        public static final int flashSetSubjectEditTextID=0x7f08003e;
+        public static final int flashSetSubjectAutoCompleteTextViewID=0x7f08003e;
         public static final int fragmentContainer=0x7f080028;
         public static final int icon_only=0x7f080004;
         public static final int item_touch_helper_previous_elevation=0x7f080000;
