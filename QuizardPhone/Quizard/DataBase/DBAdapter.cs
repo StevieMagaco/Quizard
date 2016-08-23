@@ -187,6 +187,16 @@ namespace Quizard.DataBase
                 return null;
             }
         }
+        public ICursor GetSpecificCard(string _Username, string _SetName, string _Question, string _Answer)
+        {
+                String whereclause;
+                String[] Clause = { _Username, _SetName, _Question, _Answer };
+                whereclause = Constants.Cards_UserName + " = ? and " + Constants.Cards_SetName + " = ? and " + Constants.Cards_Question + " = ? and " + Constants.Cards_Answer + " = ?";
+                String[] columns = { Constants.Cards_UserName, Constants.Cards_SetName, Constants.Cards_Question, Constants.Cards_Answer, Constants.Cards_NumberBox, Constants.Cards_PreRun };
+                ICursor ICursorBuffer = mdb.Query(Constants.Cards_TB_Name, columns, whereclause, Clause, null, null, null);
+                return ICursorBuffer;
+            
+        }
         /*
          * Adds a Card to the Cards table
          */

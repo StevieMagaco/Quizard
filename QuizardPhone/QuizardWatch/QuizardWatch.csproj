@@ -76,6 +76,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnswerPage.cs" />
+    <Compile Include="DataBase\Cards.cs" />
+    <Compile Include="DataBase\Sets.cs" />
+    <Compile Include="DataBase\User.cs" />
+    <Compile Include="DataBase\UserInfo.cs" />
     <Compile Include="DataStruct.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="QuestionPage.cs" />

@@ -107,7 +107,7 @@ namespace Quizard
         }
     }
 
-    [Activity(MainLauncher = true /* MainLauncher does NOT need to be changed unless another layout or diaglog fragment needs to be tested*/)]
+    [Activity(Icon = "@drawable/AppIcon", MainLauncher = true /* MainLauncher does NOT need to be changed unless another layout or diaglog fragment needs to be tested*/)]
     public class LoginActivity : Activity
     {
         private LinearLayout mLoginView;

@@ -71,7 +71,7 @@ namespace Quizard
     {
         private ArrayAdapter mAdapter;
         private ListView mFlashSetList;
-        private EditText mFlashSetSubject;
+        private AutoCompleteTextView mFlashSetSubject;
         private ImageButton mCreateAFlashSet, mCancel, mEditAFlashSetsSubject, mDeleteAFlashSet, mSettings;
         private TextView mCreateAFlashSetLabel, mCancelLabel, mEditAFlashSetsSubjectLabel, mDeleteAFlashSetLabel, mSettingsLabel;
         private SearchView mSearchThroughFlashSets;
@@ -82,7 +82,6 @@ namespace Quizard
         #region Sending Data Variables
         private GoogleApiClient mGoogleClient;
         private const string mCardSetPath = "/CardSets";
-        private bool mDataSent = false;
         #endregion
 
         #region Database Variables
@@ -99,11 +98,39 @@ namespace Quizard
             // Set our view from the "HomeLayout" layout resource
             SetContentView(Resource.Layout.HomeLayout);
 
+            string[] autoCompleteOptions = new string[]
+            {
+                #region Subjects
+                "Language Arts",
+                "Mathematics",
+                "Science",
+                "Health",
+                "Physical Education",
+                "Art",
+                "Music",
+                "Speech",
+                "Reading",
+                "Debate",
+                "English",
+                "Basic Math",
+                "Pre-Algebra",
+                "Algebra",
+                "Geometry",
+                "Life Science",
+                "Earth Science",
+                "Physical Science",
+                "Social Studies",
+                "Geography",
+                "U.S. History",
+                "Literature",
+                #endregion
+            };
+
             mGoogleClient = new GoogleApiClient.Builder(this, this, this).AddApi(WearableClass.API).Build();
 
             #region Class Variable FindViewById<> Assignments
             mFlashSetList = FindViewById<ListView>(Resource.Id.flashSetListViewID);
-            mFlashSetSubject = FindViewById<EditText>(Resource.Id.flashSetSubjectEditTextID);
+            mFlashSetSubject = FindViewById<AutoCompleteTextView>(Resource.Id.flashSetSubjectAutoCompleteTextViewID);
             mCreateAFlashSet = FindViewById<ImageButton>(Resource.Id.createAFlashSetImageButtonID);
             mCancel = FindViewById<ImageButton>(Resource.Id.cancelImageButtonID);
             mEditAFlashSetsSubject = FindViewById<ImageButton>(Resource.Id.editFlashSetSubjectImageButtonID);
@@ -122,6 +149,9 @@ namespace Quizard
             mUserInformation = new DataBase.UserInfo();
             mAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, mSetNameList);
 
+            ArrayAdapter autoCompleteAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleDropDownItem1Line, autoCompleteOptions);
+            mFlashSetSubject.Adapter = autoCompleteAdapter;
+
             string Username_Buffer = Intent.GetStringExtra("UserName") ?? "Data not available";
 
             if (Username_Buffer != "Data not available")
@@ -138,7 +168,7 @@ namespace Quizard
 
             RetreiveSet(mFlashSetList, Username_Buffer);
             RetrieveCards();
-            string json = JsonConvert.SerializeObject(mSetNameList);
+            string json = JsonConvert.SerializeObject(mUserInformation);
             SendData(json);
 
             mSearchThroughFlashSets.QueryTextChange += delegate (object sender, SearchView.QueryTextChangeEventArgs e)
@@ -155,7 +185,7 @@ namespace Quizard
                 {
                     mFlashSetSubject.Text = mEmptySubject;
                     RetreiveSet(mFlashSetList, Username_Buffer);
-                    string newJson = JsonConvert.SerializeObject(mSetNameList);
+                    string newJson = JsonConvert.SerializeObject(mUserInformation);
                     SendData(newJson);
                 }
             };
@@ -164,7 +194,7 @@ namespace Quizard
             mFlashSetList.ItemClick += delegate (object sender, AdapterView.ItemClickEventArgs e)
             {
                 mSelectedFlashSet = e.Position;
-                mFlashSetSubject.Hint = "Edit " + ReturnRealSetName(mSetNameList[mSelectedFlashSet].ToString()) + "?";
+                mFlashSetSubject.Hint = "Edit \"" + ReturnRealSetName(mSetNameList[mSelectedFlashSet].ToString()) + "\"?";
 
                 mFlashSetSubject.Visibility = ViewStates.Visible;
                 mEnterIntoSelectedFlashSet.Visibility = ViewStates.Visible;
@@ -199,7 +229,7 @@ namespace Quizard
             mEnterIntoSelectedFlashSet.Click += delegate (object sender, EventArgs e)
             {
                 Intent intent = new Intent(this, typeof(DeckActivity));
-                string[] UserSetName = { mUserInformation.GetUser().GetUsername(),ReturnRealSetName( mSetNameList[mSelectedFlashSet].ToString()) };
+                string[] UserSetName = { mUserInformation.GetUser().GetUsername(), ReturnRealSetName(mSetNameList[mSelectedFlashSet].ToString()) };
                 intent.PutExtra("Username/SetName", UserSetName);
                 this.StartActivity(intent);
             };
@@ -220,6 +250,8 @@ namespace Quizard
                 mSettings.Visibility = ViewStates.Invisible;
                 mSettingsLabel.Visibility = ViewStates.Invisible;
                 #endregion
+
+                mFlashSetSubject.Hint = "Subject";
             };
 
             // If the user needs to cancel out of a flash set creation, update, or delete command...
@@ -275,7 +307,7 @@ namespace Quizard
             {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-                alert.SetTitle("Delete the \"" + mFlashSetSubject.Text + "\" flash set?");
+                alert.SetTitle("Delete the \"" + ReturnRealSetName(mSetNameList[mSelectedFlashSet].ToString()) + "\" flash set?");
 
                 alert.SetPositiveButton("Yes", (senderAlert, args) =>
                 {
@@ -411,7 +443,7 @@ namespace Quizard
                 while (SetInfo.MoveToNext())
                 {
                     string name = SetInfo.GetString(1);
-                   int CardCount = GetCardCount(mUserInformation.GetUser().GetUsername(), name);
+                    int CardCount = GetCardCount(mUserInformation.GetUser().GetUsername(), name);
                     mSetNameList.Add(name + "\n" + CardCount.ToString());
                     // mSetNameList.Add(name);
                     BufferSet = new DataBase.Sets();
@@ -445,10 +477,11 @@ namespace Quizard
                     DataBase.DBAdapter db = new DataBase.DBAdapter(this);
                     db.openDB();
 
-                    ICursor CardsInfo = db.GetCards(mUserInformation.GetUser().GetUsername(),ReturnRealSetName( mSetNameList[loop]));
+                    ICursor CardsInfo = db.GetCards(mUserInformation.GetUser().GetUsername(), ReturnRealSetName(mSetNameList[loop]));
                     DataBase.Cards BufferCard = new DataBase.Cards();
                     while (CardsInfo.MoveToNext())
                     {
+                        BufferCard = new DataBase.Cards();
                         BufferCard.SetUserName(CardsInfo.GetString(0));
                         BufferCard.SetSetName(CardsInfo.GetString(1));
                         BufferCard.SetQuestion(CardsInfo.GetString(2));
@@ -511,7 +544,7 @@ namespace Quizard
         {
             DataBase.DBAdapter db = new DataBase.DBAdapter(this);
             db.openDB();
-           _SetName = ReturnRealSetName(_SetName);
+            _SetName = ReturnRealSetName(_SetName);
             if (db.DeleteRowSet_tb(_Username, _SetName))
             {
                 RetreiveSet(mFlashSetList, _Username);
@@ -583,7 +616,7 @@ namespace Quizard
         public string ReturnRealSetName(string _Setname)
         {
             string SetNameBuffer = "";
-            for(int loop = 0; loop < _Setname.Length; loop++)
+            for (int loop = 0; loop < _Setname.Length; loop++)
             {
                 if (_Setname[loop] != '\n')
                 {
@@ -600,7 +633,7 @@ namespace Quizard
             DataBase.Cards CardBuffer = new DataBase.Cards();
             db.openDB();
             ICursor Cards = db.GetCards(_Username, _Setname);
-            while(Cards.MoveToNext())
+            while (Cards.MoveToNext())
             {
                 CardBuffer.SetUserName(_Username);
                 CardBuffer.SetSetName(_Setname);

@@ -14,9 +14,9 @@ namespace Quizard.DataBase
 {
     class UserInfo
     {
-        User QuizUser;
-        List<Sets> QuizSets;
-        List<Cards> QuizCards;
+        public User QuizUser;
+        public List<Sets> QuizSets;
+        public List<Cards> QuizCards;
 
         public UserInfo()
         {
