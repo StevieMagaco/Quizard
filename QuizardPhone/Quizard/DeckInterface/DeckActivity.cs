@@ -37,6 +37,7 @@ namespace Quizard
         {
             
             base.OnCreate(bundle);
+            
 
             mQuestions = new List<string>();
             mAnswers = new List<string>();

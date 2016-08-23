@@ -123,12 +123,71 @@ namespace Quizard.DeckInterface
             {
                 if (tChoices[i] == mCorrectAnswer)
                     mCorrectAnswerIndex = i;
+                switch(i)
+                {
+                    case 0: tChoices[i] = "a) " + tChoices[i]; break;
+                    case 1: tChoices[i] = "b) " + tChoices[i]; break;
+                    case 2: tChoices[i] = "c) " + tChoices[i]; break;
+                    case 3: tChoices[i] = "d) " + tChoices[i]; break;
+                }
             }
             // set mChoices equal to tChoices
             mChoices = tChoices;
         }
   }
+    public class WrongAnswersDialogFragment : DialogFragment
+    {
+        View mView;
+        Button mNextButton;
+        ListView mAnswersListView;
+        TextView mQuestionTextView, mAnswerTextView;
+        List<Question> mQuestions;
+        int mCurrPosition;
 
+        public WrongAnswersDialogFragment(List<Question> questions)
+        {
+            mQuestions = new List<Question>(questions);
+        }
+
+        // removes title bar from dialogfragment on creation
+        public override Dialog OnCreateDialog(Bundle savedInstanceState)
+        {
+            Dialog d = base.OnCreateDialog(savedInstanceState);
+            d.Window.RequestFeature(WindowFeatures.NoTitle);
+            return d;
+        }
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            FragmentManager.PopBackStack();
+
+            base.OnCreateView(inflater, container, savedInstanceState);
+
+            mView = inflater.Inflate(Resource.Layout.WrongAnswersLayout, container, false);
+
+
+            mNextButton = mView.FindViewById<Button>(Resource.Id.WrongAnswerNextButtonID);
+            mNextButton.Click += NextButton_Click;
+
+            mQuestionTextView = mView.FindViewById<TextView>(Resource.Id.WrongAnswerQuestionTextViewID);
+            mQuestionTextView.Text = "Question " + mQuestions[0].GetQuestion();
+            mAnswerTextView = mView.FindViewById<TextView>(Resource.Id.WrongAnswerAnswerTextViewID);
+            mAnswerTextView.Text = "Correct Answer is " + mQuestions[0].GetCorrectAnswer();
+
+            return mView;
+        }
+
+        private void NextButton_Click(object sender, EventArgs e)
+        {
+
+            mCurrPosition++;
+            if (mCurrPosition >= mQuestions.Count)
+                Dismiss();
+            else {
+                mQuestionTextView.Text = "Question " + mQuestions[mCurrPosition].GetQuestion();
+                mAnswerTextView.Text = "Correct Answer is " + mQuestions[mCurrPosition].GetCorrectAnswer();
+            }
+        }
+    }
     public class DeckQuizTabFragment : Fragment
     {
         List<string> mQuestionList, mAnswerList; // list for questions and answers
@@ -137,6 +196,7 @@ namespace Quizard.DeckInterface
         ListView answerListView; // list view for answers
         Context mContext;
 
+        List<Question> mWrongAnswers;
         ArrayAdapter mAdapterQ; // database adapter
         string mUsername, mSetName; // database strings
          
@@ -154,6 +214,7 @@ namespace Quizard.DeckInterface
             mContext = _Context;
             mUsername = _UserSetName[0];
             mSetName = _UserSetName[1];
+            mWrongAnswers = new List<Question>();
         }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -186,18 +247,15 @@ namespace Quizard.DeckInterface
 
                 // set answer list view to display answerList.
                 answerListView = view.FindViewById<ListView>(Resource.Id.quizTabAnswerListView);
-                // temp code, eventually answerList will hold all possible answers and I will 
-                // add the list for the listview when i get the actual answers
-                if (mAnswerList.Count == 0)
-                {
-                    mAnswerList.Add("answe1r"); mAnswerList.Add("an2swer"); mAnswerList.Add("an3swer"); mAnswerList.Add("an4swer");
-                    mAnswerList.Add("an5swer"); mAnswerList.Add("ans6wer"); mAnswerList.Add("an7swer");
-                }
-                
 
 
                 InitQuiz(mQuestionList, mAnswerList);
-                ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuiz[0].GetChoices());
+                // set question text view to a question
+                questionTextView = view.FindViewById<TextView>(Resource.Id.quizTabQuestionTextView);
+                questionTextView.Text = mQuiz[0].GetQuestion();
+
+
+                ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Resource.Layout.QuizListView, mQuiz[0].GetChoices());
                 answerListView.Adapter = ListAdapter;
 
                 mNextButton = view.FindViewById<Button>(Resource.Id.quizTabNextButtonID);
@@ -214,6 +272,7 @@ namespace Quizard.DeckInterface
                     }
                     else
                     {
+                        mWrongAnswers.Add(mQuiz[mCurrPosition]);
                         UpdateCardNumberBox(mUsername, mSetName, mQuestionList[mCurrPosition], mAnswerList[mCurrPosition], false);
                     }
                     if (mCurrPosition + 1 < mQuestionList.Count)
@@ -225,7 +284,7 @@ namespace Quizard.DeckInterface
 
                         // remove when nextButton is fixed
                         questionTextView.Text = mQuiz[mCurrPosition].GetQuestion();
-                        ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuiz[mCurrPosition].GetChoices());
+                        ListAdapter = new ArrayAdapter<string>(Activity, Resource.Layout.QuizListView, mQuiz[mCurrPosition].GetChoices());
                         answerListView.Adapter = ListAdapter;
                         mNextButton.Visibility = ViewStates.Gone;
                     }
@@ -236,6 +295,11 @@ namespace Quizard.DeckInterface
                         mRightAnswers = 0;
                         mCurrPosition = 0;
                         answerListView.Visibility = ViewStates.Gone;
+
+                        FragmentTransaction fragmentTx = this.FragmentManager.BeginTransaction();
+                        WrongAnswersDialogFragment dialogFragment = new WrongAnswersDialogFragment(mWrongAnswers);
+                        dialogFragment.Show(fragmentTx, "Wrong answers fragment");
+
                     }
                 };
                 mNextButton.Click += NextButton_Click;
@@ -257,7 +321,9 @@ namespace Quizard.DeckInterface
             }
             else
             {
+                questionTextView = view.FindViewById<TextView>(Resource.Id.quizTabQuestionTextView);
 
+                questionTextView.Text = "Return to deck and create at least 4 cards!";
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
 
@@ -265,6 +331,7 @@ namespace Quizard.DeckInterface
 
                 alert.SetPositiveButton("OK", (senderAlert, args) =>
                 {
+                    this.FragmentManager.PopBackStack();
                     return;
                 });
 
@@ -272,7 +339,6 @@ namespace Quizard.DeckInterface
                 {
                     alert.Show();
                 });
-
             }
             return view;
         }
@@ -288,7 +354,7 @@ namespace Quizard.DeckInterface
          private void NextButton_Click(object sender, EventArgs e)
         {
             questionTextView.Text = mQuiz[mCurrPosition].GetQuestion();
-            ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuiz[mCurrPosition].GetChoices());
+            ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Resource.Layout.QuizListView, mQuiz[mCurrPosition].GetChoices());
             answerListView.Adapter = ListAdapter;
             mNextButton.Visibility = ViewStates.Gone;
         }
@@ -305,6 +371,31 @@ namespace Quizard.DeckInterface
                 tQuestion.CreateChoices(tList);
                 mQuiz.Add(tQuestion);
             }
+            QuizShuffle();
+        }
+        // shuffles mQuiz
+        void QuizShuffle()
+        {
+            List<Question> tQuiz = new List<Question>();
+            List<Question> bufferQuiz = new List<Question>(mQuiz);
+            Random rng = new Random();
+            int count = mQuiz.Count;
+            for (int i = 0; i < count;i++)
+            {
+                    int Range = rng.Next(1, 5000 + i);
+                    int index = Range % bufferQuiz.Count;
+                    
+                    // add value at index to tQuiz, and remove it from the bufferlist
+                    tQuiz.Add(bufferQuiz[index]);
+                    bufferQuiz.Remove(bufferQuiz[index]);
+            }
+            
+            for (int i = 0; i < tQuiz.Count; i++)
+             {
+                 tQuiz[i].SetQuestion((i + 1) + ") " + tQuiz[i].GetQuestion());
+             }
+            mQuiz = tQuiz;
+           
 
         }
         // database function for getting list of cards

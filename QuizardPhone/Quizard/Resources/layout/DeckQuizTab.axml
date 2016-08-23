@@ -24,13 +24,21 @@
         android:id="@+id/quizTabQuestionTextView"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:textSize="30dp" />
+        android:layout_marginBottom="10dp"
+        android:textColor="#ffffff"
+        android:textSize="35dp" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
+        android:background="#ffffff"
+        android:divider="#000000"
+        android:dividerHeight="1dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/quizTabAnswerListView" />
+        android:layout_height="wrap_content"
+        android:id="@+id/quizTabAnswerListView"
+        android:textSize="30dp" />
     <Button
         android:text="next"
         android:layout_width="match_parent"

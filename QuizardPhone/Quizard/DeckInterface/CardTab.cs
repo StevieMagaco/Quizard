@@ -10,13 +10,14 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Database;
+using Android.Views.InputMethods;
 
 namespace Quizard.DeckInterface
 {
 
     public class DeckCardTabFragment : Fragment
     {
-        List<string> mQuestions, mAnswers; // Lists to hold set questions and answers
+        List<string> mQuestions, mAnswers, mShuffledQuestions, mShuffledAnswers; // Lists to hold set questions and answers
         ListView mCardTabListView; // List of all card questions
         ImageButton mPlayButton, mAddButton, mHomeButton; // buttons for toolbar
         Button mAddCardNextButton, mDoneButton; // Buttons for adding cards
@@ -77,7 +78,7 @@ namespace Quizard.DeckInterface
 
             // Set ListView
             mCardTabListView = mView.FindViewById<ListView>(Resource.Id.cardTabListView);
-            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
+            ListAdapter = new ArrayAdapter<string>(Activity, Resource.Layout.DeckListView, mQuestions);
             mCardTabListView.Adapter = ListAdapter;
 
             // When an item on the list is clicked open up a DialogFragment with the individual card information.
@@ -98,6 +99,34 @@ namespace Quizard.DeckInterface
 
             return mView;
         }
+        // shuffles question and answer list to generate a random list for play 
+        void PlayListShuffle()
+        {
+            List<string> bufferQuestions = new List<string>(mQuestions);
+            List<string> bufferAnswers = new List<string>(mAnswers);
+
+            List<string> tQuestions = new List<string>();
+            List<string> tAnswers = new List<string>();
+           
+
+
+
+            Random rng = new Random();
+            int count = mQuestions.Count;
+            for (int i = 0; i < count; i++)
+            {
+                int Range = rng.Next(1, 5000 + i);
+                int index = Range % bufferQuestions.Count;
+
+                // add value at index to tQuiz, and remove it from the bufferlist
+                tQuestions.Add(bufferQuestions[index]);
+                tAnswers.Add(bufferAnswers[index]);
+                bufferQuestions.Remove(bufferQuestions[index]);
+                bufferAnswers.Remove(bufferAnswers[index]);
+            }
+            mShuffledQuestions = tQuestions;
+            mShuffledAnswers = tAnswers;
+        }
         // Function is called when Done button is clicked while adding cards. Takes in values from EditText widgets,
         // sets it to temp string variables (tempSubject, tempAnswer), and then adds the cards to list. 
         private void DoneButton_Click(object sender, EventArgs e)
@@ -107,6 +136,8 @@ namespace Quizard.DeckInterface
             tempSubject = mAddCardQuestionText.Text; // gets info from question EditText widget
             tempAnswer = mAddCardAnswerText.Text; // gets info from answer EditText widget
 
+            InputMethodManager inputManager = (InputMethodManager)Activity.GetSystemService(Context.InputMethodService);
+            inputManager.HideSoftInputFromWindow(Activity.CurrentFocus.WindowToken, HideSoftInputFlags.ImplicitOnly);
 
             // adds subject and answer to list and database
             if (tempSubject.Length > 0 && tempAnswer.Length > 0)
@@ -128,7 +159,7 @@ namespace Quizard.DeckInterface
             mAddCardNextButton.Visibility = ViewStates.Gone;
 
             // Set new ListView
-            ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
+            ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Resource.Layout.DeckListView, mQuestions);
             mCardTabListView.Adapter = ListAdapter;
         }
         // takes in card position, and then removes that card from database
@@ -138,7 +169,7 @@ namespace Quizard.DeckInterface
             DeleteCard(mUsername, mSetName, mQuestions[pos], mAnswers[pos]);
             RetrieveCards(mUsername, mSetName);
 
-            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
+            ListAdapter = new ArrayAdapter<string>(Activity, Resource.Layout.DeckListView, mQuestions);
             mCardTabListView.Adapter = ListAdapter;
 
         }
@@ -149,7 +180,7 @@ namespace Quizard.DeckInterface
             UpdateCard(CardBuffer, question, answer);
             RetrieveCards(mUsername, mSetName);
 
-            ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
+            ListAdapter = new ArrayAdapter<string>(Activity, Resource.Layout.DeckListView, mQuestions);
             mCardTabListView.Adapter = ListAdapter;
         }
         // Function is called when Add button is clicked while adding cards. Takes in values from EditText widgets,
@@ -172,7 +203,7 @@ namespace Quizard.DeckInterface
                 AddCard_db(mUsername, mSetName, tempSubject, tempAnswer);
             }
             // Set new ListView
-            ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Android.Resource.Layout.SimpleListItem1, mQuestions);
+            ArrayAdapter<string> ListAdapter = new ArrayAdapter<string>(Activity, Resource.Layout.DeckListView, mQuestions);
             mCardTabListView.Adapter = ListAdapter;
 
             // return to question text box
@@ -198,7 +229,9 @@ namespace Quizard.DeckInterface
         // Opens a new Dialog Fragment for cycling through deck
         private void PlayButton_Click(object sender, EventArgs e)
         {
-            deckPlayFragment fragment = new deckPlayFragment(mQuestions, mAnswers);
+
+            PlayListShuffle();
+            deckPlayFragment fragment = new deckPlayFragment(mShuffledQuestions, mShuffledAnswers);
             FragmentTransaction fragmentTx = this.FragmentManager.BeginTransaction();
             fragment.Show(fragmentTx, "Play through deck fragment");
         }
@@ -293,7 +326,7 @@ namespace Quizard.DeckInterface
     {
 
         enum cardState { QUESTION_STATE, ANSWER_STATE, ALL_STATES } // enum for card states
-
+        enum mode { DEFAULT_MODE, PLAY_MODE, ALL_MODES }
         List<string> mQuestions, mAnswers; // lists to hold questions and answers for each card
         int mPosition; // current position in list of cards
         EditText mCardText; // widget used to display/edit text
@@ -301,6 +334,7 @@ namespace Quizard.DeckInterface
         cardState mCurrState = cardState.QUESTION_STATE; // current state of card on display
         DeckCardTabFragment mDeck;
         Button mFlipButton, mEditButton, mDeleteButton;
+        mode mCurrMode;
         //private GestureDetector _gestureDetector;
 
         //string mQuestionHolder, mAnswerHolder;
@@ -335,6 +369,7 @@ namespace Quizard.DeckInterface
 
             mInfoTextView = view.FindViewById<TextView>(Resource.Id.QuestionAnswerTextViewID);
             mInfoTextView.Text = "Question:";
+            
 
             mEditButton = view.FindViewById<Button>(Resource.Id.CardEditButtonID);
             mEditButton.Click += EditButton_Click;
@@ -351,9 +386,22 @@ namespace Quizard.DeckInterface
         // handles click event for delete
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            // remove card from mDeck
-            mDeck.Remove(mPosition) ;
-            Dismiss();
+            AlertDialog.Builder alert = new AlertDialog.Builder(this.Activity);
+            alert.SetTitle("Delete?");
+
+            alert.SetPositiveButton("OK", (senderAlert, args) =>
+            {
+                // remove card from mDeck
+
+                mDeck.Remove(mPosition);
+                Dismiss();
+                return;
+            });
+            alert.SetNegativeButton("Cancel", (senderAlert, args) =>
+            {
+                return;
+            });
+            alert.Show();
         }
         // handles click event for edit button
         private void EditButton_Click(object sender, EventArgs e)
@@ -538,4 +586,5 @@ namespace Quizard.DeckInterface
             mNextButton.Enabled = false;
         }
     }
+   
 }
