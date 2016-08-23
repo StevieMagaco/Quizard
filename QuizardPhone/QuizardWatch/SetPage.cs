@@ -22,6 +22,8 @@ namespace Quizard
         //Temporary List of Dummy data
         private ObservableCollection<string> QuizListData;
 
+        private DataBase.UserInfo mUserData;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -66,14 +68,14 @@ namespace Quizard
 
         public void ProcessMessage(Intent intent)
         {
-            JavaList<string> data = JsonConvert.DeserializeObject<JavaList<string>>(intent.GetStringExtra("WearMessage"));
+            mUserData = JsonConvert.DeserializeObject<DataBase.UserInfo>(intent.GetStringExtra("WearMessage"));
+            //JavaList<string> data = JsonConvert.DeserializeObject<JavaList<string>>(intent.GetStringExtra("WearMessage"));
             QuizListData.Clear();
 
-            for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < mUserData.GetSets().Count; i++)
             {
-                QuizListData.Add(data.ElementAt(i));
+                QuizListData.Add(mUserData.GetSets().ElementAt(i).GetSetName());
             }
-            
 
             QuizList.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleExpandableListItem1, QuizListData);
         }

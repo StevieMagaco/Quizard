@@ -187,6 +187,16 @@ namespace Quizard.DataBase
                 return null;
             }
         }
+        public ICursor GetSpecificCard(string _Username, string _SetName, string _Question, string _Answer)
+        {
+                String whereclause;
+                String[] Clause = { _Username, _SetName, _Question, _Answer };
+                whereclause = Constants.Cards_UserName + " = ? and " + Constants.Cards_SetName + " = ? and " + Constants.Cards_Question + " = ? and " + Constants.Cards_Answer + " = ?";
+                String[] columns = { Constants.Cards_UserName, Constants.Cards_SetName, Constants.Cards_Question, Constants.Cards_Answer, Constants.Cards_NumberBox, Constants.Cards_PreRun };
+                ICursor ICursorBuffer = mdb.Query(Constants.Cards_TB_Name, columns, whereclause, Clause, null, null, null);
+                return ICursorBuffer;
+            
+        }
         /*
          * Adds a Card to the Cards table
          */
@@ -290,6 +300,22 @@ namespace Quizard.DataBase
                 insertValues.Put(Constants.Cards_Answer, _NewAnswer);
             else
                 insertValues.Put(Constants.Cards_Answer, _Card.GetAnswer());
+            insertValues.Put(Constants.Cards_NumberBox, _Card.GetNumberBox());
+            insertValues.Put(Constants.Cards_PreRun, _Card.GetPreRun());
+            if (mdb.Update(Constants.Cards_TB_Name, insertValues, whereclause, Clause) > 0)
+                return true;
+            else
+                return false;
+        }
+        public bool UpdateCardsSetName(Cards _Card, string _NewSetname)
+        {
+            String whereclause = Constants.Users_UserName + " = ? and " + Constants.Cards_SetName + " = ? and " + Constants.Cards_Question + " = ? and " + Constants.Cards_Answer + " = ?";
+            String[] Clause = { _Card.GetUserName(), _Card.GetSetName(), _Card.GetQuestion(), _Card.GetAnswer() };
+            ContentValues insertValues = new ContentValues();
+            insertValues.Put(Constants.Cards_UserName, _Card.GetUserName());
+            insertValues.Put(Constants.Cards_SetName, _NewSetname);
+            insertValues.Put(Constants.Cards_Question, _Card.GetQuestion());
+            insertValues.Put(Constants.Cards_Answer, _Card.GetAnswer());
             insertValues.Put(Constants.Cards_NumberBox, _Card.GetNumberBox());
             insertValues.Put(Constants.Cards_PreRun, _Card.GetPreRun());
             if (mdb.Update(Constants.Cards_TB_Name, insertValues, whereclause, Clause) > 0)

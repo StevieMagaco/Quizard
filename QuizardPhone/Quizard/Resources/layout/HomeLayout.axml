@@ -158,7 +158,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="100">
-        <EditText
+        <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_weight="40"
@@ -172,7 +172,7 @@
             android:hint="Subject"
             android:visibility="invisible"
             android:background="@drawable/EditTextStyle"
-            android:id="@+id/flashSetSubjectEditTextID" />
+            android:id="@+id/flashSetSubjectAutoCompleteTextViewID" />
         <Button
             android:text="Add"
             android:layout_width="match_parent"

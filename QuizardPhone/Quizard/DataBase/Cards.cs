@@ -14,12 +14,12 @@ namespace Quizard.DataBase
 {
     class Cards
     {
-        private string UserName;
-        private string SetName;
-        private string Question;
-        private string Answer;
-        private string NumberBox;
-        private string PreRun;
+        public string UserName;
+        public string SetName;
+        public string Question;
+        public string Answer;
+        public string NumberBox;
+        public string PreRun;
 
         public Cards()
         {

@@ -14,11 +14,11 @@ namespace Quizard.DataBase
 {
     class Sets
     {
-        private string UserName;
-        private string SetName;
-        private string Notify;
-        private string Correct;
-        private string Incorrect;
+        public string UserName;
+        public string SetName;
+        public string Notify;
+        public string Correct;
+        public string Incorrect;
 
         public Sets()
         {
