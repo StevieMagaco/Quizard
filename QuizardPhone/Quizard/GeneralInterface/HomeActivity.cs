@@ -82,7 +82,6 @@ namespace Quizard
         #region Sending Data Variables
         private GoogleApiClient mGoogleClient;
         private const string mCardSetPath = "/CardSets";
-        private bool mDataSent = false;
         #endregion
 
         #region Database Variables
@@ -138,7 +137,7 @@ namespace Quizard
 
             RetreiveSet(mFlashSetList, Username_Buffer);
             RetrieveCards();
-            string json = JsonConvert.SerializeObject(mSetNameList);
+            string json = JsonConvert.SerializeObject(mUserInformation);
             SendData(json);
 
             mSearchThroughFlashSets.QueryTextChange += delegate (object sender, SearchView.QueryTextChangeEventArgs e)
@@ -155,7 +154,7 @@ namespace Quizard
                 {
                     mFlashSetSubject.Text = mEmptySubject;
                     RetreiveSet(mFlashSetList, Username_Buffer);
-                    string newJson = JsonConvert.SerializeObject(mSetNameList);
+                    string newJson = JsonConvert.SerializeObject(mUserInformation);
                     SendData(newJson);
                 }
             };
