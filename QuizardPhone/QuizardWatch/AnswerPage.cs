@@ -36,11 +36,12 @@ namespace Quizard
             IncorrectButton = FindViewById<ImageButton>(Resource.Id.AnswerIncorrect);
 
             //Option A getting data individually
-            Title.Text = "Question: " + Intent.GetIntExtra("Question Number", 0).ToString();
-            Answer.Text = Intent.GetStringExtra("Name Of Set") + " Answer!";
+            //Title.Text = "Question: " + Intent.GetIntExtra("Question Number", 0).ToString();
+            //Answer.Text = Intent.GetStringExtra("Name Of Set") + " Answer!";
             //Option B getting an entire serialized Object
             data = JsonConvert.DeserializeObject<DataStruct>(Intent.GetStringExtra("data"));
-
+            Title.Text = "Question: " + data.Count.ToString();
+            Answer.Text = data.Cards[data.Count - 1].GetAnswer();
             //Setting up a Click event for the Buttons
             IncorrectButton.Click += IncorrectButton_Click;
             CorrectButton.Click += CorrectButton_Click;
@@ -51,23 +52,19 @@ namespace Quizard
         private void CorrectButton_Click(object sender, EventArgs e)
         {
             //Increment Question
-            data.Count++;
             data.Correct++;
-            //Add true to correct bool
-
-            if (data.Count >= 10/*data.Answers.Count*/)
-                Transition_To_ResultPage();
-            else
-                Transition_To_QuestionPage();
+            To_Next_Page();
         }
 
         private void IncorrectButton_Click(object sender, EventArgs e)
         {
             //Increment Question
-            data.Count++;
-            //Add true to incorrect bool
+            To_Next_Page();
+        }
 
-            if (data.Count >= 10/*data.Answers.Count*/)
+        private void To_Next_Page()
+        {
+            if (data.Count >= data.Cards.Count)
                 Transition_To_ResultPage();
             else
                 Transition_To_QuestionPage();
@@ -75,12 +72,15 @@ namespace Quizard
 
         private void Transition_To_QuestionPage()
         {
+            //Increment the count
+            data.Count++;
+
             //Sets Up an Intent For the Next Activity
             Intent intent = new Intent(this, typeof(QuestionPage));
 
             //Option A Serializing Individual basic type data sets
-            intent.PutExtra("Name Of Set", data.NameOfSet);
-            intent.PutExtra("Question Number", data.Count);
+            //intent.PutExtra("Name Of Set", data.NameOfSet);
+            //intent.PutExtra("Question Number", data.Count);
             //Option B Serializing an Object using Json
             intent.PutExtra("data", JsonConvert.SerializeObject(data));
 
@@ -92,20 +92,20 @@ namespace Quizard
 
         private void Transition_To_ResultPage()
         {
-
             //Sets Up an Intent For the Next Activity
             Intent intent = new Intent(this, typeof(ResultPage));
 
             //Option A Serializing Individual basic type data sets
-            intent.PutExtra("Name Of Set", data.NameOfSet);
-            intent.PutExtra("Question Number", data.Count);
+            //intent.PutExtra("Name Of Set", data.NameOfSet);
+            //intent.PutExtra("Question Number", data.Count);
             //Option B Serializing an Object using Json
             intent.PutExtra("data", JsonConvert.SerializeObject(data));
 
             //Starts the Next Activity
             this.StartActivity(intent);
             //Closes this Activity
-            this.Finish();
+            //this.Finish();
+            this.FinishAfterTransition();
 
         }
     }

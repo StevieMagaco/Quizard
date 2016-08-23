@@ -36,6 +36,8 @@ namespace Quizard
 
             QuizList.ItemClick += QuizList_ItemClick;
 
+            QuizList.SetBackgroundResource(Resource.Drawable.backgroundServerWarning);
+
             IntentFilter filter = new IntentFilter(Intent.ActionSend);
             MessageReciever receiver = new MessageReciever(this);
             LocalBroadcastManager.GetInstance(this).RegisterReceiver(receiver, filter);
@@ -53,13 +55,15 @@ namespace Quizard
             {
                 Answers = new List<string>(),//List Of Answers Obtained from the phone
                 Questions = new List<string>(),//List Of Questios Obtained from the phone
+                Cards = mUserData.RetrivesCardsFromSpecificSet(SelectedSet),
                 NameOfSet = SelectedSet,
                 Count = 1,
                 Correct = 0,
+                Result = 0,
             };
             //Option A Serializing Individual basic type data sets
-            intent.PutExtra("Name Of Set", SelectedSet);
-            intent.PutExtra("Question Number", 1);
+            //intent.PutExtra("Name Of Set", SelectedSet);
+            //intent.PutExtra("Question Number", 1);
             //Option B Serializing an Object using Json
             intent.PutExtra("data", JsonConvert.SerializeObject(data));
             //Starts the Next Activity
@@ -68,14 +72,18 @@ namespace Quizard
 
         public void ProcessMessage(Intent intent)
         {
+            QuizList.SetBackgroundResource(Resource.Drawable.backgroundServerLoading);
+
             mUserData = JsonConvert.DeserializeObject<DataBase.UserInfo>(intent.GetStringExtra("WearMessage"));
             //JavaList<string> data = JsonConvert.DeserializeObject<JavaList<string>>(intent.GetStringExtra("WearMessage"));
-            QuizListData.Clear();
+            QuizListData.Clear();            
 
             for (int i = 0; i < mUserData.GetSets().Count; i++)
             {
                 QuizListData.Add(mUserData.GetSets().ElementAt(i).GetSetName());
             }
+
+            QuizList.SetBackgroundResource(Resource.Drawable.watchbackground2);
 
             QuizList.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleExpandableListItem1, QuizListData);
         }

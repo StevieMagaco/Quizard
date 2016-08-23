@@ -21,5 +21,7 @@ namespace Quizard
         public string NameOfSet { get; set; }
         public int Count { get; set; }
         public int Correct { get; set; }
+        public List<DataBase.Cards> Cards { get; set; }
+        public int Result { get; set; }
     }
 }

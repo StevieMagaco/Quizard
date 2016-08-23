@@ -32,14 +32,16 @@
         android:id="@+id/linearLayout1">
         <TextView
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_width="111.3dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="50"
             android:background="@android:color/transparent"
             android:gravity="center"
             android:id="@+id/ResultPercentage" />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="50"
             android:background="@android:color/transparent"
             android:id="@+id/ResultEmoji"
             android:scaleType="fitCenter" />
@@ -61,8 +63,9 @@
         android:id="@+id/linearLayout3">
         <ImageButton
             android:src="@drawable/error"
-            android:layout_width="106.0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="50"
             android:id="@+id/ResultCancelButton"
             android:background="@android:color/transparent"
             android:scaleType="fitEnd" />

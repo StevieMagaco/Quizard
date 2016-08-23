@@ -21,7 +21,6 @@ namespace Quizard
         private ImageButton AcceptButton;
         private ImageButton CancelButton;
         private DataStruct data;
-        private int avg;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {  
@@ -38,11 +37,11 @@ namespace Quizard
             AcceptButton = FindViewById<ImageButton>(Resource.Id.ResultAcceptButton);
             CancelButton = FindViewById<ImageButton>(Resource.Id.ResultCancelButton);
 
-            avg = (data.Correct * 100) / data.Count /*data.Questions.Count*/;
-            Average.Text = avg.ToString();
+            data.Result = (data.Correct * 100) / data.Count /*data.Questions.Count*/;
+            Average.Text = data.Result.ToString();
             Average.Text += "%";
 
-            SetEmoji(avg);
+            SetEmoji(data.Result);
            
             AcceptButton.Click += AcceptButton_Click;
             CancelButton.Click += CancelButton_Click;
@@ -53,19 +52,20 @@ namespace Quizard
             data.Count = 1;
 
             //Sets Up an Intent For the Next Activity
-            Intent intent = new Intent(this, typeof(ToMenuSplashScreen));
-            intent.SetFlags(ActivityFlags.ClearTop);
+            Intent intent = new Intent(this, typeof(SplashScreen));
+            //intent.SetFlags(ActivityFlags.ClearTop);
 
             //Option A Serializing Individual basic type data sets
-            intent.PutExtra("Name Of Set", data.NameOfSet);
-            intent.PutExtra("Question Number", data.Count);
+            //intent.PutExtra("Name Of Set", data.NameOfSet);
+            //intent.PutExtra("Question Number", data.Count);
             //Option B Serializing an Object using Json
-            intent.PutExtra("data", JsonConvert.SerializeObject(data));
+            //intent.PutExtra("data", JsonConvert.SerializeObject(data));
 
             //Starts the Next Activity
             this.StartActivity(intent);
             //Closes this Activity
-            this.Finish();
+            //this.Finish();
+            this.FinishAfterTransition();
         }
 
         private void AcceptButton_Click(object sender, EventArgs e)
@@ -75,18 +75,19 @@ namespace Quizard
 
             //Sets Up an Intent For the Next Activity
             Intent intent = new Intent(this, typeof(QuestionPage));
-            intent.SetFlags(ActivityFlags.ClearTop);
+            //intent.SetFlags(ActivityFlags.ClearTop);
 
             //Option A Serializing Individual basic type data sets
-            intent.PutExtra("Name Of Set", data.NameOfSet);
-            intent.PutExtra("Question Number", data.Count);
+            //intent.PutExtra("Name Of Set", data.NameOfSet);
+            //intent.PutExtra("Question Number", data.Count);
             //Option B Serializing an Object using Json
             intent.PutExtra("data", JsonConvert.SerializeObject(data));
 
             //Starts the Next Activity
             this.StartActivity(intent);
             //Closes this Activity
-            this.Finish();
+            //this.Finish();
+            this.FinishAfterTransition();
         }
 
         private void RandomEmoji()

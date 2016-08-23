@@ -56,6 +56,8 @@ namespace Quizard
 
                 this.StartActivity(intent);
 
+                this.FinishAfterTransition();
+
                 timer.Stop();
             }
         }

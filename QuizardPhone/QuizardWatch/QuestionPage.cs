@@ -32,10 +32,12 @@ namespace Quizard
             nextPageButton = FindViewById<ImageButton>(Resource.Id.QuestionNext);
 
             //Option A getting data individually
-            Title.Text = "Question: " + Intent.GetIntExtra("Question Number", 0).ToString();
-            Question.Text = Intent.GetStringExtra("Name Of Set") + " Question?";
+            //Title.Text = "Question: " + Intent.GetIntExtra("Question Number", 0).ToString();
+            //Question.Text = Intent.GetStringExtra("Name Of Set") + " Question?";
             //Option B getting an entire serialized Object
             data = JsonConvert.DeserializeObject<DataStruct>(Intent.GetStringExtra("data"));
+            Title.Text = "Question: " + data.Count.ToString();
+            Question.Text = data.Cards[data.Count - 1].GetQuestion();
             //Setting up a Click event for the next Button Page
             nextPageButton.Click += nextPageButton_Click;        
 
@@ -47,15 +49,16 @@ namespace Quizard
             Intent intent = new Intent(this, typeof(AnswerPage));
 
             //Option A Serializing Individual basic type data sets
-            intent.PutExtra("Name Of Set", data.NameOfSet);
-            intent.PutExtra("Question Number", data.Count);
+            //intent.PutExtra("Name Of Set", data.NameOfSet);
+            //intent.PutExtra("Question Number", data.Count);
             //Option B Serializing an Object using Json
             intent.PutExtra("data", JsonConvert.SerializeObject(data));
 
             //Starts the Next Activity
             this.StartActivity(intent);
             //Closes this Activity
-            this.Finish();
+            //this.Finish();
+            this.FinishAfterTransition();
         }
     }
 }
