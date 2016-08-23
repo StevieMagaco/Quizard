@@ -208,20 +208,27 @@ namespace Quizard.DeckInterface
         {
             try
             {
+                
                 if (_Question.Length > 0 || _Answer.Length > 0)
                 {
                     DataBase.Cards CardBuffer = new DataBase.Cards(_Username, _SetName, _Question, _Answer, "0", "0");
                     DataBase.DBAdapter db = new DataBase.DBAdapter(mContext);
                     db.openDB();
-                    if (db.SetCard(CardBuffer))
+                    ICursor CardCheck = db.GetSpecificCard(_Username, _SetName, _Question, _Answer);
+                        if (CardCheck.Count == 0)
                     {
-                        RetrieveCards(_Username, _SetName);
+                        if (db.SetCard(CardBuffer))
+                        {
+                            RetrieveCards(_Username, _SetName);
 
-                        db.CloseDB();
-                        return true;
+                            db.CloseDB();
+                            return true;
+                        }
+                        else
+                            throw new System.ArgumentException("Failed to save new Card", "CardSave");
                     }
-                    else
-                        throw new System.ArgumentException("Failed to save new Card", "CardSave");
+                        else
+                        throw new System.ArgumentException("Card already exists", "CardSave");
                 }
                 else
                     throw new System.ArgumentException("Answer or Question is Blank", "CardSave");
