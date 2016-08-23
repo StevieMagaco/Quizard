@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:background="#02243c"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <TextView
+        android:text="Text"
+        android:background="#ffffff"
+        android:textColor="#000000"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/WrongAnswerQuestionTextViewID" />
+    <TextView
+        android:text="Text"
+        android:background="#ffffff"
+        android:textColor="#000000"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/WrongAnswerAnswerTextViewID" />
+    <Button
+          android:text="NEXT"
+          android:layout_width="100dp"
+          android:layout_height="wrap_content"
+          android:id="@+id/WrongAnswerNextButtonID"
+          android:background="@drawable/ButtonStyle"
+          android:gravity="right"
+          android:layout_gravity="right"
+          android:textSize="25dp"
+          android:typeface="monospace" />
+</LinearLayout>

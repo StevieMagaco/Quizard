@@ -117,7 +117,9 @@
     <AndroidResource Include="Resources\layout\DeckCardTab.axml" />
     <AndroidResource Include="Resources\layout\DeckLayout.axml" />
     <AndroidResource Include="Resources\layout\DeckQuizDialogBox.axml" />
-    <AndroidResource Include="Resources\layout\DeckQuizTab.axml" />
+    <AndroidResource Include="Resources\layout\DeckQuizTab.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\DeckCardTabEditLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -129,6 +131,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\deckPlayLayout.axml" />
     <AndroidResource Include="Resources\layout\HomeMenuDialogLayout.axml" />
+    <AndroidResource Include="Resources\layout\WrongAnswersLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\LoginLayout.axml">
@@ -197,6 +202,14 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Menu\menuItems.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\QuizListView.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\DeckListView.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets')" />
