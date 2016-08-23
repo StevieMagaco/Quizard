@@ -449,6 +449,7 @@ namespace Quizard
                     DataBase.Cards BufferCard = new DataBase.Cards();
                     while (CardsInfo.MoveToNext())
                     {
+                        BufferCard = new DataBase.Cards();
                         BufferCard.SetUserName(CardsInfo.GetString(0));
                         BufferCard.SetSetName(CardsInfo.GetString(1));
                         BufferCard.SetQuestion(CardsInfo.GetString(2));
